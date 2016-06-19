@@ -1,0 +1,18 @@
+@import (reference) "../../common.less";
+
+.datum {	
+	&.is-updated {		
+		animation-duration: .7s;
+		animation-name: highlight;
+		font-weight: @font-bold;
+	}
+}
+
+@keyframes highlight {
+	from {
+		background-color: @green-secondary;		
+	}
+	to {
+		background-color: transparent;
+	}
+}
