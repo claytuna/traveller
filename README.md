@@ -2,7 +2,8 @@
 
 Open source character generator for the Traveller RPG system (2008). Built in React - server-side uses CodeIgniter.
 
-*(I know what you're thinking -- PHP?! What is this, 2012? I don't pretend to be a backend developer, and I like CI's Helper classes: deal with it.)*
+*I know what you're thinking -- PHP?! What is this, 2012?* 
+I don't pretend to be a backend developer, and I like CI's Helper classes: deal with it.
 
 ##To run app
 App available in the root index (default route in CI). See application/views/app.php
