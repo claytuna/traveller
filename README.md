@@ -5,6 +5,8 @@ Open source character generator for the Traveller RPG system (2008). Built in Re
 ##To run app
 App available in the root index (default route in CI). See application/views/app.php
 
+Note: you will have to update the base_url config in application/config/config.php before it will run.
+
 ##App code 
 Located in client/core. Run webpack in parent dir to compile.
 
