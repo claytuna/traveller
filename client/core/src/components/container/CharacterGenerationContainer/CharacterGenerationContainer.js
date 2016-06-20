@@ -47,7 +47,12 @@ module.exports = class CharacterGenerationContainer extends Core {
 			}
 
 			if(!data.world){
-				return <Step title="2. Choose a homeworld" subtitle="Generate and accept your homeworld below"
+				return <Step title="2.(a) Choose a homeworld" subtitle="Generate and accept your homeworld below"
+					content={<WorldGeneratorWidgetContainer/>}/>;
+			}
+
+			if(!data.world){
+				return <Step title="2.(b) Select background skills" subtitle="Select skills from the list below. (Based on your EDU modifier and homeworld selection)"
 					content={<WorldGeneratorWidgetContainer/>}/>;
 			}
 

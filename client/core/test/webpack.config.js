@@ -39,11 +39,11 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			$j: "jquery",
 			_: "lodash",
-			Core: __dirname + '../src/components/Core',
-			CorePure: __dirname + '../src/components/CorePure',
+			Core: __dirname + '/../src/components/Core',
+			CorePure: __dirname + '/../src/components/CorePure',
 			Grid: 'react-bootstrap/lib/Grid',
 			Row: 'react-bootstrap/lib/Row',
 			Col: 'react-bootstrap/lib/Col',
-		})	
+		})
 	]
 };
