@@ -1,7 +1,7 @@
 var TravellerWorldService = require('services/TravellerWorldService');
 var CharacterService = require("services/CharacterService");
 
-var WorldSummaryTraveller = require('components/display/WorldSummaryTraveller');
+var WorldSummary = require('components/display/WorldSummary');
 var WorldGeneratorTravellerWidget = require('components/display/WorldGeneratorTravellerWidget');
 var ContainerTitle = require("components/display/ContainerTitle");
 var BtnGroup = require("components/display/BtnGroup");
@@ -31,7 +31,7 @@ module.exports = class WorldGeneratorWidgetContainer extends Core {
 				<div>
 					<Card title="Homeworld"
 						body={
-							this.state.world ? <WorldSummaryTraveller data={ this.state.world }/> : <p>Generate world below</p>
+							this.state.world ? <WorldSummary data={ this.state.world }/> : <p>Generate world below</p>
 						}
 						footer={
 							<BtnGroup>
