@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 var beeps = require('webpack-beep-plugin');
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
 				test: /\.js$/,
 				loader: "babel-loader",
 				exclude: /node_modules/,
-				include: [ /src/, /client.js/ ],
+				include: [ /specs/, /src/ ],
 				query: {
 					presets: [ 'es2015', 'react' ]
 				}
@@ -28,9 +29,9 @@ module.exports = {
 	devtool: '#inline-source-map',
 	resolve:{
 		alias: {
-			components: __dirname + '/../src/components',
-			services: __dirname + '/../src/services',
-			RS: __dirname + '/../reactive-store.js',
+			components: path.join(__dirname, '/../src/components'),
+			services: path.join(__dirname, '/../src/services'),
+			RS: path.join(__dirname, '/../reactive-store.js'),
 		}
 	},
 	plugins: [
@@ -39,8 +40,8 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			$j: "jquery",
 			_: "lodash",
-			Core: __dirname + '/../src/components/Core',
-			CorePure: __dirname + '/../src/components/CorePure',
+			Core: path.join(__dirname, '/../src/components/Core'),
+			CorePure: path.join(__dirname, '/../src/components/CorePure'),
 			Grid: 'react-bootstrap/lib/Grid',
 			Row: 'react-bootstrap/lib/Row',
 			Col: 'react-bootstrap/lib/Col',

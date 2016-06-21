@@ -1,4 +1,5 @@
 var TravellerWorldService = require('services/TravellerWorldService');
+var CharacterService = require("services/CharacterService");
 
 var WorldSummaryTraveller = require('components/display/WorldSummaryTraveller');
 var WorldGeneratorTravellerWidget = require('components/display/WorldGeneratorTravellerWidget');
@@ -22,7 +23,7 @@ module.exports = class WorldGeneratorWidgetContainer extends Core {
 	}
 
 	accept(){
-		alert('saved!');
+		CharacterService.setHomeworld( this.state.world );
 	}
 
 	render(){
@@ -35,7 +36,7 @@ module.exports = class WorldGeneratorWidgetContainer extends Core {
 						footer={
 							<BtnGroup>
 								<Btn type="tertiary" text="Generate New World" onClick={ this.generate }/>
-								{ this.state.world && <Btn type="secondary" text="Accept World" onClick={ this.accept }/> }
+								{ this.state.world && <Btn type="secondary" text="Accept World" onClick={ this.accept.bind(this) }/> }
 							</BtnGroup>
 						}/>
 					{ this.state.world && <WorldGeneratorTravellerWidget data={ this.state.world }/> }

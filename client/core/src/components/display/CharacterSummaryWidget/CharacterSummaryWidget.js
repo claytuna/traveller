@@ -12,13 +12,14 @@ module.exports = class CharacterSummaryWidget extends CorePure {
 						<Col xs={12}>
 							<DatumGroup title="Name" value={data.name} />
 						</Col>
-						{ data.stats && statsDisplay(data.stats) }
+						{ data.stats && showStats(data.stats) }
+						{ data.homeworld && showHomeworld(data.homeworld) }
 					</Row>
 				}
 				footer={<p>Show history...</p>}	/>
 		);
 
-		function statsDisplay(stats){
+		function showStats(stats){
 			return (
 				<Col xs={12}>
 					<Card title="Characteristics" secondary
@@ -30,5 +31,22 @@ module.exports = class CharacterSummaryWidget extends CorePure {
 				</Col>
 			);
 		}
+
+		function showHomeworld(homeworld){
+			return (
+				<Col xs={12}>
+					<Card title="Homeworld" secondary
+						body={
+							<Row>
+								<Col xs={12}>
+									<DatumGroup title="UWP" value={homeworld.uwp} />
+									<DatumGroup title="Starport" value={homeworld.starport.name} />
+								</Col>
+							</Row>
+						}/>
+				</Col>
+			);
+		}
+
 	}
 };

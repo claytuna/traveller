@@ -36,7 +36,11 @@ var CharacterService = module.exports = {
 		}
 	},
 
-	getCurrentCharacter(){
+	setHomeworld: (homeworldVals) => {
+		RS.set('character.data.homeworld', homeworldVals);
+	},
+
+	getCurrentCharacter: ()=>{
 		return RS.get('character.data');
 	}
 };

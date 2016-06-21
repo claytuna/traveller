@@ -25,7 +25,6 @@ var TravellerWorldService = module.exports = {
 		RS.set('world.data', {
 			name:name,
 			uwp: `${name}${s}${s}${s}${s}0101${s}${s}${s}${s}${sp.name}${size.name}${atmos.name}${hydro.name}${pop.name}${govt.name}${law.name}-${tech.values.digit}`,
-			technologies: tws.getStarPort( DiceRollService.roll([ 5 ]) ),
 			size: size,
 			atmosphere: atmos,
 			temperature: temp,
