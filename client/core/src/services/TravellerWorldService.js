@@ -24,7 +24,7 @@ var TravellerWorldService = module.exports = {
 
 		RS.set('world.data', {
 			name:name,
-			uwp: `${name}${s}${s}${s}${s}0101${s}${s}${s}${s}${sp.name}${size.name}${atmos.name}${hydro.name}${pop.name}${govt.name}${law.name}-${tech.values.digit}`,
+			uwp: `${name}${s}${s}${q.call()}${q.call()}${q.call()}${q.call()}${s}${s}${sp.name}${size.name}${atmos.name}${hydro.name}${pop.name}${govt.name}${law.name}-${tech.values.digit} ${ _.join( _.map(trades, (o)=>o.values.code), "") }`,
 			size: size,
 			atmosphere: atmos,
 			temperature: temp,
@@ -41,6 +41,10 @@ var TravellerWorldService = module.exports = {
 			travelCodes: travels,
 			tradeCodes: trades,
 		});
+
+		function q(){
+			return MS.random(9, 0);
+		}
 	},
 
 	getSize: ( roll ) => {
