@@ -4,9 +4,25 @@ var SkillService = module.exports = {
     return skillList();
   },
 
-  getBackgroundSkills: ( worldTradeData ) => {
-  	return true;
+  getBackgroundSkills: ( tradeCodes ) => {
+    var tradeSkillMap = {
+      'Ag': fs('Animals')
+    };
+
+    /*tradeSkillMap['Ag'] */
+
+    var educationSkills = [
+      fs('Admin')
+    ];
+
+  	return tradeSkillMap['Ag'];
+
+    var fs = (n) => SkillService.findSkill(n);
   },
+
+  findSkill: ( skillName ){
+    return _.filter( SkillService.list(), (o)=> o.name == skillName );
+  }
 }
 
 function skillList(){
@@ -59,6 +75,7 @@ function skillList(){
     { name:'Trade', desc: "", id:46, qty:0, children:[] },
     { name:'Vacc Suit', desc: "", id:47, qty:0 },
     { name:'Zero-G', desc: "", id:48, qty:0 },
+
     { name:'Riding', desc: "", id:49, qty:0 },
     { name:'Veterinary', desc: "", id:50, qty:0 },
     { name:'Training', desc: "", id:51, qty:0 },

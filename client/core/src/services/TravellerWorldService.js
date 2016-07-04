@@ -1,4 +1,5 @@
 var DiceRollService = require("services/DiceRollService");
+var RandomWordService = require("services/RandomWordService");
 var MS = require("services/MathService");
 
 global.DiceRollService = DiceRollService;
@@ -6,7 +7,7 @@ global.DiceRollService = DiceRollService;
 var TravellerWorldService = module.exports = {
 
 	generate: () => {
-		let name = "Random";
+		let name = RandomWordService.getRandomWord().toUpperCase();
 		let tws = TravellerWorldService;
 		let size = tws.getSize( DiceRollService.roll([ 11 ]) );
 		let atmos = tws.getAtmosphere( (DiceRollService.roll([ 6, 6 ]) - 7) + size.values.digit );

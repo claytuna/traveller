@@ -3,138 +3,170 @@ var MS = require('services/MathService');
 var RandomWordService = module.exports = {
 
   getRandomWord: () => {
-    var wLength = RandomWordService.getWordLength(MS.random(14751, 0)).value; console.log(wLength)
+    var wLength = RandomWordService.getWordLength(MS.random(14751, 0)).value;
     var word = '';
-    var phBit = 0;
+    var phDelta = 1;
 
     while (word.length < wLength) {
 
-      if (word.length === 0) {
-        word = word + RandomWordService.getRandomConsonant().values.graphemes[0];
+      if( word.length != 0 && (wLength - word.length) <= 2 ) {
+        word = word + gr( RandomWordService.getEndingPhoneme( MS.random(12702, 0) ), false );
       }
 
       if (word.length != 0 && (wLength - word.length) > 2 ) {
-        word = word + RandomWordService.getRandomVowel().values.graphemes[0];
-      } else {
-        word = word + RandomWordService.getRandomConsonant().values.graphemes[0];
+        var vowels = ['a', 'e', 'i', 'o', 'u'];
+        var inner = phDelta === 1 ? RandomWordService.getRandom(vowels) : RandomWordService.getInnerPhoneme( MS.random(12702, 0) );
+        word = word + gr( inner );
+        phDelta = (phDelta == 0 ? 1 : 0);
+      }
+
+      if (word.length === 0) {
+        word = word + gr( RandomWordService.getStartingPhoneme(MS.random(14751, 0)) );
       }
 
     }
-    /*for(var i = 0; i<=wLength; i++ ) {
-      i === 0 && current.push('start');
-      i != 0 && i !=wLength ? current.push('mid') : current.push('last');
-      phBit ^= phBit
-    }*/
 
   	return word;
+
+    function gr( letter, start = true ){
+        return RandomWordService.getRandom( RandomWordService.getGraphemeByLetter( letter, start ) );
+    }
   },
 
   getWordLength: ( wValue ) => {
-    if(wValue < 0 || wValue > 14751 || isNaN(wValue)) return 0;
-    return _.sortBy( _.filter(RandomWordService.getWordLengths(), (o)=>{ return o.weight >= wValue }), 'weight' )[0];
+    return RandomWordService.freqFilter(RandomWordService.getWordLengths(), 14751, wValue );
   },
 
   getStartingPhoneme: ( wValue ) => {
     var startLetters = [
-      {'t':16671},
-      {'a':11602},
-      {'s':7755},
-      {'h':7232},
-      {'w':6753},
-      {'i':6286},
-      {'o':6264},
-      {'b':4702},
-      {'m':4383},
-      {'f':3779},
-      {'c':3511},
-      {'l':2705},
-      {'d':2670},
-      {'p':2545},
-      {'n':2365},
-      {'e':2007},
-      {'g':1950},
-      {'r':1653},
-      {'y':1620},
-      {'u':1487},
-      {'v':649},
-      {'j':597},
-      {'k':590},
-      {'q':173},
-      {'z':34},
-      {'x':17}
+      {value:'t', weight:16671},
+      {value:'a', weight:11602},
+      {value:'s', weight:7755},
+      {value:'h', weight:7232},
+      {value:'w', weight:6753},
+      {value:'i', weight:6286},
+      {value:'o', weight:6264},
+      {value:'b', weight:4702},
+      {value:'m', weight:4383},
+      {value:'f', weight:3779},
+      {value:'c', weight:3511},
+      {value:'l', weight:2705},
+      {value:'d', weight:2670},
+      {value:'p', weight:2545},
+      {value:'n', weight:2365},
+      {value:'e', weight:2007},
+      {value:'g', weight:1950},
+      {value:'r', weight:1653},
+      {value:'y', weight:1620},
+      {value:'u', weight:1487},
+      {value:'v', weight:649},
+      {value:'j', weight:597},
+      {value:'k', weight:590},
+      {value:'q', weight:173},
+      {value:'z', weight:34},
+      {value:'x', weight:17}
     ];
 
-    return _.filter(startLetters, wValue);
+    return RandomWordService.freqFilter(startLetters, 16671, wValue ).value;
   },
 
   getInnerPhoneme: ( wValue ) => {
     var innerLetters = [
-      {'e':12702},
-      {'t':9056},
-      {'a':8167},
-      {'o':7507},
-      {'i':6966},
-      {'n':6749},
-      {'s':6327},
-      {'h':6094},
-      {'r':5987},
-      {'d':4253},
-      {'l':4025},
-      {'c':2782},
-      {'u':2758},
-      {'m':2406},
-      {'w':2361},
-      {'f':2228},
-      {'g':2015},
-      {'y':1974},
-      {'p':1929},
-      {'b':1492},
-      {'v':978},
-      {'k':772},
-      {'j':153},
-      {'x':150},
-      {'q':95},
-      {'z':74}
+      {value:'e', weight:12702},
+      {value:'t', weight:9056},
+      {value:'a', weight:8167},
+      {value:'o', weight:7507},
+      {value:'i', weight:6966},
+      {value:'n', weight:6749},
+      {value:'s', weight:6327},
+      {value:'h', weight:6094},
+      {value:'r', weight:5987},
+      {value:'d', weight:4253},
+      {value:'l', weight:4025},
+      {value:'c', weight:2782},
+      {value:'u', weight:2758},
+      {value:'m', weight:2406},
+      {value:'w', weight:2361},
+      {value:'f', weight:2228},
+      {value:'g', weight:2015},
+      {value:'y', weight:1974},
+      {value:'p', weight:1929},
+      {value:'b', weight:1492},
+      {value:'v', weight:978},
+      {value:'k', weight:772},
+      {value:'j', weight:153},
+      {value:'x', weight:150},
+      {value:'q', weight:95},
+      {value:'z', weight:74}
     ];
+    return RandomWordService.freqFilter(innerLetters, 12702, wValue ).value;
   },
 
   getEndingPhoneme: ( wValue ) => {
+    /*accuracy uncertain (top 10 valid)*/
     var endLetters = [
-      {'e':19170},
-      {'s':14350},
-      {'d':9230},
-      {'t':8640},
-      {'n':7860},
-      {'y':7300},
-      {'r':6930},
-      {'f':4080},
-      {'l':4560},
-      {'o':4670},
-      {'g':2000},
-      {'h':2782},
-      {'a':2758},
-      {'k':2406},
-      {'m':2361},
-      {'p':2228},
-      {'u':2015},
-      {'w':1974},
-      {'b':1929},
-      {'c':1492},
-      {'i':978},
-      {'j':772},
-      {'q':153},
-      {'v':150},
-      {'x':95},
-      {'z':74}
+      {value:'e', weight:19170},
+      {value:'s', weight:14350},
+      {value:'d', weight:9230},
+      {value:'t', weight:8640},
+      {value:'n', weight:7860},
+      {value:'y', weight:7300},
+      {value:'r', weight:6930},
+      {value:'f', weight:4080},
+      {value:'l', weight:4560},
+      {value:'o', weight:4670},
+      {value:'g', weight:2000},
+      {value:'h', weight:2782},
+      {value:'a', weight:2758},
+      {value:'k', weight:2406},
+      {value:'m', weight:2361},
+      {value:'p', weight:2228},
+      {value:'u', weight:2015},
+      {value:'w', weight:1974},
+      {value:'b', weight:1929},
+      {value:'c', weight:1492},
+      {value:'i', weight:978},
+      {value:'j', weight:772},
+      {value:'q', weight:153},
+      {value:'v', weight:150},
+      {value:'x', weight:95},
+      {value:'z', weight:74}
     ];
+    return RandomWordService.freqFilter(endLetters, 19170, wValue ).value;
+  },
+
+  isConsonantOrVowel: ( letter ) => {
+    var vowels = [ 'a', 'e', 'i', 'o', 'u' ];
+    return vowels.indexOf(letter) != -1 ? 'VOWEL' : 'CONSONANT';
+  },
+
+  freqFilter: ( values, maxWeightVal, weightVal ) => {
+    if(weightVal < 0 || weightVal > maxWeightVal || isNaN(weightVal)) return {value:0};
+    return _.sortBy( _.filter(values, (o)=>{ return o.weight >= weightVal }), 'weight' )[0];
+  },
+
+  getGraphemeByLetter: (letter, startsWith = true) => {
+    return _.filter( _.flatMap( getGroups(letter), (o) => { return o.values.graphemes } ), (str) => { return startOrEnd(str) } );
+
+    function startOrEnd(str){
+      return startsWith ? _.startsWith(str, letter) : _.endsWith(str, letter);
+    }
+
+    function getGroups(l){
+      if(RandomWordService.isConsonantOrVowel(l) === 'VOWEL') {
+        return _.concat(RandomWordService.getPhonemesBySubtype('VOWEL'), RandomWordService.getPhonemesBySubtype('VOWELR'));
+      } else {
+        return _.concat(RandomWordService.getPhonemesBySubtype('CONSONANT'), RandomWordService.getPhonemesBySubtype('DIGRAPH'));
+      }
+    }
   },
 
   getRandomVowel: () => {
-    return RandomWordService.getRandom( RandomWordService.getPhonemesBySubtype('VOWEL') );
+    return RandomWordService.getRandom( _.concat(RandomWordService.getPhonemesBySubtype('VOWEL'), RandomWordService.getPhonemesBySubtype('VOWELR')) );
   },
 
   getRandomConsonant: () => {
-    return RandomWordService.getRandom( RandomWordService.getPhonemesBySubtype('CONSONANT') );
+    return RandomWordService.getRandom( _.concat(RandomWordService.getPhonemesBySubtype('CONSONANT'), RandomWordService.getPhonemesBySubtype('DIGRAPH')) );
   },
 
   getRandomDigraph: () => {
@@ -216,12 +248,12 @@ var RandomWordService = module.exports = {
       { name:'/oi/', desc: 'oi, oy, uoy', id:31, type:'PHONEME', values:{ examples:["join", "boy", "buoy"], graphemes:["oi", "oy", "uoy"], subtype:'VOWEL'} },
       { name:'/ow/', desc: 'ow, ou, ough', id:32, type:'PHONEME', values:{ examples:["now", "shout", "bough"], graphemes:["ow", "ou", "ough"], subtype:'VOWEL'} },
       { name:'/ə/ (schwa)', desc: 'a, er, i, ar, our, or, e, ur, re, eur', id:33, type:'PHONEME', values:{ examples:["about", "ladder", "pencil", "dollar", "honour", "doctor", "ticket", "augur", "centre", "chauffeur"], graphemes:["a", "er", "i", "ar", "our", "or", "e", "ur", "re", "eur"], subtype:'VOWEL'} },
-      { name:'/ã/', desc: 'air, are, ear, ere, eir, ayer', id:34, type:'PHONEME', values:{ examples:["chair", "dare", "pear", "where", "their", "prayer"], graphemes:["air", "are", "ear", "ere", "eir", "ayer"], subtype:'VOWEL'} },
-      { name:'/ä/', desc: 'a, ar, au, er, ear', id:35, type:'PHONEME', values:{ examples:["math", "jar", "laugh", "sergeant", "heart"], graphemes:["a", "ar", "au", "er", "ear"], subtype:'VOWEL'} },
-      { name:'/û/', desc: 'ir, er, ur, ear, or, our, yr', id:36, type:'PHONEME', values:{ examples:["bird", "term", "burn", "pearl", "word", "journey", "myrtle"], graphemes:["ir", "er", "ur", "ear", "or", "our", "yr"], subtype:'VOWEL'} },
-      { name:'/ô/', desc: 'aw, a, or, oor, ore, oar, our, augh, ar, ough, au', id:37, type:'PHONEME', values:{ examples:["paw", "ball", "fork", "poor", "fore", "board", "four", "taught", "war", "bought", "sauce"], graphemes:["aw", "a", "or", "oor", "ore", "oar", "our", "augh", "ar", "ough", "au"], subtype:'VOWEL'} },
-      { name:'/ēə/', desc: 'ear, eer, ere, ier', id:38, type:'PHONEME', values:{ examples:["ear", "steer", "here", "tier"], graphemes:["ear", "eer", "ere", "ier"], subtype:'VOWEL'} },
-      { name:'/üə/', desc: 'ure, our', id:39, type:'PHONEME', values:{ examples:["cure", "tourist"], graphemes:["ure", "our"], subtype:'VOWEL'} },
+      { name:'/ã/', desc: 'air, are, ear, ere, eir, ayer', id:34, type:'PHONEME', values:{ examples:["chair", "dare", "pear", "where", "their", "prayer"], graphemes:["air", "are", "ear", "ere", "eir", "ayer"], subtype:'VOWELR'} },
+      { name:'/ä/', desc: 'a, ar, au, er, ear', id:35, type:'PHONEME', values:{ examples:["math", "jar", "laugh", "sergeant", "heart"], graphemes:["a", "ar", "au", "er", "ear"], subtype:'VOWELR'} },
+      { name:'/û/', desc: 'ir, er, ur, ear, or, our, yr', id:36, type:'PHONEME', values:{ examples:["bird", "term", "burn", "pearl", "word", "journey", "myrtle"], graphemes:["ir", "er", "ur", "ear", "or", "our", "yr"], subtype:'VOWELR'} },
+      { name:'/ô/', desc: 'aw, a, or, oor, ore, oar, our, augh, ar, ough, au', id:37, type:'PHONEME', values:{ examples:["paw", "ball", "fork", "poor", "fore", "board", "four", "taught", "war", "bought", "sauce"], graphemes:["aw", "a", "or", "oor", "ore", "oar", "our", "augh", "ar", "ough", "au"], subtype:'VOWELR'} },
+      { name:'/ēə/', desc: 'ear, eer, ere, ier', id:38, type:'PHONEME', values:{ examples:["ear", "steer", "here", "tier"], graphemes:["ear", "eer", "ere", "ier"], subtype:'VOWELR'} },
+      { name:'/üə/', desc: 'ure, our', id:39, type:'PHONEME', values:{ examples:["cure", "tourist"], graphemes:["ure", "our"], subtype:'VOWELR'} },
       { name:'/zh/', desc: 's, si, z', id:40, type:'PHONEME', values:{ examples:["treasure", "division", "azure"], graphemes:["s", "si", "z"], subtype:'DIGRAPH'} },
       { name:'/ch/', desc: 'ch, tch, tu, ti, te', id:41, type:'PHONEME', values:{ examples:["chip", "watch", "future", "action", "righteous"], graphemes:["ch", "tch", "tu", "ti", "te"], subtype:'DIGRAPH'} },
       { name:'/sh/', desc: 'sh, ce, s, ci, si, ch, sci, ti', id:42, type:'PHONEME', values:{ examples:["sham", "ocean", "sure", "special", "pension", "machine", "conscience", "station"], graphemes:["sh", "ce", "s", "ci", "si", "ch", "sci", "ti"], subtype:'DIGRAPH'} },
