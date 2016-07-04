@@ -443,7 +443,7 @@ var TravellerWorldService = module.exports = {
 			{ name: "Ice-capped", id:0, desc:"Ice-capped worlds have most their surface liquid frozen in polar ice caps, and are cold and dry", values:{ digit:8, code:"IC" }},
 			{ name: "Industrial", id:0, desc:"Industrial worlds are dominated by factories and cities", values:{ digit:9, code:"In" }},
 			{ name: "Low population", id:0, desc:"Low population worlds have a population of only a few thousand or less", values:{ digit:10, code:"Lo" }},
-			{ name: "Low technolgy", id:0, desc:"Low technology worlds are pre-industrial and cannot produce advanced goods", values:{ digit:11, code:"Lt" }},
+			{ name: "Low technology", id:0, desc:"Low technology worlds are pre-industrial and cannot produce advanced goods", values:{ digit:11, code:"Lt" }},
 			{ name: "Non-Agricultural", id:0, desc:"Non-Agricultural worlds are too dry or barren to support their population using conventional food production", values:{ digit:12, code:"Na" }},
 			{ name: "Non-Industrial", id:0, desc:"Non-Industrial worlds are too low-population to maintain an industrial base", values:{ digit:13, code:"Ni" }},
 			{ name: "Poor", id:0, desc:"Poor worlds lack resources, viable land, or sufficient population to be anything other than marginal colonies", values:{ digit:14, code:"Po" }},

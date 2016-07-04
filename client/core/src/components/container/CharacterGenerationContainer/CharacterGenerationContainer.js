@@ -36,7 +36,7 @@ module.exports = class CharacterGenerationContainer extends Core {
 		function characterTree(){
 			var data = this.state.data;
 
-			if(!data.name){
+			/*if(!data.name){
 				return <Step title="To begin, choose your character name:"
 					content={<div><TextField rsKey="characterName" placeholder="Character name"/> <Btn text="Accept name" onClick={ ()=>{ CharacterService.setName(RS.get('characterName')) } }/></div>} />
 			}
@@ -44,7 +44,7 @@ module.exports = class CharacterGenerationContainer extends Core {
 			if(!data.stats){
 				return <Step title="1. Roll for characteristics" subtitle="Select a dice rolling option and roll for stats"
 					content={<StatsWidgetContainer/>}/>;
-			}
+			}*/
 
 			if(!data.homeworld){
 				return <Step title="2.(a) Choose a homeworld" subtitle="Generate and accept your homeworld below"
