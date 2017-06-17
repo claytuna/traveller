@@ -1,13 +1,13 @@
 require("./FieldGroup.less");
 
-module.exports = class FieldGroup extends Core {
-  render() {
-    var props = _.omit(props, ['label', 'fields']);
+ const FieldGroup = props => {
+    //var props = _.omit(props, ['label', 'fields']);
     return (
       <div className="field-group">
-        { this.props.label && <label for="">{this.props.label}</label>}
-        { this.props.children }
+        { props.label && <label htmlFor="">{props.label}</label>}
+        { props.children }
       </div>
     );
-  }
 }
+
+module.exports = FieldGroup;

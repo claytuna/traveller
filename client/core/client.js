@@ -1,8 +1,34 @@
 global.React = require('react');
 global.RS = require('RS');
 
-var ReactDom = require('react-dom');
-/*var Router = require('components/Router');*/
-var App = require('components/App');
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider, connect } from 'react-redux';
+import { createStore } from 'redux';
+import travellerApp from 'reducers';
+import * as actionCreators from 'actions';
+import App from 'components/App';
 
-ReactDom.render( <App />, document.getElementById('app') );
+let store = createStore(travellerApp);
+
+const mapStateToProps = state => {
+  return {
+    character: travellerApp
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch: dispatch,
+    actions: actionCreators
+  }
+};
+
+const AppWithData = connect( travellerApp, mapDispatchToProps )(App);
+
+render(
+  <Provider store={store}>
+    <AppWithData />
+  </Provider>,
+  document.getElementById('app')
+);

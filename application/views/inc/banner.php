@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<p>Created by Clayton Huthwaite &copy; 2016</p>
+				<p>Created by Clayton Huthwaite. &copy; <?php echo date('Y'); ?></p>
 			</div>
 		</div>
 	</div>

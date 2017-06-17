@@ -1,5 +1,7 @@
-var AppService = module.exports = {
+var AppService = {
 	init: () => {
-		RS.set('app.title', 'Character Generator (Traveller)');
+		//do app setup, if needed
 	}
 };
+
+ module.exports = AppService;

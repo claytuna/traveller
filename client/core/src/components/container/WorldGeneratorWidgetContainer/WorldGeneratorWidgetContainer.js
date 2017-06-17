@@ -8,7 +8,7 @@ var BtnGroup = require("components/display/BtnGroup");
 var Btn = require("components/display/Btn");
 var Card = require('components/display/Card');
 
-module.exports = class WorldGeneratorWidgetContainer extends Core {
+class WorldGeneratorWidgetContainer extends Core {
 	constructor() {
 		super();
 		this.state = { world: undefined };
@@ -45,3 +45,5 @@ module.exports = class WorldGeneratorWidgetContainer extends Core {
 		);
 	}
 };
+
+module.exports = WorldGeneratorWidgetContainer;

@@ -4,10 +4,11 @@ var StaticRightSidebar = require('components/layout/StaticRightSidebar');
 var Header = require('components/display/Header');
 var CharacterGenerationContainer = require('components/container/CharacterGenerationContainer');
 var CharacterSummaryWidgetContainer = require('components/container/CharacterSummaryWidgetContainer');
+var React = require("react");
 
 require("./App.less");
 
-module.exports = class App extends Core {
+class App extends React.Component {
 
 	componentDidMount(){
 		AppService.init();
@@ -19,11 +20,13 @@ module.exports = class App extends Core {
 				<Header />
 				<div className="app__content">
 					<StaticRightSidebar>
-						<CharacterGenerationContainer />
-						<CharacterSummaryWidgetContainer />
+						<CharacterGenerationContainer {...this.props}/>
+						<CharacterSummaryWidgetContainer {...this.props}/>
 					</StaticRightSidebar>
 				</div>
 			</div>
 		);
 	}
 };
+
+module.exports = App;

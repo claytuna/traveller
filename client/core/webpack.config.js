@@ -30,6 +30,9 @@ module.exports = {
 		alias: {
 			components: __dirname + '/src/components',
 			services: __dirname + '/src/services',
+			actions: __dirname + '/src/actions',
+			reducers: __dirname + '/src/reducers',
+			constants: __dirname + '/src/constants',
 			RS: __dirname + '/reactive-store.js',
 		}
 	},

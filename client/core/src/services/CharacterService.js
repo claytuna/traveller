@@ -1,10 +1,4 @@
-var CharacterService = module.exports = {
-	start: ()=>{
-		RS.set('character.data', {
-			name:undefined,
-			stats:undefined,
-		});
-	},
+const CharacterService = {
 
 	fetchData: () => {
 		RS.set('character.data', sampleData());
@@ -146,3 +140,5 @@ function sampleData(){
 		}
 	);
 }
+
+module.exports = CharacterService;

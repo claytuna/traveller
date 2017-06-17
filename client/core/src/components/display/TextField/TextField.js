@@ -11,6 +11,6 @@ module.exports = class TextField extends Core {
 	}
 
   render() {
-    return <input className="text-field" type="text" onChange={this.handleChange.bind(this)} {...this.props}/>;
+    return <input className="text-field" type="text" onChange={this.handleChange.bind(this)} {..._.omit(this.props, 'rsKey')}/>;
   }
 }

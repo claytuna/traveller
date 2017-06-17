@@ -1,9 +1,6 @@
-module.exports = class StaticRightSidebar extends CorePure {
-	
-	shouldComponentUpdate(nextProps) {
-		return false;
-	}
-	
+var React = require("react");
+
+class StaticRightSidebar extends React.Component {
 	render(){
 		return (
 			<Grid>
@@ -19,3 +16,5 @@ module.exports = class StaticRightSidebar extends CorePure {
 		);
 	}
 };
+
+module.exports = StaticRightSidebar;

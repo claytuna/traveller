@@ -1,7 +1,8 @@
 var Card = require('components/display/Card');
 var DatumGroup = require("components/display/DatumGroup");
+var React = require("react");
 
-module.exports = class CharacterSummaryWidget extends CorePure {
+class CharacterSummaryWidget extends React.Component {
 	render(){
 		var data = this.props.data;
 		return (
@@ -50,3 +51,5 @@ module.exports = class CharacterSummaryWidget extends CorePure {
 
 	}
 };
+
+module.exports = CharacterSummaryWidget;

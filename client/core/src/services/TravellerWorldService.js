@@ -4,7 +4,7 @@ var MS = require("services/MathService");
 
 global.DiceRollService = DiceRollService;
 
-var TravellerWorldService = module.exports = {
+const TravellerWorldService = {
 
 	generate: () => {
 		let name = RandomWordService.getRandomWord().toUpperCase();
@@ -478,5 +478,6 @@ var TravellerWorldService = module.exports = {
 		return result;
 	}
 
-
 };
+
+module.exports = TravellerWorldService;
