@@ -1,3 +1,6 @@
+export const appRestart = () => ({type: 'CHARACTER_RESTART'});
+export const appSave = () => ({type: 'CHARACTER_SAVE'});
+
 export const updateCharacterName = name => {
   return {
     type: 'UPDATE_NAME',

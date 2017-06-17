@@ -17,7 +17,9 @@ class App extends React.Component {
 	render(){ console.log(this.props)
 		return (
 			<div className="app">
-				<Header />
+				<Header
+					onRestart={ ()=>{this.props.dispatch(this.props.actions.appRestart())} }
+					onSave={ ()=>{this.props.dispatch(this.props.actions.appSave())} }/>
 				<div className="app__content">
 					<StaticRightSidebar>
 						<CharacterGenerationContainer {...this.props}/>

@@ -20,11 +20,13 @@
 	&.btn--primary {
 		background-color:@red-primary;
 		&:active { background-color: darken(@red-primary, 5%);  }
+		&[disabled] { background-color: @gray-med }
 	}
 
 	&.btn--secondary {
 		background-color: @green-primary;
 		&:active { background-color: darken(@green-primary, 5%);  }
+		&[disabled] { background-color: @gray-med }
 	}
 
 	&.btn--tertiary {

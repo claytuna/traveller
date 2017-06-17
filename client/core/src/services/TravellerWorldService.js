@@ -23,8 +23,8 @@ const TravellerWorldService = {
 		let trades = tws.getTradeCodes( size.values.digit, atmos.values.digit, hydro.values.digit, pop.values.digit, govt.values.digit , law.values.digit, tech.values.digit);
 		let s = '_';
 
-		RS.set('world.data', {
-			name:name,
+		return {
+			name: name,
 			uwp: `${name}${s}${s}${q.call()}${q.call()}${q.call()}${q.call()}${s}${s}${sp.name}${size.name}${atmos.name}${hydro.name}${pop.name}${govt.name}${law.name}-${tech.values.digit} ${ _.join( _.map(trades, (o)=>o.values.code), "") }`,
 			size: size,
 			atmosphere: atmos,
@@ -41,7 +41,7 @@ const TravellerWorldService = {
 			communications: tws.getCommunications( tech.values.digit ),
 			travelCodes: travels,
 			tradeCodes: trades,
-		});
+		};
 
 		function q(){
 			return MS.random(9, 0);

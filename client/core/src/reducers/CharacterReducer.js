@@ -10,6 +10,18 @@ const career = (isFirst) => {
 
 const CharacterReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'CHARACTER_RESTART':
+      return _.assign({}, state, initialState);
+    case 'CHARACTER_SAVE':
+      /*interact with db or something - generate a tiny url?*/
+      return state;
+    case 'UPDATE_SKILL':
+      let newSkills = state.skills.push(action.data)
+      return _.assign(
+        {},
+        state,
+        {skills: newSkills}
+      );
     case 'UPDATE_NAME':
       return _.assign(
         {},
@@ -56,13 +68,11 @@ function getModifier(stat){
 const initialState = {
   name: false,
   age: 0,
+  sex: 0,
   stats: false,
   homeworld: false,
-  skills: {
-    background: [],
-    basicTraining: [],
-    general: []
-  },
+  backgroundSkills: [],
+  skills: [],
   careers: [],
   events: [],
   connections: {

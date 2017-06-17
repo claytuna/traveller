@@ -33,19 +33,19 @@ class CharacterGenerationContainer extends React.Component {
 						<TextField formName="characterNameForm" fieldName="name" placeholder="Character name" onUpdate={ (f1,f2,v)=>{dispatch(actions.updateForm(f1,f2,v))} }/>
 						<Btn text="Accept name" onClick={ ()=>{ dispatch(actions.updateCharacterName(forms.characterNameForm.name)) } }/>
 						</div>} />
-			}*/
+			}
 
 			if(character.stats === false){
 				return <Step title="1. Roll for characteristics" subtitle="Select a dice rolling option and roll for stats"
 					content={<StatsWidgetContainer {...this.props}/>}/>;
-			}
+			}*/
 
 			if(character.homeworld === false){
 				return <Step title="2.(a) Choose a homeworld" subtitle="Generate and accept your homeworld below"
-					content={<WorldGeneratorWidgetContainer onUpdate={()=>dispatch(actions.updateHomeworld('foo'))}/>}/>;
+					content={<WorldGeneratorWidgetContainer onUpdate={(w)=>dispatch(actions.updateHomeworld(w))}/>}/>;
 			}
 
-			if(character.skills.background.length === 0){
+			if(character.backgroundSkills.length === 0){
 				return <Step title="2.(b) Select background skills" subtitle="Select skills from the list below. (Based on your EDU modifier and homeworld selection)"
 					content={<WorldGeneratorWidgetContainer/>}/>;
 			}

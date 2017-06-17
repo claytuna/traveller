@@ -13,8 +13,8 @@ module.exports = props => {
 				<Col xs={12} sm={6}>
 					<div className="pull-right">
 						<BtnGroup>
-							<Btn text="Start over"/>
-							<Btn text="Save" type="secondary"/>
+							<Btn text="Start over" onClick={()=>props.onRestart && props.onRestart()}/>
+							<Btn text="Save" type="secondary" disabled onClick={()=>props.onSave && props.onSave()}/>
 						</BtnGroup>
 					</div>
 				</Col>

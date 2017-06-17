@@ -8,22 +8,21 @@ var BtnGroup = require("components/display/BtnGroup");
 var Btn = require("components/display/Btn");
 var Card = require('components/display/Card');
 
-class WorldGeneratorWidgetContainer extends Core {
+import { Component } from "react";
+
+class WorldGeneratorWidgetContainer extends Component {
 	constructor() {
 		super();
 		this.state = { world: undefined };
 	}
 
-	componentWillMount(){
-		this.registerStoreKey('world.data', 'world');
-	}
-
 	generate(){
-		TravellerWorldService.generate();
+		this.setState({world:TravellerWorldService.generate()});
 	}
 
 	accept(){
-		CharacterService.setHomeworld( this.state.world );
+		//CharacterService.setHomeworld( this.state.world );
+		this.props.onUpdate && this.props.onUpdate(this.state.world);
 	}
 
 	render(){
@@ -35,7 +34,7 @@ class WorldGeneratorWidgetContainer extends Core {
 						}
 						footer={
 							<BtnGroup>
-								<Btn type="tertiary" text="Generate New World" onClick={ this.generate }/>
+								<Btn type="tertiary" text="Generate New World" onClick={ this.generate.bind(this) }/>
 								{ this.state.world && <Btn type="secondary" text="Accept World" onClick={ this.accept.bind(this) }/> }
 							</BtnGroup>
 						}/>
