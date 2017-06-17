@@ -1,16 +1,22 @@
+var React = require("react");
 require("./TextField.less");
 
-module.exports = class TextField extends Core {
-
-  componentWillMount() {
-		this.registerStoreKey(this.props.rsKey, 'value');
-	}
+class TextField extends React.Component {
 
   handleChange(event) {
-    RS.set(this.props.rsKey, event.target.value);
+    this.props.onUpdate && this.props.onUpdate(this.props.formName, this.props.fieldName, event.target.value);
 	}
 
   render() {
-    return <input className="text-field" type="text" onChange={this.handleChange.bind(this)} {..._.omit(this.props, 'rsKey')}/>;
+    return (
+      <input className="text-field"
+        defaultValue={this.props.value}
+        type="text"
+        onChange={this.handleChange.bind(this)}
+        onBlur={this.handleChange.bind(this)}
+        {..._.omit(this.props, ['formName', 'fieldName', 'onUpdate'])}/>
+    );
   }
 }
+
+module.exports = TextField;

@@ -11,23 +11,18 @@ var DatumGroup = require("components/display/DatumGroup");
 var FieldGroup = require("components/display/FieldGroup");
 var SelectField = require("components/display/SelectField");
 var TextField = require("components/display/TextField");
+var React = require("react");
 
-module.exports = class StatsWidget extends CorePure {
+class StatsWidget extends React.Component {
 
 	constructor(){
 		super();
 		this.values = [];
+		this.state = {rolls:undefined, rolled: false};
 	}
 
-	componentWillMount(){
-		this.registerStoreKey('statRollType', 'rolltype');
-
-		this.autorun(clearValues);
-
-		function clearValues(){
-			var srt = RS.get('statRollType');
-			this.setState({rolls:undefined, rolled: false});
-		}
+	componentDidUpdate(nextProps, nextState){ //console.log(this.props, nextProps)
+		this.props.forms.statRollForm.statRollType != nextProps.forms.statRollForm.statRollType && this.setState({rolls:undefined, rolled: false});
 	}
 
 	rollStats(){
@@ -35,7 +30,7 @@ module.exports = class StatsWidget extends CorePure {
 		this.values = [];
 		this.setState({rolls:undefined, rolled: false});
 
-		switch (this.state.rolltype) {
+		switch (this.props.forms.statRollType) {
 			case 'keepHighest':
 			rollMatrix = makeMatrix([6,6,6]);
 			break;
@@ -57,11 +52,14 @@ module.exports = class StatsWidget extends CorePure {
 	}
 
 	saveStats(){
-		CharacterService.setStats(this.values);
+		this.props.dispatch(this.props.actions.updateCharacterStats(this.values));
 	}
 
 	render(){
-		var isStatRolled = this.state.rolled === true && this.state.rolltype;
+		let dispatch = this.props.dispatch;
+		let actions = this.props.actions;
+		let form = this.props.forms.statRollForm;
+		let isStatRolled = this.state.rolled === true && form;
 		return (
 		<Card
 			title={<p>Characteristics:</p>}
@@ -77,8 +75,13 @@ module.exports = class StatsWidget extends CorePure {
 					</Col>
 					<Col xs={12} sm={6}>
 						<FieldGroup label="Change the rolling scheme">
-							<SelectField rsKey="statRollType"
-								options={[ {value:"default", text:"2d6 - Default"}, {value:"keepHighest", text:"3d6 - Keep highest 2"}, {value:"keepNth", text:"4d6 - Keep 1st and 3rd"} ]}/>
+							<SelectField formName="statRollForm" fieldName="statRollType"
+								onUpdate={ (f1,f2,v)=>{dispatch(actions.updateForm(f1,f2,v))} }
+								value={form.statRollType}
+								options={[
+									{value:"default", text:"2d6 - Default"},
+									{value:"keepHighest", text:"3d6 - Keep highest 2"},
+									{value:"keepNth", text:"4d6 - Keep 1st and 3rd"} ]}/>
 						</FieldGroup>
 					</Col>
 				</Row>
@@ -92,7 +95,7 @@ module.exports = class StatsWidget extends CorePure {
 		function getRolls(srt){
 			return _.map(this.state.rolls, (obj) => {
 				var curRoll;
-				switch (this.state.rolltype) {
+				switch (form.statRollType) {
 					case 'keepHighest':
 					curRoll = MS.sum(DiceRollService.rollDiceKeepHighest(2, obj.rolls));
 					break;
@@ -111,3 +114,5 @@ module.exports = class StatsWidget extends CorePure {
 		}
 	}
 };
+
+module.exports = StatsWidget;

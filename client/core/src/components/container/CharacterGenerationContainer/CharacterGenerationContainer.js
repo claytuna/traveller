@@ -9,16 +9,9 @@ var Btn = require("components/display/Btn");
 var TextField = require("components/display/TextField");
 var Loading = require("components/display/Loading");
 var Step = require("components/display/Step");
+var React = require("react");
 
-class CharacterGenerationContainer extends Core {
-	constructor() {
-		super();
-		this.state = { data:{name: undefined} };
-	}
-
-	componentWillMount(){
-		this.registerStoreKey('character.data', 'data');
-	}
+class CharacterGenerationContainer extends React.Component {
 
 	render(){
 		return (
@@ -32,23 +25,27 @@ class CharacterGenerationContainer extends Core {
 		function characterTree(character){
 			let actions = this.props.actions;
 			let dispatch = this.props.dispatch;
+			let forms = this.props.forms;
 			//console.log(character)
-			if(character.name === false){
+			/*if(character.name === false){
 				return <Step title="To begin, choose your character name:"
-					content={<div><TextField rsKey="characterName" placeholder="Character name"/> <Btn text="Accept name" onClick={ ()=>{ dispatch(actions.updateCharacterName('foo')) } }/></div>} />
-			}
+					content={<div>
+						<TextField formName="characterNameForm" fieldName="name" placeholder="Character name" onUpdate={ (f1,f2,v)=>{dispatch(actions.updateForm(f1,f2,v))} }/>
+						<Btn text="Accept name" onClick={ ()=>{ dispatch(actions.updateCharacterName(forms.characterNameForm.name)) } }/>
+						</div>} />
+			}*/
 
 			if(character.stats === false){
 				return <Step title="1. Roll for characteristics" subtitle="Select a dice rolling option and roll for stats"
-					content={<StatsWidgetContainer onUpdate={()=>{dispatch(actions.updateCharacterStats('foo')) }}/>}/>;
+					content={<StatsWidgetContainer {...this.props}/>}/>;
 			}
 
 			if(character.homeworld === false){
 				return <Step title="2.(a) Choose a homeworld" subtitle="Generate and accept your homeworld below"
-					content={<WorldGeneratorWidgetContainer onUpdate={dispatch(actions.updateHomeworld('foo'))}/>}/>;
+					content={<WorldGeneratorWidgetContainer onUpdate={()=>dispatch(actions.updateHomeworld('foo'))}/>}/>;
 			}
 
-			if(!data.background){
+			if(character.skills.background.length === 0){
 				return <Step title="2.(b) Select background skills" subtitle="Select skills from the list below. (Based on your EDU modifier and homeworld selection)"
 					content={<WorldGeneratorWidgetContainer/>}/>;
 			}

@@ -1,22 +1,25 @@
+var React = require("react");
 require("./SelectField.less");
 
-module.exports = class SelectField extends Core {
-
-  componentWillMount() {
-		this.registerStoreKey( this.props.rsKey, 'value' );
-	}
-
-  componentDidMount(){
-    if(this.props.options && this.props.options[0].value != "") {
-      RS.set( this.props.rsKey, this.props.options[0].value );
-    }
-  }
+class SelectField extends React.Component {
 
   handleChange( event ) {
-    RS.set( this.props.rsKey, event.target.value );
+    this.props.onUpdate && this.props.onUpdate(this.props.formName, this.props.fieldName, event.target.value);
 	}
 
   render() {
-    return <select className="select-field" onChange={this.handleChange.bind(this)}>{ this.props.options && _.map(this.props.options, (o)=><option key={this.props.rsKey + o.value} value={o.value}>{o.text}</option>) }</select>;
+    return (
+      <select
+        className="select-field"
+        defaultValue={this.props.value || this.props.options[0].value}
+        onChange={this.handleChange.bind(this)}
+        {..._.omit(this.props, ['formName', 'fieldName', 'onUpdate', 'options'])}>
+        {
+          this.props.options && _.map(this.props.options, (o)=><option key={_.uniqueId() + o.value} value={o.value}>{o.text}</option>)
+        }
+      </select>
+    );
   }
 }
+
+module.exports = SelectField;

@@ -14,7 +14,7 @@ class App extends React.Component {
 		AppService.init();
 	}
 
-	render(){
+	render(){ console.log(this.props)
 		return (
 			<div className="app">
 				<Header />

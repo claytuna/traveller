@@ -18,3 +18,12 @@ export const updateHomeworld = worldObj => {
     data: worldObj
   }
 };
+
+export const updateForm = (formName, fieldName, fieldValue) => {
+  return {
+    type: 'UPDATE_FORM',
+    form: formName,
+    field: fieldName,
+    value: fieldValue
+  }
+};
