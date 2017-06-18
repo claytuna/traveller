@@ -9,9 +9,9 @@ var Btn = require("components/display/Btn");
 var TextField = require("components/display/TextField");
 var Loading = require("components/display/Loading");
 var Step = require("components/display/Step");
-var React = require("react");
+import { Component } from "react";
 
-class CharacterGenerationContainer extends React.Component {
+class CharacterGenerationContainer extends Component {
 
 	render(){
 		return (
@@ -47,7 +47,7 @@ class CharacterGenerationContainer extends React.Component {
 
 			if(character.backgroundSkills.length === 0){
 				return <Step title="2.(b) Select background skills" subtitle="Select skills from the list below. (Based on your EDU modifier and homeworld selection)"
-					content={<WorldGeneratorWidgetContainer/>}/>;
+					content={gs.call(this)}/>;
 			}
 
 			return <div>COMPLETE</div>;
@@ -55,5 +55,13 @@ class CharacterGenerationContainer extends React.Component {
 		}
 	}
 };
+
+var SkillBtn = require("components/display/SkillBtn");
+
+function gs(){
+		return (
+			<SkillBtn />
+		);
+}
 
 module.exports = CharacterGenerationContainer;
