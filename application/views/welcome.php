@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Welcome - Character Generator API</title>
-	<?php include("inc/head.php")?>	
+	<?php include("inc/head.php")?>
 </head>
 <body>
 
