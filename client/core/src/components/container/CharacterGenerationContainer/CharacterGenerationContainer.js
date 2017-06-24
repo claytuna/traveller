@@ -41,13 +41,19 @@ class CharacterGenerationContainer extends Component {
 			}*/
 
 			if(character.homeworld === false){
-				return <Step title="2.(a) Choose a homeworld" subtitle="Generate and accept your homeworld below"
-					content={<WorldGeneratorWidgetContainer onUpdate={(w)=>dispatch(actions.updateHomeworld(w))}/>}/>;
+				return (
+					<Step title="2.(a) Choose a homeworld"
+						subtitle="Generate and accept your homeworld below"
+						content={<WorldGeneratorWidgetContainer onUpdate={(w)=>dispatch(actions.updateHomeworld(w))}/>}/>
+				);
 			}
 
 			if(character.backgroundSkills.length === 0){
-				return <Step title="2.(b) Select background skills" subtitle="Select skills from the list below. (Based on your EDU modifier and homeworld selection)"
-					content={gs.call(this)}/>;
+				return (
+					<Step title="2.(b) Select background skills"
+						subtitle="Select skills from the list below. (Based on your EDU modifier and homeworld selection)"
+						content={gs.call(this)}/>
+				);
 			}
 
 			return <div>COMPLETE</div>;

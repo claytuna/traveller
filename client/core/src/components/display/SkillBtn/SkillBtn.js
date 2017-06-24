@@ -1,16 +1,24 @@
 var DatumGroup = require("components/display/DatumGroup");
 require("./SkillBtn.less");
 
-module.exports = props => {
-	var filterProps = _.omit(props, ['value', 'type']);
+const SkillBtn = props => {
+	return (
+		<div>
+			{ props.onDecrement && getBtn(props.onDecrement, props.skill, props.value, '-') }
+			<DatumGroup title={props.skill} value={props.value}/>
+			{ props.onIncrement && getBtn(props.onIncrement, props.skill, props.value, '+') }
+		</div>
+	);
+};
 
+function getBtn(update, skill, value, symbol) {
 	return (
 		<button
 			className="btn btn--skill"
-			{...filterProps}
-			onClick={ ()=>{props.onUpdate && props.onUpdate(props.skill, props.value)} }>
-			{ props.skill }
-			{ props.value }
+			onClick={ ()=>{ update(skill, value)} }>
+			{ symbol }
 		</button>
 	);
-};
+}
+
+module.exports = SkillBtn;
