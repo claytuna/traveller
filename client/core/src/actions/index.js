@@ -1,40 +1,12 @@
 export const appRestart = () => ({type: 'CHARACTER_RESTART'});
 export const appSave = () => ({type: 'CHARACTER_SAVE'});
 
-export const updateCharacterName = name => {
-  return {
-    type: 'UPDATE_NAME',
-    data: name
-  }
-};
-
-export const updateCharacterStats = arr => {
-  return {
-    type: 'UPDATE_STATS',
-    data: arr
-  }
-};
-
-export const updateHomeworld = worldObj => {
-  return {
-    type: 'UPDATE_HOMEWORLD',
-    data: worldObj
-  }
-};
-
-export const incrementSkill = skillName => {
-  return {
-    type: 'INCREMENT_SKILL',
-    data: skillName
-  }
-};
-
-export const decrementSkill = skillName => {
-  return {
-    type: 'DECREMENT_SKILL',
-    data: skillName
-  }
-};
+export const updateCharacterName = name => ({ type: 'UPDATE_NAME', data: name });
+export const updateCharacterStats = arr => ({ type: 'UPDATE_STATS', data: arr });
+export const setBackgroundSkillCount = count => ({ type: 'SET_BACKGROUND_SKILL_COUNT', data: count });
+export const updateHomeworld = worldObj => ({ type: 'UPDATE_HOMEWORLD', data: worldObj });
+export const incrementSkill = skillKey => ({ type: 'INCREMENT_SKILL', data: skillKey });
+export const decrementSkill = skillKey => ({ type: 'DECREMENT_SKILL', data: skillKey });
 
 export const updateForm = (formName, fieldName, fieldValue) => {
   return {

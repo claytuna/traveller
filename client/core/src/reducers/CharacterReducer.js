@@ -1,4 +1,6 @@
 import { SKILL_LIST } from "constants/Skills";
+import StatsService from "services/StatsService";
+const getModifier = StatsService.getModifier;
 
 const CharacterReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -32,6 +34,8 @@ const CharacterReducer = (state = initialState, action) => {
         } else {
           dSkill[action.data].qty = dSkill[action.data].qty -= 1;
         }
+      } else {
+        console.warn('Cannot decrement: Invalid skill type');
       }
       return _.assign(
         {},
@@ -58,6 +62,8 @@ const CharacterReducer = (state = initialState, action) => {
     				SOC:{value:statVals[5], modifier:getModifier(statVals[5])},
           }}
       );
+    case 'SET_BACKGROUND_SKILL_COUNT':
+      return _.assign({}, state, { backgroundSkillCount: action.data });
     case 'UPDATE_HOMEWORLD':
       return _.assign(
         {},
@@ -70,16 +76,6 @@ const CharacterReducer = (state = initialState, action) => {
 };
 
 export default CharacterReducer;
-
-function getModifier(stat){
-  if(stat === 0) return -3;
-  if(stat <= 2) return -2;
-  if(stat <= 5) return -1;
-  if(stat <= 8) return 0;
-  if(stat <= 11) return 1;
-  if(stat <= 14) return 2;
-  if(stat <= 15) return 3;
-};
 
 function getCareer(name, isFirst, basicTraining, availableSkills, specialization) {
   return {
@@ -97,7 +93,7 @@ const initialState = {
   sex: 0,
   stats: false,
   homeworld: false,
-  backgroundSkills: [],
+  backgroundSkillCount: 1,
   skills: {},
   careers: {},
   events: [],

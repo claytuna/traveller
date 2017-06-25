@@ -1,5 +1,13 @@
-var StatsService = module.exports = {
-	setStats: (values) => {
-		values.length === 6 && RS.set('stats.data', { STR:{value:values[0]}, DEX:{value:values[1]}, END:{value:values[2]}, INT:{value:values[3]}, EDU:{value:values[4]}, SOC:{value:values[5]}, });
+const StatsService = {
+	getModifier: (stat) => {
+	  if(stat === 0) return -3;
+	  if(stat <= 2) return -2;
+	  if(stat <= 5) return -1;
+	  if(stat <= 8) return 0;
+	  if(stat <= 11) return 1;
+	  if(stat <= 14) return 2;
+	  if(stat <= 15) return 3;
 	}
 };
+
+module.exports = StatsService;

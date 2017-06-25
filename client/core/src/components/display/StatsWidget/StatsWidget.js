@@ -52,7 +52,8 @@ class StatsWidget extends React.Component {
 	}
 
 	saveStats(){
-		this.props.dispatch(this.props.actions.updateCharacterStats(this.values));
+		this.props.dispatch(this.props.actions.updateCharacterStats(this.values)); 
+		this.props.dispatch(this.props.actions.setBackgroundSkillCount(StatsService.getModifier(this.values[4]) + 3));
 	}
 
 	render(){

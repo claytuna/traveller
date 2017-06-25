@@ -9,7 +9,7 @@ const BackgroundSkillSummary = props => {
 	return (
 		<Row>
 			<Col xs={12}>
-				<p>Skills available for current homeworld:</p>
+				<p>{ props.isEditable ? 'Skills remaining: ' + props.skillPoints  : 'Skills available for current homeworld:' }</p>
 				<Row>
 					<Col xs={12}>
 					{
@@ -21,14 +21,19 @@ const BackgroundSkillSummary = props => {
 								_.map(
 									skills.worldSkills,
 									(sk, idx)=>{ return (
-										<Col xs={6} md={4} key={"bg-skil-"+idx} title={sk.desc}>
-											<SkillBtn
-												skill={sk.name}
-												skillKey={idx}
-												min={0}
-												onIncrement={(d)=>{props.onIncrement(d)} }
-												onDecrement={(d)=>{props.onDecrement(d)} }
-												value={returnSkillQty(characterSkills, idx)}/>
+										<Col xs={6} lg={4} key={"bg-skil-"+idx} title={sk.desc}>
+											{
+												props.isEditable ?
+												<SkillBtn
+													disabled={props.disabled}
+													skill={sk.name}
+													skillKey={idx}
+													min={0}
+													onIncrement={(d)=>{props.onIncrement(d)} }
+													onDecrement={(d)=>{props.onDecrement(d)} }
+													value={returnSkillQty(characterSkills, idx)}/> :
+												sk.name
+											}
 										</Col>
 									) }
 								)
@@ -44,7 +49,20 @@ const BackgroundSkillSummary = props => {
 							{
 								_.map(
 									skills.educationSkills,
-									(sk, idx)=><Col xs={6} md={4} key={"bg-skil-"+idx} title={sk.desc}>{sk.name}</Col>
+									(sk, idx)=><Col xs={6} lg={4} key={"bg-skil-"+idx} title={sk.desc}>
+									{
+										props.isEditable ?
+										<SkillBtn
+											disabled={props.disabled}
+											skill={sk.name}
+											skillKey={idx}
+											min={0}
+											onIncrement={(d)=>{props.onIncrement(d)} }
+											onDecrement={(d)=>{props.onDecrement(d)} }
+											value={returnSkillQty(characterSkills, idx)}/> :
+										sk.name
+									}
+									</Col>
 								)
 							}
 							</Row>
