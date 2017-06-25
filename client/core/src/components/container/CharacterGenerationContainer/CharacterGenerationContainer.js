@@ -9,6 +9,7 @@ var Btn = require("components/display/Btn");
 var TextField = require("components/display/TextField");
 var Loading = require("components/display/Loading");
 var Step = require("components/display/Step");
+
 import { Component } from "react";
 
 class CharacterGenerationContainer extends Component {
@@ -44,7 +45,11 @@ class CharacterGenerationContainer extends Component {
 				return (
 					<Step title="2.(a) Choose a homeworld"
 						subtitle="Generate and accept your homeworld below"
-						content={<WorldGeneratorWidgetContainer onUpdate={(w)=>dispatch(actions.updateHomeworld(w))}/>}/>
+						content={<WorldGeneratorWidgetContainer
+							characterSkills={character.skills}
+							onIncrement={ (w)=>dispatch(actions.incrementSkill(w)) }
+							onDecrement={ (w)=>dispatch(actions.decrementSkill(w)) }
+							onUpdate={ (w)=>dispatch(actions.updateHomeworld(w)) }/>}/>
 				);
 			}
 

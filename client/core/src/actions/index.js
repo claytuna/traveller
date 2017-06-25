@@ -22,6 +22,20 @@ export const updateHomeworld = worldObj => {
   }
 };
 
+export const incrementSkill = skillName => {
+  return {
+    type: 'INCREMENT_SKILL',
+    data: skillName
+  }
+};
+
+export const decrementSkill = skillName => {
+  return {
+    type: 'DECREMENT_SKILL',
+    data: skillName
+  }
+};
+
 export const updateForm = (formName, fieldName, fieldValue) => {
   return {
     type: 'UPDATE_FORM',

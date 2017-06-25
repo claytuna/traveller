@@ -1,12 +1,4 @@
-const career = (isFirst) => {
-  return {
-    name:'foo',
-    isFirst: isFirst,
-    basicTraining: {},
-    availableSkills: [],
-    specialization: false
-  };
-};
+import { SKILL_LIST } from "constants/Skills";
 
 const CharacterReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -15,12 +7,36 @@ const CharacterReducer = (state = initialState, action) => {
     case 'CHARACTER_SAVE':
       /*interact with db or something - generate a tiny url?*/
       return state;
-    case 'UPDATE_SKILL':
-      let newSkills = state.skills.push(action.data)
+    case 'INCREMENT_SKILL':
+      var iSkill = _.assign({}, state.skills);
+      if(iSkill[action.data]) {
+        iSkill[action.data].qty = isNaN(iSkill[action.data].qty) ? 1 : iSkill[action.data].qty += 1;
+      } else {
+        if(SKILL_LIST[action.data]) {
+          iSkill[action.data] = SKILL_LIST[action.data];
+          iSkill[action.data].qty = 1;
+        } else {
+          console.warn('Cannot increment: Invalid skill type');
+        }
+      }
       return _.assign(
         {},
         state,
-        {skills: newSkills}
+        {skills: iSkill}
+      );
+    case 'DECREMENT_SKILL':
+      var dSkill = _.assign({}, state.skills);
+      if(dSkill[action.data]) {
+        if(isNaN(dSkill[action.data].qty) || dSkill[action.data].qty === 0){
+          dSkill[action.data].qty = 0;
+        } else {
+          dSkill[action.data].qty = dSkill[action.data].qty -= 1;
+        }
+      }
+      return _.assign(
+        {},
+        state,
+        {skills: dSkill}
       );
     case 'UPDATE_NAME':
       return _.assign(
@@ -65,6 +81,16 @@ function getModifier(stat){
   if(stat <= 15) return 3;
 };
 
+function getCareer(name, isFirst, basicTraining, availableSkills, specialization) {
+  return {
+    name:'foo',
+    isFirst: isFirst,
+    basicTraining: {},
+    availableSkills: [],
+    specialization: false
+  };
+};
+
 const initialState = {
   name: false,
   age: 0,
@@ -72,8 +98,8 @@ const initialState = {
   stats: false,
   homeworld: false,
   backgroundSkills: [],
-  skills: [],
-  careers: [],
+  skills: {},
+  careers: {},
   events: [],
   connections: {
     allies:[],

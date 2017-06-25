@@ -42,11 +42,11 @@ class Datum extends Component {
 
 	highlight(){
 		this.setState({ updated: true });
-		this.highlightTimeout = setTimeout( ()=>{ this.setState({ updated: false }) }, 800);
+		this.highlightTimeout = setTimeout( ()=>{ this.setState({ updated: false }) }, 500);
 	}
 
 	render() {
-		return this.props.value ? <span className={`datum ${this.state.updated ? "is-updated": ""}`}>{ getDatumValue.call(this) }</span> : null;
+		return <span> {this.props.value ? <span className={`datum ${this.state.updated ? "is-updated": ""}`}>{ getDatumValue.call(this) }</span> : null } </span>;
 	}
 };
 

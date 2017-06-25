@@ -30,7 +30,13 @@ class WorldGeneratorWidgetContainer extends Component {
 				<div>
 					<Card title="Homeworld"
 						body={
-							this.state.world ? <BackgroundSkillSummary data={ this.state.world }/> : <p>Generate world below</p>
+							this.state.world ?
+								<BackgroundSkillSummary
+									data={ this.state.world }
+									onIncrement={(d)=>{this.props.onIncrement(d)}}
+									onDecrement={(d)=>{this.props.onDecrement(d)}}
+									characterSkills={this.props.characterSkills}/> :
+								<p>Generate world below</p>
 						}
 						footer={
 							<BtnGroup>

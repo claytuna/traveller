@@ -1,14 +1,10 @@
 var SkillService = require("services/SkillService");
 
 var Card = require('components/display/Card');
-
-const BackgroundSkillBtn = props => {
-	return (
-		<SkillBtn />
-	);
-};
+var SkillBtn = require('components/display/SkillBtn');
 
 const BackgroundSkillSummary = props => {
+	var characterSkills = props.characterSkills;
 	var skills = props.data && props.data.tradeCodes ? SkillService.getBackgroundSkills( _.map(props.data.tradeCodes, (o)=> o.values.code ) ) : undefined;
 	return (
 		<Row>
@@ -24,7 +20,17 @@ const BackgroundSkillSummary = props => {
 							{
 								_.map(
 									skills.worldSkills,
-									(tr, id)=><Col xs={6} md={4} key={"bg-skil-"+id} title={tr.desc}>{tr.name}</Col>
+									(sk, idx)=>{ return (
+										<Col xs={6} md={4} key={"bg-skil-"+idx} title={sk.desc}>
+											<SkillBtn
+												skill={sk.name}
+												skillKey={idx}
+												min={0}
+												onIncrement={(d)=>{props.onIncrement(d)} }
+												onDecrement={(d)=>{props.onDecrement(d)} }
+												value={returnSkillQty(characterSkills, idx)}/>
+										</Col>
+									) }
 								)
 							}
 							</Row> :
@@ -38,7 +44,7 @@ const BackgroundSkillSummary = props => {
 							{
 								_.map(
 									skills.educationSkills,
-									(tr, id)=><Col xs={6} md={4} key={"bg-skil-"+id} title={tr.desc}>{tr.name}</Col>
+									(sk, idx)=><Col xs={6} md={4} key={"bg-skil-"+idx} title={sk.desc}>{sk.name}</Col>
 								)
 							}
 							</Row>
@@ -51,8 +57,12 @@ const BackgroundSkillSummary = props => {
 	);
 };
 
-function getSkillBtn(){
-	return;
+function returnSkillQty(characterSkills, skillKey){
+	if(characterSkills && characterSkills[skillKey] && characterSkills[skillKey].qty) {
+		return characterSkills[skillKey].qty;
+	} else {
+		return 0;
+	};
 }
 
 module.exports = BackgroundSkillSummary;
