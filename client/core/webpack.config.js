@@ -33,7 +33,6 @@ module.exports = {
 			actions: __dirname + '/src/actions',
 			reducers: __dirname + '/src/reducers',
 			constants: __dirname + '/src/constants',
-			RS: __dirname + '/reactive-store.js',
 		}
 	},
 	plugins: [
@@ -42,8 +41,6 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			$j: "jquery",
 			_: "lodash",
-			Core: __dirname + '/src/components/Core',
-			CorePure: __dirname + '/src/components/CorePure',
 			Grid: 'react-bootstrap/lib/Grid',
 			Row: 'react-bootstrap/lib/Row',
 			Col: 'react-bootstrap/lib/Col',

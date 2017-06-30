@@ -1,12 +1,10 @@
 var StatsService = require('services/StatsService');
-var CharacterService = require("services/CharacterService");
 var DiceRollService = require("services/DiceRollService");
 var MS = require("services/MathService");
 
 var Card = require('components/display/Card');
 var BtnGroup = require("components/display/BtnGroup");
 var Btn = require("components/display/Btn");
-var DiceRoll = require("components/display/DiceRoll");
 var DatumGroup = require("components/display/DatumGroup");
 var FieldGroup = require("components/display/FieldGroup");
 var SelectField = require("components/display/SelectField");
@@ -52,7 +50,7 @@ class StatsWidget extends React.Component {
 	}
 
 	saveStats(){
-		this.props.dispatch(this.props.actions.updateCharacterStats(this.values)); 
+		this.props.dispatch(this.props.actions.updateCharacterStats(this.values));
 		this.props.dispatch(this.props.actions.setBackgroundSkillCount(StatsService.getModifier(this.values[4]) + 3));
 	}
 

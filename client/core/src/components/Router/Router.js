@@ -1,7 +1,8 @@
 var RR = require('react-router');
 var App = require('components/App');
+import { Component } from "react";
 
-module.exports = class Router extends Core {
+module.exports = class Router extends Component {
 	render(){
 		return (
 			<RR.Router history={history}>

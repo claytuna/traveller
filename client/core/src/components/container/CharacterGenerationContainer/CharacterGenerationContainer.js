@@ -1,5 +1,3 @@
-var CharacterService = require("services/CharacterService");
-
 var StatsWidgetContainer = require('components/container/StatsWidgetContainer');
 var WorldGeneratorWidgetContainer = require('components/container/WorldGeneratorWidgetContainer');
 var BackgroundSkillSelectionContainer = require('components/container/BackgroundSkillSelectionContainer');

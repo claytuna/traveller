@@ -1,5 +1,4 @@
 var TravellerWorldService = require('services/TravellerWorldService');
-var CharacterService = require("services/CharacterService");
 
 var BackgroundSkillSummary = require('components/display/BackgroundSkillSummary');
 var WorldGeneratorTravellerWidget = require('components/display/WorldGeneratorTravellerWidget');
@@ -21,7 +20,6 @@ class WorldGeneratorWidgetContainer extends Component {
 	}
 
 	accept(){
-		//CharacterService.setHomeworld( this.state.world );
 		this.props.onUpdate && this.props.onUpdate(this.state.world);
 	}
 

@@ -77,16 +77,6 @@ const CharacterReducer = (state = initialState, action) => {
 
 export default CharacterReducer;
 
-function getCareer(name, isFirst, basicTraining, availableSkills, specialization) {
-  return {
-    name:'foo',
-    isFirst: isFirst,
-    basicTraining: {},
-    availableSkills: [],
-    specialization: false
-  };
-};
-
 const initialState = {
   name: false,
   age: 0,

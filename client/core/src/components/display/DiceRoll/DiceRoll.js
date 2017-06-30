@@ -13,7 +13,5 @@ module.exports = (props) => {
 		roll = 0;
 	}
 
-	props.rsKey && RS.set(`diceRolls.${props.rsKey}`, roll);
-
 	return (<span className="dice-roll">{ props.rolls && roll }</span>);
 }

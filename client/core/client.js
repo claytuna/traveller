@@ -1,5 +1,4 @@
 global.React = require('react');
-global.RS = require('RS');
 
 import React from 'react';
 import { render } from 'react-dom';

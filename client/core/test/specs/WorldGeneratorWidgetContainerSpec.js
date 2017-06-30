@@ -1,5 +1,4 @@
 var TravellerWorldService = require('services/TravellerWorldService');
-var CharacterService = require("services/CharacterService");
 
 var WorldGeneratorWidgetContainer = require("components/container/WorldGeneratorWidgetContainer");
 
@@ -28,7 +27,6 @@ describe('container-WorldGeneratorWidgetContainer', ()=>{
   });
 
   it('should have an accept homeworld button that adds results to the character summary', ()=>{
-    spyOn(CharacterService, 'setHomeworld').and.callThrough();
     var $btnGenerate = container.find('.btn:contains(Generate New World)');
     RTU.click($btnGenerate);
     expect( _.size(RS.get('world.data')) ).toBeGreaterThan(0);

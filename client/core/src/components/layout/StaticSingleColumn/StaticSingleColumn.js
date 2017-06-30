@@ -1,9 +1,10 @@
-module.exports = class StaticSingleColumn extends Core {
-	
+import { Component } from "react";
+class StaticSingleColumn extends Component {
+
 	shouldComponentUpdate(nextProps) {
 		return false;
 	}
-	
+
 	render(){
 		return (
 			<Grid>
@@ -17,3 +18,5 @@ module.exports = class StaticSingleColumn extends Core {
 		);
 	}
 };
+
+module.exports = StaticSingleColumn;
