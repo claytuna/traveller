@@ -1,10 +1,12 @@
+var React = require('react');
+
 var Btn = require('components/display/Btn');
 var Card = require('components/display/Card');
 var DatumGroup = require("components/display/DatumGroup");
 var DatumList = require("components/display/DatumList");
 var WorldDiagramTraveller = require("components/display/WorldDiagramTraveller");
 
-module.exports = class CharacterWidget extends CorePure {
+module.exports = class CharacterWidget extends React.Component {
 	render(){
 		var data = this.props.data;
 		return (
