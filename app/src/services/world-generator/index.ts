@@ -1,0 +1,15 @@
+export { getSize } from "./getSize";
+export { getAtmosphere } from "./getAtmosphere";
+export { getTemperature } from "./getTemperature";
+export { getHydrosphere } from "./getHydrosphere";
+export { getPopulation } from "./getPopulation";
+export { getGovernment } from "./getGovernment";
+export { getFactions } from "./getFactions";
+export { getLawLevel } from "./getLawLevel";
+export { getCulture } from "./getCulture";
+export { getStarPort } from "./getStarPort";
+export { getTechnology } from "./getTechnology";
+export { getCommunications } from "./getCommunications";
+export { getAtmosphericWarning } from "./getAtmosphericWarning";
+export { getTradeCodes } from "./getTradeCodes";
+export { getTravelCode } from "./getTravelCode";
