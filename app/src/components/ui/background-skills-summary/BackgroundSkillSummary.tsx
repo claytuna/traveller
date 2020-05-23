@@ -85,7 +85,7 @@ export const BackgroundSkillSummary = ({
                   body={
                     <Row>
                       {Object.keys(skills.educationSkills).map(
-                        (sKey, idx: number) => {
+                        (sKey: string, idx: number) => {
                           if (skills?.educationSkills[sKey] === undefined) {
                             return null;
                           }
@@ -129,16 +129,13 @@ export const BackgroundSkillSummary = ({
   );
 };
 
-function returnSkillQty(
-  characterSkills: CharacterSkill[],
-  skillKey: string | number
-) {
+function returnSkillQty(characterSkills: CharacterSkill[], skillKey: number) {
   if (
     characterSkills &&
     characterSkills[skillKey] &&
     characterSkills[skillKey].qty
   ) {
-    return characterSkills[skillKey].qty;
+    return characterSkills[skillKey].qty || 0;
   } else {
     return 0;
   }

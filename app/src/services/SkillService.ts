@@ -28,7 +28,12 @@ export const SkillService = {
     return SKILL_LIST;
   },
 
-  getBackgroundSkills: (tradeCodes: TradeCodeStrings[]) => {
+  getBackgroundSkills: (
+    tradeCodes: TradeCodeStrings[]
+  ): {
+    worldSkills: { [key: string]: SkillObject };
+    educationSkills: { [key: string]: SkillObject };
+  } => {
     const S = SKILL_LIST;
     const tradeSkillMap: { [key in TradeCodeStrings]: object | null } = {
       Ag: { ANIMALS: S.ANIMALS },

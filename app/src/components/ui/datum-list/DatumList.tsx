@@ -1,5 +1,6 @@
 import React from "react";
 import { Datum } from "../";
+import { Value } from "../datum/Datum";
 import "./DatumList.less";
 
 export const DatumList = ({ title, values, ...rest }: DatumListProps) => {
@@ -11,7 +12,7 @@ export const DatumList = ({ title, values, ...rest }: DatumListProps) => {
         </li>
       )}
       {Array.isArray(values) &&
-        values.map((v: string | number, index: number) => (
+        values.map((v: Value, index: number) => (
           <li key={index}>
             <Datum value={v} />
           </li>
@@ -22,5 +23,5 @@ export const DatumList = ({ title, values, ...rest }: DatumListProps) => {
 
 export interface DatumListProps {
   title?: string;
-  values?: unknown[];
+  values?: Value[];
 }
