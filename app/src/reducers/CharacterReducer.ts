@@ -1,4 +1,4 @@
-import { SKILL_LIST } from "../constants/Skills";
+import { SKILL_LIST } from "../constants";
 // import { StatsService } from "../services/StatsService";
 import { AppState } from "..";
 // const getModifier = StatsService.getModifier;

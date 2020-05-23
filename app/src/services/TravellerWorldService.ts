@@ -23,6 +23,26 @@ function q() {
   return MS.random(9, 0);
 }
 
+export type WorldGeneratorObject = {
+  name: string;
+  uwp: string;
+  size: {};
+  atmosphere: {};
+  temperature: {};
+  hydrosphere: {};
+  population: {};
+  governments: {};
+  factions: {};
+  laws: {};
+  culture: {};
+  starport: {};
+  technologyLevel: {};
+  atmosphericWarning: {};
+  communications: {};
+  travelCodes: {};
+  tradeCodes: {}[];
+};
+
 export const TravellerWorldService = {
   generate: () => {
     const name = RandomWordService.getRandomWord().toUpperCase();

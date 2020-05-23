@@ -7,5 +7,6 @@ export const StatsService = {
     if (stat <= 11) return 1;
     if (stat <= 14) return 2;
     if (stat <= 15) return 3;
+    return 0;
   },
 };

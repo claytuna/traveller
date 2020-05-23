@@ -1,0 +1,1 @@
+export { CharacterSummaryWidget } from "./CharacterSummaryWidget";

@@ -11,5 +11,5 @@ export { getStarPort } from "./getStarPort";
 export { getTechnology } from "./getTechnology";
 export { getCommunications } from "./getCommunications";
 export { getAtmosphericWarning } from "./getAtmosphericWarning";
-export { getTradeCodes } from "./getTradeCodes";
+export * from "./getTradeCodes";
 export { getTravelCode } from "./getTravelCode";

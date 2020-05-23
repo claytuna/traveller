@@ -1,15 +1,36 @@
 import filter from "lodash/filter";
-import { SKILL_LIST, EDUCATION_SKILLS } from "../constants/Skills";
-import { SkillObject } from "..";
+import { SKILL_LIST, EDUCATION_SKILLS } from "../constants";
+import { SkillObject } from "../";
+import { TradeCodeObject } from "./";
+
+export type TradeCodeStrings =
+  | "Ag"
+  | "As"
+  | "Ba"
+  | "De"
+  | "Fl"
+  | "Ga"
+  | "Hi"
+  | "Ht"
+  | "IC"
+  | "In"
+  | "Lo"
+  | "Lt"
+  | "Na"
+  | "Ni"
+  | "Po"
+  | "Ri"
+  | "Wa"
+  | "Va";
 
 export const SkillService = {
   list: () => {
     return SKILL_LIST;
   },
 
-  getBackgroundSkills: (tradeCodes: string[]) => {
+  getBackgroundSkills: (tradeCodes: TradeCodeStrings[]) => {
     const S = SKILL_LIST;
-    const tradeSkillMap: { [keyof: string]: object | null } = {
+    const tradeSkillMap: { [key in TradeCodeStrings]: object | null } = {
       Ag: { ANIMALS: S.ANIMALS },
       As: { ZERO_G: S.ZERO_G },
       Ba: null,
@@ -30,8 +51,8 @@ export const SkillService = {
       Va: { VACC_SUIT: S.VACC_SUIT },
     };
 
-    let obj = {};
-    tradeCodes.map((codeString) => {
+    let obj: { [key: string]: TradeCodeObject } = {};
+    tradeCodes.forEach((codeString) => {
       if (tradeSkillMap[codeString]) {
         obj = Object.assign({}, obj, tradeSkillMap[codeString]);
       }

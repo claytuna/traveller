@@ -1,0 +1,47 @@
+@import (reference) "../../common.less";
+
+.card-pad(){
+	padding: 10px;
+}
+
+.card-pad-lt(){
+	padding: 5px 8px;
+}
+
+@card-border: 1px solid @black;
+@card-border-secondary: 1px solid rgba(0,0,0,.4);
+
+.card {
+	border: @card-border;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.5);
+	margin-bottom: @margin-bot;
+
+	&__title {
+		background-color: rgba(0,0,0,.2);
+		border-bottom: @card-border;
+		padding: 8px 10px;
+		p { margin-bottom: 0; }
+	}
+	&__body {
+		.card-pad;
+	}
+	&__footer {
+		background-color: rgba(0,0,0,.2);
+		border-top: @card-border;
+		.card-pad;
+	}
+
+	&--secondary {
+		border: @card-border-secondary;
+		.card__title {
+			background-color: rgba(0,0,0,.1);
+			border-bottom: @card-border-secondary;
+			.card-pad-lt;
+		}
+		.card__footer {
+			border-top: @card-border-secondary;
+			.card-pad-lt;
+		}
+	}
+}

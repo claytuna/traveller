@@ -1,3 +1,5 @@
+import { WorldDataObject } from "./WorldDataObject";
+
 export type TemperatureName =
   | "Extreme"
   | "Frozen"
@@ -5,13 +7,13 @@ export type TemperatureName =
   | "Temperate"
   | "Hot"
   | "Roasting";
-export type TemperatureObject = {
-  name: TemperatureName;
-  id: number;
-  desc: string;
-  type: "TEMPERATURE";
-  values: { maxTemp: string; minTemp: string };
-};
+
+export type TemperatureObject = WorldDataObject<
+  TemperatureName,
+  "TEMPERATURE",
+  { maxTemp: string; minTemp: string }
+>;
+
 const TEMPERATURES: TemperatureObject[] = [
   {
     name: "Extreme",

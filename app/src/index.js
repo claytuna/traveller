@@ -1,11 +1,34 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
+import { Provider, connect } from "react-redux";
+import { createStore } from "redux";
+import travellerApp from "./reducers";
+import * as actionCreators from "./actions";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(
+let store = createStore(travellerApp);
+
+// const mapStateToProps = (state) => {
+//   return {
+//     character: travellerApp,
+//   };
+// };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch: dispatch,
+    actions: actionCreators,
+  };
+};
+
+const AppWithData = connect(travellerApp, mapDispatchToProps)(App);
+
+render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <AppWithData />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
