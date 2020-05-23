@@ -2,6 +2,7 @@ import { CareerObject } from "..";
 
 export const CAREER_LIST: { [keyof: string]: CareerObject } = {
   AGENT: {
+    type: "CAREER",
     name: "Agent",
     desc:
       "Law enforcement agents, spies, corporate operatives and others who work in the shadows",
@@ -12,6 +13,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   AGENT_LAW_ENFORCEMENT: {
+    type: "CAREER",
     name: "Agent Law Enforcement",
     desc: "Police officer or detective",
     id: 2,
@@ -22,6 +24,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 1,
   },
   AGENT_INTELLIGENCE: {
+    type: "CAREER",
     name: "Agent Intelligence",
     desc: "Spy or saboteur",
     id: 3,
@@ -32,6 +35,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 1,
   },
   AGENT_COPORATE: {
+    type: "CAREER",
     name: "Agent Coporate",
     desc: "Corporate espionage",
     id: 4,
@@ -42,6 +46,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 1,
   },
   ARMY: {
+    type: "CAREER",
     name: "Army",
     desc: "",
     id: 5,
@@ -51,6 +56,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   ARMY_SUPPORT: {
+    type: "CAREER",
     name: "Army Support",
     desc: "",
     id: 6,
@@ -61,6 +67,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 5,
   },
   ARMY_INFANTRY: {
+    type: "CAREER",
     name: "Army Infantry",
     desc: "",
     id: 7,
@@ -71,6 +78,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 5,
   },
   ARMY_CAVALRY: {
+    type: "CAREER",
     name: "Army Cavalry",
     desc: "",
     id: 8,
@@ -81,6 +89,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 5,
   },
   CITIZEN: {
+    type: "CAREER",
     name: "Citizen",
     desc: "",
     id: 9,
@@ -90,6 +99,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   CITIZEN_CORPORATE: {
+    type: "CAREER",
     name: "Citizen Corporate",
     desc: "",
     id: 10,
@@ -100,6 +110,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 9,
   },
   CITIZEN_WORKER: {
+    type: "CAREER",
     name: "Citizen Worker",
     desc: "",
     id: 11,
@@ -110,6 +121,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 9,
   },
   CITIZEN_COLONIST: {
+    type: "CAREER",
     name: "Citizen Colonist",
     desc: "",
     id: 12,
@@ -120,6 +132,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 9,
   },
   DRIFTER: {
+    type: "CAREER",
     name: "Drifter",
     desc: "",
     id: 13,
@@ -129,6 +142,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   DRIFTER_BARBARIAN: {
+    type: "CAREER",
     name: "Drifter Barbarian",
     desc: "",
     id: 14,
@@ -139,6 +153,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 13,
   },
   DRIFTER_WANDERER: {
+    type: "CAREER",
     name: "Drifter Wanderer",
     desc: "",
     id: 15,
@@ -149,6 +164,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 13,
   },
   DRIFTER_SCAVENGER: {
+    type: "CAREER",
     name: "Drifter Scavenger",
     desc: "",
     id: 16,
@@ -159,6 +175,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 13,
   },
   ENTERTAINER: {
+    type: "CAREER",
     name: "Entertainer",
     desc: "",
     id: 17,
@@ -168,6 +185,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   ENTERTAINER_ARTIST: {
+    type: "CAREER",
     name: "Entertainer Artist",
     desc: "",
     id: 18,
@@ -178,6 +196,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 17,
   },
   ENTERTAINER_JOURNALIST: {
+    type: "CAREER",
     name: "Entertainer Journalist",
     desc: "",
     id: 19,
@@ -188,6 +207,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 17,
   },
   ENTERTAINER_PERFORMER: {
+    type: "CAREER",
     name: "Entertainer Performer",
     desc: "",
     id: 20,
@@ -198,6 +218,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 17,
   },
   MARINES: {
+    type: "CAREER",
     name: "Marines",
     desc: "",
     id: 21,
@@ -207,6 +228,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   MARINES_SUPPORT: {
+    type: "CAREER",
     name: "Marines Support",
     desc: "",
     id: 22,
@@ -217,6 +239,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 21,
   },
   MARINES_STAR_MARINE: {
+    type: "CAREER",
     name: "Marines Star Marine",
     desc: "",
     id: 23,
@@ -227,6 +250,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 21,
   },
   MARINES_GROUND_ASSAULT: {
+    type: "CAREER",
     name: "Marines Ground Assault",
     desc: "",
     id: 24,
@@ -237,6 +261,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 21,
   },
   MERCHANT: {
+    type: "CAREER",
     name: "Merchant",
     desc: "",
     id: 25,
@@ -246,6 +271,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   MERCHANT_MARINE: {
+    type: "CAREER",
     name: "Merchant Marine",
     desc: "",
     id: 26,
@@ -256,6 +282,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 25,
   },
   MERCHANT_FREE_TRADER: {
+    type: "CAREER",
     name: "Merchant Free Trader",
     desc: "",
     id: 27,
@@ -266,6 +293,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 25,
   },
   MERCHANT_BROKER: {
+    type: "CAREER",
     name: "Merchant Broker",
     desc: "",
     id: 28,
@@ -276,6 +304,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 25,
   },
   NAVY: {
+    type: "CAREER",
     name: "Navy",
     desc: "",
     id: 29,
@@ -285,6 +314,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   NAVY_CREW: {
+    type: "CAREER",
     name: "Navy Crew",
     desc: "",
     id: 30,
@@ -295,6 +325,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 29,
   },
   NAVY_ENGINEERING: {
+    type: "CAREER",
     name: "Navy Engineering",
     desc: "",
     id: 31,
@@ -305,6 +336,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 29,
   },
   NAVY_FLIGHT: {
+    type: "CAREER",
     name: "Navy Flight",
     desc: "",
     id: 32,
@@ -315,6 +347,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 29,
   },
   NOBILITY: {
+    type: "CAREER",
     name: "Nobility",
     desc: "",
     id: 33,
@@ -324,6 +357,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   NOBILITY_ADMINISTRATOR: {
+    type: "CAREER",
     name: "Nobility Administrator",
     desc: "",
     id: 34,
@@ -334,6 +368,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 33,
   },
   NOBILITY_DIPLOMAT: {
+    type: "CAREER",
     name: "Nobility Diplomat",
     desc: "",
     id: 35,
@@ -344,6 +379,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 33,
   },
   NOBILITY_DILETTANTE_: {
+    type: "CAREER",
     name: "Nobility Dilettante ",
     desc: "",
     id: 36,
@@ -354,6 +390,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 33,
   },
   ROGUE: {
+    type: "CAREER",
     name: "Rogue",
     desc: "",
     id: 37,
@@ -363,6 +400,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   ROGUE_THIEF: {
+    type: "CAREER",
     name: "Rogue Thief",
     desc: "",
     id: 38,
@@ -373,6 +411,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 37,
   },
   ROGUE_ENFORCER: {
+    type: "CAREER",
     name: "Rogue Enforcer",
     desc: "",
     id: 39,
@@ -383,6 +422,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 37,
   },
   ROGUE_PIRATE: {
+    type: "CAREER",
     name: "Rogue Pirate",
     desc: "",
     id: 40,
@@ -393,6 +433,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 37,
   },
   SCHOLAR: {
+    type: "CAREER",
     name: "Scholar",
     desc: "",
     id: 41,
@@ -402,6 +443,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   SCHOLAR_FIELD_RESEARCHER: {
+    type: "CAREER",
     name: "Scholar Field Researcher",
     desc: "",
     id: 42,
@@ -412,6 +454,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 41,
   },
   SCHOLAR_SCIENTIST: {
+    type: "CAREER",
     name: "Scholar Scientist",
     desc: "",
     id: 43,
@@ -422,6 +465,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 41,
   },
   SCHOLAR_PHYSICIAN: {
+    type: "CAREER",
     name: "Scholar Physician",
     desc: "",
     id: 44,
@@ -432,6 +476,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 41,
   },
   SCOUT: {
+    type: "CAREER",
     name: "Scout",
     desc: "",
     id: 45,
@@ -441,6 +486,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: false,
   },
   SCOUT_COURIER: {
+    type: "CAREER",
     name: "Scout Courier",
     desc: "",
     id: 46,
@@ -451,6 +497,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 45,
   },
   SCOUT_SURVEY: {
+    type: "CAREER",
     name: "Scout Survey",
     desc: "",
     id: 47,
@@ -461,6 +508,7 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     parentId: 45,
   },
   SCOUT_EXPLORATION: {
+    type: "CAREER",
     name: "Scout Exploration",
     desc: "",
     id: 48,

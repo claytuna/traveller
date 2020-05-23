@@ -1,21 +1,20 @@
-export type SkillObject = {
-  name: string;
-  desc: string;
-  id: number;
-  qty?: number;
-  parentId?: number;
-};
+export type SkillObject = DataObject<string, string, undefined>;
 
-export type CareerObject = {
-  name: string;
-  desc: string;
-  id: number;
-  qty: number;
+export interface CareerObject extends DataObject<string, "CAREER", undefined> {
   qualify: string;
   survival: boolean | string;
   promotion: boolean | string;
+}
+
+export interface DataObject<N = string, T = string, V = {}> {
+  name: N;
+  id: number;
   parentId?: number;
-};
+  desc: string;
+  type: T;
+  values?: V;
+  qty?: number;
+}
 
 export type GenericObject = { [keyof: string]: unknown };
 
