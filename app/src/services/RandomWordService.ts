@@ -13,7 +13,7 @@ import {
   END_LETTERS,
   INNER_LETTERS,
   WORD_LENGTHS,
-  LetterObject,
+  // LetterObject,
   PhonemeObject,
   PhonemeSubTypes,
 } from "./random-word/constants";
@@ -28,7 +28,7 @@ export const RandomWordService = {
     var phDelta = 1;
 
     while (word.length < wLength) {
-      if (word.length != 0 && wLength - word.length <= 2) {
+      if (word.length !== 0 && wLength - word.length <= 2) {
         word =
           word +
           grapheme(
@@ -37,14 +37,14 @@ export const RandomWordService = {
           );
       }
 
-      if (word.length != 0 && wLength - word.length > 2) {
+      if (word.length !== 0 && wLength - word.length > 2) {
         var vowels = ["a", "e", "i", "o", "u"];
         var inner =
           phDelta === 1
             ? RandomWordService.getRandom(vowels)
             : RandomWordService.getInnerPhoneme(MS.random(12702, 0));
         word = word + grapheme(inner);
-        phDelta = phDelta == 0 ? 1 : 0;
+        phDelta = phDelta === 0 ? 1 : 0;
       }
 
       if (word.length === 0) {
@@ -84,7 +84,7 @@ export const RandomWordService = {
   },
 
   isConsonantOrVowel: (letter: string) => {
-    return VOWELS.indexOf(letter) != -1 ? "VOWEL" : "CONSONANT";
+    return VOWELS.indexOf(letter) !== -1 ? "VOWEL" : "CONSONANT";
   },
 
   freqFilter: (
@@ -167,7 +167,7 @@ export const RandomWordService = {
     return filter(
       RandomWordService.getPhonemesBySubtype(subtype),
       (o: PhonemeObject) => {
-        if (o.id == id) return o;
+        if (o.id === id) return o;
       }
     )[0];
   },

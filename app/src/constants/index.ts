@@ -6,11 +6,12 @@ export * from "./defaultState";
 export * from "./factions";
 export * from "./governments";
 export * from "./hydrospheres";
-export * from "./law";
+export * from "./laws";
 export * from "./populations";
-export * from "./size";
-
+export * from "./sizes";
 export * from "./skills";
+export * from "./starPorts";
+export * from "./technologies";
 export * from "./temperatures";
 export * from "./tradeCodes";
 export * from "./travelCodes";

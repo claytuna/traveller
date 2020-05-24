@@ -17,9 +17,18 @@ export type FacilityTypes =
   | "Limited repair (structural repairs only, not systems)"
   | "None";
 
+export type BaseProbability = { type: BaseTypes; weight: number };
+
 const starRoll = () => DiceRollService.roll([6, 6]);
 const getBase = (baseRoll: number, baseType: BaseTypes, difficulty: number) => {
   return baseRoll >= difficulty ? baseType : "No " + baseType;
+};
+export const getAllBases = (probabilityArray: BaseProbability[]): string[] => {
+  return probabilityArray.length
+    ? probabilityArray.map((bp: BaseProbability) =>
+        getBase(starRoll(), bp.type, bp.weight)
+      )
+    : ["None"];
 };
 
 export interface StartPortObject extends DataObject<StarPortCodes, "STARPORT"> {
@@ -27,7 +36,7 @@ export interface StartPortObject extends DataObject<StarPortCodes, "STARPORT"> {
     berthingCost: number;
     fuel: FuelTypes;
     facilities: FacilityTypes;
-    baseProbability: { type: BaseTypes; weight: number }[];
+    baseProbability: BaseProbability[];
     bases: string[];
   };
 }
@@ -43,7 +52,13 @@ export const STARPORTS: StartPortObject[] = [
       berthingCost: DiceRollService.roll([6]) * 1000,
       fuel: "Refined",
       facilities: "Shipyard (all), Repair",
-      baseProbability: [],
+      baseProbability: [
+        { type: "Naval", weight: 8 },
+        { type: "Scout", weight: 8 },
+        { type: "Research", weight: 8 },
+        { type: "TAS", weight: 8 },
+        { type: "Imperial Consulate", weight: 8 },
+      ],
       bases: [
         getBase(starRoll(), "Naval", 8),
         getBase(starRoll(), "Scout", 10),
@@ -63,7 +78,14 @@ export const STARPORTS: StartPortObject[] = [
       berthingCost: DiceRollService.roll([6]) * 500,
       fuel: "Refined",
       facilities: "Shipyard (spacecraft), Repair",
-      baseProbability: [],
+      baseProbability: [
+        { type: "Naval", weight: 8 },
+        { type: "Scout", weight: 8 },
+        { type: "Research", weight: 10 },
+        { type: "TAS", weight: 6 },
+        { type: "Imperial Consulate", weight: 8 },
+        { type: "Pirate", weight: 12 },
+      ],
       bases: [
         getBase(starRoll(), "Naval", 8),
         getBase(starRoll(), "Scout", 8),
@@ -84,7 +106,13 @@ export const STARPORTS: StartPortObject[] = [
       berthingCost: DiceRollService.roll([6]) * 100,
       fuel: "Unrefined",
       facilities: "Shipyard (small craft), Repair",
-      baseProbability: [],
+      baseProbability: [
+        { type: "Naval", weight: 8 },
+        { type: "Research", weight: 10 },
+        { type: "TAS", weight: 10 },
+        { type: "Imperial Consulate", weight: 10 },
+        { type: "Pirate", weight: 10 },
+      ],
       bases: [
         getBase(starRoll(), "Scout", 8),
         getBase(starRoll(), "Research", 10),
@@ -104,7 +132,10 @@ export const STARPORTS: StartPortObject[] = [
       berthingCost: DiceRollService.roll([6]) * 10,
       fuel: "Unrefined",
       facilities: "Limited repair (structural repairs only, not systems)",
-      baseProbability: [],
+      baseProbability: [
+        { type: "Scout", weight: 7 },
+        { type: "Pirate", weight: 12 },
+      ],
       bases: [
         getBase(starRoll(), "Scout", 7),
         getBase(starRoll(), "Pirate", 12),
@@ -121,7 +152,7 @@ export const STARPORTS: StartPortObject[] = [
       berthingCost: 0,
       fuel: "None",
       facilities: "None",
-      baseProbability: [],
+      baseProbability: [{ type: "Pirate", weight: 12 }],
       bases: [getBase(starRoll(), "Pirate", 12)],
     },
   },

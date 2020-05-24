@@ -23,6 +23,7 @@ export interface PopulationObject
     total: number;
     minPop: number;
     maxPop: number;
+    digit: number;
   };
 }
 
@@ -33,6 +34,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "Uninhabited",
     type: "POPULATION",
     values: {
+      digit: 0,
       minPop: 0,
       maxPop: 0,
       total: 0,
@@ -44,6 +46,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "Tiny farmstead or single family; 1+",
     type: "POPULATION",
     values: {
+      digit: 1,
       minPop: 1,
       maxPop: 99,
       total: MS.random(99, 1),
@@ -55,6 +58,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "Village; 100+",
     type: "POPULATION",
     values: {
+      digit: 2,
       minPop: 100,
       maxPop: 999,
       total: MS.random(999, 100),
@@ -66,6 +70,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "1,000+",
     type: "POPULATION",
     values: {
+      digit: 3,
       minPop: 1000,
       maxPop: 9999,
       total: MS.random(9999, 1000),
@@ -77,6 +82,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "Small town; 10,000+",
     type: "POPULATION",
     values: {
+      digit: 4,
       minPop: 10000,
       maxPop: 99999,
       total: MS.random(99999, 10000),
@@ -88,6 +94,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "Average City; 100,000+",
     type: "POPULATION",
     values: {
+      digit: 5,
       minPop: 100000,
       maxPop: 999999,
       total: MS.random(999999, 100000),
@@ -99,6 +106,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "1,000,000+",
     type: "POPULATION",
     values: {
+      digit: 6,
       minPop: 1000000,
       maxPop: 9999999,
       total: MS.random(9999999, 1000000),
@@ -110,6 +118,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "Large City; 10,000,000",
     type: "POPULATION",
     values: {
+      digit: 7,
       minPop: 10000000,
       maxPop: 99999999,
       total: MS.random(99999999, 10000000),
@@ -121,6 +130,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "100,000,000+",
     type: "POPULATION",
     values: {
+      digit: 8,
       minPop: 100000000,
       maxPop: 999999999,
       total: MS.random(999999999, 100000000),
@@ -132,6 +142,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "Present day Earth; 1,000,000,000+",
     type: "POPULATION",
     values: {
+      digit: 9,
       minPop: 1000000000,
       maxPop: 9999999999,
       total: MS.random(9999999999, 1000000000),
@@ -143,6 +154,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "10,000,000,000+",
     type: "POPULATION",
     values: {
+      digit: 10,
       minPop: 10000000000,
       maxPop: 99999999999,
       total: MS.random(99999999999, 10000000000),
@@ -154,6 +166,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "Incredibly crowded world; 100,000,000,000+",
     type: "POPULATION",
     values: {
+      digit: 11,
       minPop: 100000000000,
       maxPop: 999999999999,
       total: MS.random(999999999999, 100000000000),
@@ -165,6 +178,7 @@ export const POPULATIONS: PopulationObject[] = [
     desc: "World-city; 1,000,000,000,000+",
     type: "POPULATION",
     values: {
+      digit: 12,
       minPop: 1000000000000,
       maxPop: 9999999999999,
       total: MS.random(9999999999999, 1000000000000),

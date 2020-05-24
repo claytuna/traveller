@@ -35,7 +35,7 @@ export const DiceRollService = {
   },
 
   keepNth: (keepersArr: number[], values: number[]) => {
-    return values.map((d, idx) => (keepersArr.indexOf(idx) != -1 ? d : 0));
+    return values.map((d, idx) => (keepersArr.indexOf(idx) !== -1 ? d : 0));
   },
 
   keepHighest: (endPosition: number, values: number[]) => {

@@ -28,7 +28,7 @@ export interface GovernmentObject
 export const GOVERNMENTS: GovernmentObject[] = [
   {
     name: "0",
-    id: 1,
+    id: 0,
     desc:
       "None: No government structure. In many cases, family bonds predominate",
     type: "GOVERNMENT",
@@ -40,7 +40,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "1",
-    id: 2,
+    id: 1,
     desc:
       "Company/corporation: Ruling functions are performed by a company managerial elite, and most of the citizenry are company employees or dependants",
     type: "GOVERNMENT",
@@ -52,7 +52,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "2",
-    id: 3,
+    id: 2,
     desc:
       "Participating democracy: Ruling functions are performed under the advice and consent of the citizenry directly",
     type: "GOVERNMENT",
@@ -64,7 +64,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "3",
-    id: 4,
+    id: 3,
     desc:
       "Self-perpetuating oligarchy: Ruling functions are performed by a restricted minority, with little or no input from the mass citizenry",
     type: "GOVERNMENT",
@@ -76,7 +76,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "4",
-    id: 5,
+    id: 4,
     desc:
       "Representative democracy: Ruling functions are performed by elected representatives",
     type: "GOVERNMENT",
@@ -88,7 +88,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "5",
-    id: 6,
+    id: 5,
     desc:
       "Feudal technochracy: Ruling functions are performed by specific individuals for persons who agree to be ruled by them. Relationships are based on the performance of technical activities which are mutually beneficial",
     type: "GOVERNMENT",
@@ -100,7 +100,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "6",
-    id: 7,
+    id: 6,
     desc:
       "Captive government: Ruling functions are performed by an imposed leadership answerable to an outside group",
     type: "GOVERNMENT",
@@ -112,7 +112,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "7",
-    id: 8,
+    id: 7,
     desc:
       "Balkanization: No central authority exists; rival governments compete for control. Law level refers to the government nearest the starport",
     type: "GOVERNMENT",
@@ -124,7 +124,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "8",
-    id: 9,
+    id: 8,
     desc:
       "Civil service bureaucracy: Ruling functions are performed by government agencies employing individuals selected for their expertise",
     type: "GOVERNMENT",
@@ -136,7 +136,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "9",
-    id: 10,
+    id: 9,
     desc:
       "Impersonal bureaucracy: Ruling functions are performed by agencies that have become insulated from governed citizens",
     type: "GOVERNMENT",
@@ -148,7 +148,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "A",
-    id: 11,
+    id: 10,
     desc:
       "Charismatic dictator: Ruling functions are performed by agencies directed by a single leader who enjoys the overwhelming confidence of the citizenry",
     type: "GOVERNMENT",
@@ -160,7 +160,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "B",
-    id: 12,
+    id: 11,
     desc:
       "Non-charismatic leader: A previous charismatic dictator has been replaced by a leader through normal channels",
     type: "GOVERNMENT",
@@ -172,7 +172,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "C",
-    id: 13,
+    id: 12,
     desc:
       "Charismatic oligarchy: Ruling functions are performed by a select group of members of an organization or class which enjoys the overwhelming confidence of the citizenry",
     type: "GOVERNMENT",
@@ -184,7 +184,7 @@ export const GOVERNMENTS: GovernmentObject[] = [
   },
   {
     name: "D",
-    id: 14,
+    id: 13,
     desc:
       "Religious dictatorship: Ruling functions are performed by a religious organization without regard to specific individual needs of the citizenry",
     type: "GOVERNMENT",

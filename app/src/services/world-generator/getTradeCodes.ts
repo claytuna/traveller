@@ -1,5 +1,4 @@
-import { DataObject } from "../../";
-import { TradeCodeKeys, TRADE_CODES } from "../../constants";
+import { TRADE_CODES } from "../../constants";
 
 export const getTradeCodes = (
   sizeVal: number,
