@@ -1,18 +1,11 @@
-export type SkillObject = DataObject<string, string, undefined>;
+import { SkillObject, CareerObject, SkillKeys } from "./constants";
 
-export interface CareerObject extends DataObject<string, "CAREER", undefined> {
-  qualify: string;
-  survival: boolean | string;
-  promotion: boolean | string;
-}
-
-export interface DataObject<N = string, T = string, V = {}> {
+export interface DataObject<N = string, T = string> {
   name: N;
   id: number;
   parentId?: number;
   desc: string;
   type: T;
-  values?: V;
   qty?: number;
 }
 
@@ -26,7 +19,7 @@ declare namespace AppState {
     stats?: {}[];
     homeworld?: {}[];
     backgroundSkillCount?: number;
-    skills?: SkillObject[];
+    skills?: { [key in SkillKeys]: SkillObject };
     careers?: CareerObject[];
     events?: GenericObject[];
     connections?: {

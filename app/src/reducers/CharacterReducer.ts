@@ -1,11 +1,16 @@
-import { SKILL_LIST } from "../constants";
-// import { StatsService } from "../services/StatsService";
-import { AppState } from "..";
-// const getModifier = StatsService.getModifier;
+import { SKILL_LIST, SkillKeys } from "../constants";
+import { WorldGeneratorObject } from "../services";
+import { AppState } from "../";
 
 const CharacterReducer = (
   state = initialState,
-  action: { type: string; data: number }
+  action: {
+    type: string;
+    backgroundSkillCount?: number;
+    skillKey?: SkillKeys;
+    name?: string;
+    homeWorld?: WorldGeneratorObject;
+  }
 ) => {
   switch (action.type) {
     case "CHARACTER_RESTART":
@@ -15,23 +20,26 @@ const CharacterReducer = (
       return state;
     case "INCREMENT_SKILL":
       const iSkill = Object.assign({}, state.skills);
-      let foundIncSkill = iSkill[action.data];
-      if (foundIncSkill && foundIncSkill.qty) {
+      let foundIncSkill = action.skillKey ? iSkill[action.skillKey] : undefined;
+      if (action.skillKey === undefined || !foundIncSkill) {
+        console.warn("Cannot increment: Invalid skill type");
+        return Object.assign({}, state, { skills: iSkill });
+      }
+      if (foundIncSkill !== undefined && foundIncSkill.qty) {
         foundIncSkill.qty = isNaN(foundIncSkill.qty)
           ? 1
           : (foundIncSkill.qty += 1);
       } else {
-        if (SKILL_LIST[action.data]) {
-          foundIncSkill = SKILL_LIST[action.data];
+        if (SKILL_LIST[action.skillKey]) {
+          foundIncSkill = SKILL_LIST[action.skillKey];
           foundIncSkill.qty = 1;
-        } else {
-          console.warn("Cannot increment: Invalid skill type");
         }
       }
+      console.warn("Cannot increment: Invalid skill type");
       return Object.assign({}, state, { skills: iSkill });
     case "DECREMENT_SKILL":
       const dSkill = Object.assign({}, state.skills);
-      let foundSkill = dSkill[action.data];
+      let foundSkill = action.skillKey ? dSkill[action.skillKey] : undefined;
       if (foundSkill && foundSkill.qty) {
         if (isNaN(foundSkill.qty) || foundSkill.qty === 0) {
           foundSkill.qty = 0;
@@ -43,7 +51,7 @@ const CharacterReducer = (
       }
       return Object.assign({}, state, { skills: dSkill });
     case "UPDATE_NAME":
-      return Object.assign({}, state, { name: action.data });
+      return Object.assign({}, state, { name: action.name });
     // case "UPDATE_STATS":
     //   let statVals = action.data;
     //   return Object.assign({}, state, {
@@ -57,9 +65,11 @@ const CharacterReducer = (
     //     },
     //   });
     case "SET_BACKGROUND_SKILL_COUNT":
-      return Object.assign({}, state, { backgroundSkillCount: action.data });
+      return Object.assign({}, state, {
+        backgroundSkillCount: action.backgroundSkillCount,
+      });
     case "UPDATE_HOMEWORLD":
-      return Object.assign({}, state, { homeworld: action.data });
+      return Object.assign({}, state, { homeworld: action.homeWorld });
     default:
       return state;
   }

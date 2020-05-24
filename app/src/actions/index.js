@@ -3,34 +3,34 @@ export const appSave = () => ({ type: "CHARACTER_SAVE" });
 
 export const updateCharacterName = (name) => ({
   type: "UPDATE_NAME",
-  data: name,
+  name,
 });
-export const updateCharacterStats = (arr) => ({
+export const updateCharacterStats = (statsArray) => ({
   type: "UPDATE_STATS",
-  data: arr,
+  statsArray,
 });
 export const setBackgroundSkillCount = (count) => ({
   type: "SET_BACKGROUND_SKILL_COUNT",
-  data: count,
+  count,
 });
-export const updateHomeworld = (worldObj) => ({
+export const updateHomeworld = (homeWorld) => ({
   type: "UPDATE_HOMEWORLD",
-  data: worldObj,
+  homeWorld,
 });
 export const incrementSkill = (skillKey) => ({
   type: "INCREMENT_SKILL",
-  data: skillKey,
+  skillKey,
 });
 export const decrementSkill = (skillKey) => ({
   type: "DECREMENT_SKILL",
-  data: skillKey,
+  skillKey,
 });
 
 export const updateForm = (formName, fieldName, fieldValue) => {
   return {
     type: "UPDATE_FORM",
-    form: formName,
-    field: fieldName,
-    value: fieldValue,
+    formName,
+    fieldName,
+    fieldValue,
   };
 };

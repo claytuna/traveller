@@ -1,6 +1,62 @@
-import { CareerObject } from "..";
+import { DataObject } from "..";
 
-export const CAREER_LIST: { [keyof: string]: CareerObject } = {
+export type CareerKeys =
+  | "AGENT"
+  | "AGENT_LAW_ENFORCEMENT"
+  | "AGENT_INTELLIGENCE"
+  | "AGENT_COPORATE"
+  | "ARMY"
+  | "ARMY_SUPPORT"
+  | "ARMY_INFANTRY"
+  | "ARMY_CAVALRY"
+  | "CITIZEN"
+  | "CITIZEN_CORPORATE"
+  | "CITIZEN_WORKER"
+  | "CITIZEN_COLONIST"
+  | "DRIFTER"
+  | "DRIFTER_BARBARIAN"
+  | "DRIFTER_WANDERER"
+  | "DRIFTER_SCAVENGER"
+  | "ENTERTAINER"
+  | "ENTERTAINER_ARTIST"
+  | "ENTERTAINER_JOURNALIST"
+  | "ENTERTAINER_PERFORMER"
+  | "MARINES"
+  | "MARINES_SUPPORT"
+  | "MARINES_STAR_MARINE"
+  | "MARINES_GROUND_ASSAULT"
+  | "MERCHANT"
+  | "MERCHANT_MARINE"
+  | "MERCHANT_FREE_TRADER"
+  | "MERCHANT_BROKER"
+  | "NAVY"
+  | "NAVY_CREW"
+  | "NAVY_ENGINEERING"
+  | "NAVY_FLIGHT"
+  | "NOBILITY"
+  | "NOBILITY_ADMINISTRATOR"
+  | "NOBILITY_DIPLOMAT"
+  | "NOBILITY_DILETTANTE"
+  | "ROGUE"
+  | "ROGUE_THIEF"
+  | "ROGUE_ENFORCER"
+  | "ROGUE_PIRATE"
+  | "SCHOLAR"
+  | "SCHOLAR_FIELD_RESEARCHER"
+  | "SCHOLAR_SCIENTIST"
+  | "SCHOLAR_PHYSICIAN"
+  | "SCOUT"
+  | "SCOUT_COURIER"
+  | "SCOUT_SURVEY"
+  | "SCOUT_EXPLORATION";
+
+export interface CareerObject extends DataObject<string, "CAREER"> {
+  qualify: string;
+  survival: string | boolean;
+  promotion: string | boolean;
+}
+
+export const CAREER_LIST: { [K in CareerKeys]: CareerObject } = {
   AGENT: {
     type: "CAREER",
     name: "Agent",
@@ -378,9 +434,9 @@ export const CAREER_LIST: { [keyof: string]: CareerObject } = {
     promotion: "SOC7",
     parentId: 33,
   },
-  NOBILITY_DILETTANTE_: {
+  NOBILITY_DILETTANTE: {
     type: "CAREER",
-    name: "Nobility Dilettante ",
+    name: "Nobility Dilettante",
     desc: "",
     id: 36,
     qty: 0,

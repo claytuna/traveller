@@ -1,27 +1,11 @@
 import filter from "lodash/filter";
-import { SKILL_LIST, EDUCATION_SKILLS } from "../constants";
-import { SkillObject } from "../";
-import { TradeCodeObject } from "./";
-
-export type TradeCodeStrings =
-  | "Ag"
-  | "As"
-  | "Ba"
-  | "De"
-  | "Fl"
-  | "Ga"
-  | "Hi"
-  | "Ht"
-  | "IC"
-  | "In"
-  | "Lo"
-  | "Lt"
-  | "Na"
-  | "Ni"
-  | "Po"
-  | "Ri"
-  | "Wa"
-  | "Va";
+import {
+  SKILL_LIST,
+  EDUCATION_SKILLS,
+  TradeCodeObject,
+  TradeCodeKeys,
+  SkillObject,
+} from "../constants";
 
 export const SkillService = {
   list: () => {
@@ -29,13 +13,13 @@ export const SkillService = {
   },
 
   getBackgroundSkills: (
-    tradeCodes: TradeCodeStrings[]
+    tradeCodes: TradeCodeKeys[]
   ): {
     worldSkills: { [key: string]: TradeCodeObject };
     educationSkills: { [key: string]: SkillObject };
   } => {
     const S = SKILL_LIST;
-    const tradeSkillMap: { [key in TradeCodeStrings]: object | null } = {
+    const tradeSkillMap: { [key in TradeCodeKeys]: object | null } = {
       Ag: { ANIMALS: S.ANIMALS },
       As: { ZERO_G: S.ZERO_G },
       Ba: null,

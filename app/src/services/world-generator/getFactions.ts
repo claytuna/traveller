@@ -1,63 +1,8 @@
 import { DiceRollService } from "../DiceRollService";
-import { getGovernment } from "./getGovernment";
-
-const FACTIONS = [
-  {
-    name: "Obscure group",
-    id: 0,
-    desc: "Few have heard of them; no popular support",
-    qty: 1,
-    type: "FACTION",
-    values: { digit: 0, govt: getFactionGovt() },
-  },
-  {
-    name: "Fringe group",
-    id: 1,
-    desc: "Few supporters; obscure",
-    qty: 1,
-    type: "FACTION",
-    values: { digit: 0, govt: getFactionGovt() },
-  },
-  {
-    name: "Minor group",
-    id: 2,
-    desc: "Some supporters; barely known",
-    qty: 1,
-    type: "FACTION",
-    values: { digit: 0, govt: getFactionGovt() },
-  },
-  {
-    name: "Notable group",
-    id: 3,
-    desc: "Significant support; well-known",
-    qty: 1,
-    type: "FACTION",
-    values: { digit: 0, govt: getFactionGovt() },
-  },
-  {
-    name: "Significant",
-    id: 4,
-    desc: "Nearly as powerful as the government",
-    qty: 1,
-    type: "FACTION",
-    values: { digit: 0, govt: getFactionGovt() },
-  },
-  {
-    name: "Overwhelming popular support",
-    id: 5,
-    desc: "More powerful than the government",
-    qty: 1,
-    type: "FACTION",
-    values: { digit: 0, govt: getFactionGovt() },
-  },
-];
-
-function getFactionGovt() {
-  return getGovernment(DiceRollService.roll([12]), 0, 1);
-}
+import { FACTIONS, getFactionGovt } from "../../constants";
 
 export const getFactions = (roll: number, popVal: number, govtVal: number) => {
-  var result = [];
+  const result = [];
 
   if (popVal <= 0) return [];
 
@@ -66,8 +11,8 @@ export const getFactions = (roll: number, popVal: number, govtVal: number) => {
 
   if (roll === 0) return [];
 
-  var sizeRoll;
-  for (var i = 0; i < roll; i++) {
+  let sizeRoll;
+  for (let i = 0; i < roll; i++) {
     sizeRoll = DiceRollService.roll([6, 6]);
     if (sizeRoll >= 1 && sizeRoll <= 3) {
       result.push({

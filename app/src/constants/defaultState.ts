@@ -1,3 +1,1 @@
-export const DefaultState = {
-
-};
+export const DefaultState = {};

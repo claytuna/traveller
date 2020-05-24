@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { SkillService, TradeCodeObject } from "../../../services";
+import { TradeCodeObject } from "../../../constants";
+import { SkillService } from "../../../services";
 import { Card, SkillButton } from "../";
 
 export const BackgroundSkillSummary = ({
