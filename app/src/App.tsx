@@ -1,30 +1,24 @@
-import React, { useState } from "react";
-import { Button, Datum } from "./components/ui";
-import "./App.css";
+import React from "react";
 
 export const StateContext = React.createContext({
   actions: {},
-  character: {},
+  characterCreation: {},
   dispatch: undefined,
   form: {},
 });
 
-function App({ character, form, actions, dispatch }: AppProps) {
-  const [value, setValue] = useState(9);
+function App({ characterCreation, form, actions, dispatch }: AppProps) {
   return (
-    <StateContext.Provider value={{ actions, dispatch, character, form }}>
-      <div className="App">
-        <header className="App-header">
-          <Button onClick={() => setValue(12)}>Update</Button>
-          <Datum value={value} isCountable />
-        </header>
-      </div>
+    <StateContext.Provider
+      value={{ actions, dispatch, characterCreation, form }}
+    >
+      <div className="app"></div>
     </StateContext.Provider>
   );
 }
 
 export interface AppProps {
-  character: any;
+  characterCreation: any;
   form: any;
   actions: any;
   dispatch: any;

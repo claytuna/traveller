@@ -15,7 +15,6 @@ export * from "./loading";
 export * from "./select-field";
 export * from "./skill-button";
 export * from "./text-field";
-export * from "./stats-widget";
 export * from "./step";
 export * from "./text-field";
 export * from "./planet-diagram";

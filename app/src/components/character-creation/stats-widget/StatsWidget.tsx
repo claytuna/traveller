@@ -12,7 +12,7 @@ import {
   DatumGroup,
   FieldGroup,
   SelectField,
-} from "../";
+} from "../../ui";
 import { makeStatMatrix, StatMatrixArray } from "./makeStatMatrix";
 
 export const StatsWidget = ({ actions, dispatch, forms }: StatsWidgetProps) => {
