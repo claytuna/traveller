@@ -1,5 +1,5 @@
 import React from "react";
-import "./BtnGroup.less";
+import "./ButtonGroup.less";
 
 export const ButtonGroup = ({
   noMargin,

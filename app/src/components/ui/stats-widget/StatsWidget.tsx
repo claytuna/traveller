@@ -47,7 +47,7 @@ export const StatsWidget = ({ actions, dispatch, forms }: StatsWidgetProps) => {
     }
     setRolls(rollMatrix);
     setIsRolled(true);
-  }, []);
+  }, [statRollForm.statRollType]);
 
   const saveStats = useCallback(() => {
     dispatch(actions.updateCharacterStats(values.current));

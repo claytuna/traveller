@@ -1,5 +1,5 @@
 import React from "react";
-import "./Btn.less";
+import "./Button.less";
 
 export const Button = ({
   children,
@@ -23,5 +23,5 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   priority?: "primary" | "secondary" | "tertiary";
-  text: React.ReactNode;
+  text?: React.ReactNode;
 }

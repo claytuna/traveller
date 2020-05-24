@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Datum.less";
 
 export type Value = number | string;
@@ -23,11 +23,22 @@ function getDatumValue(
   return isCountable ? doIncrement(value) : doNormalValue(hasComma, value);
 }
 
+function usePrevious<T>(value: T) {
+  const ref = useRef<any>();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 export const Datum = ({
   value: valueProp,
   hasComma,
   isCountable,
 }: DatumProps) => {
+  const prevValue = usePrevious<number>(
+    typeof valueProp === "number" ? valueProp : 0
+  );
   const [isUpdated, setUpdated] = useState(false);
   const [value, setValue] = useState<number>();
 
@@ -44,23 +55,26 @@ export const Datum = ({
 
   /* incremental counting effect */
   useEffect(() => {
-    let countInterval: NodeJS.Timeout;
-    // if (valueProp === value && countInterval) {
-    //   clearInterval(countInterval);
-    //   return;
-    // }
-    if (isCountable && typeof valueProp === "number") {
-      //   clearInterval(countInterval);
-      const INTERVAL =
-        Math.abs((value === undefined ? 0 : value) - valueProp) >= 100 ? 2 : 20;
-      countInterval = setInterval(() => {
-        const val = value === undefined ? 0 : value;
-        val < valueProp && setValue(val + 1);
-        val > valueProp && setValue(val - 1);
-      }, INTERVAL);
+    let interval: NodeJS.Timeout | undefined = undefined;
+    if (isCountable) {
+      if (
+        value !== valueProp &&
+        valueProp !== undefined &&
+        typeof valueProp !== "string"
+      ) {
+        interval && clearInterval(interval);
+        const INT = Math.abs((prevValue || 0) - valueProp) >= 100 ? 2 : 20;
+        const val = value || 0;
+        interval = setInterval(() => {
+          val < valueProp && setValue(val + 1);
+          val > valueProp && setValue(val - 1);
+        }, INT);
+
+        val === valueProp && clearInterval(interval);
+      }
     }
-    return () => clearInterval(countInterval);
-  }, [isUpdated, value, valueProp]);
+    return () => interval && clearInterval(interval);
+  }, [value, valueProp, isCountable, prevValue]);
 
   return (
     <span>
@@ -108,7 +122,7 @@ export interface DatumProps {
 //   }
 
 //   count(startValue) {
-//     var val = this.state.value || 0;
+//     var val = value || 0;
 //     val < this.props.value && this.setState({ value: val + 1 });
 //     val > this.props.value && this.setState({ value: val - 1 });
 //     val === this.props.value && this.stopCount.call(this);

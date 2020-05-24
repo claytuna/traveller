@@ -12,7 +12,7 @@ export const TextField = ({
     (event) => {
       onUpdate && onUpdate({ formName, fieldName, value: event.target.value });
     },
-    [onUpdate]
+    [formName, fieldName, onUpdate]
   );
   return (
     <input

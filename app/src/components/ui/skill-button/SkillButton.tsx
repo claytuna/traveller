@@ -1,6 +1,6 @@
 import React from "react";
 import { DatumGroup } from "../";
-import "./SkillBtn.less";
+import "./SkillButton.less";
 
 export const SkillButton = ({
   disabled,

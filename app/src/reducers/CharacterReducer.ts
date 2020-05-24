@@ -79,7 +79,7 @@ export default CharacterReducer;
 
 const initialState: AppState.CharacterState = {
   name: undefined,
-  age: 0,
+  age: 18,
   sex: 0,
   stats: undefined,
   homeworld: undefined,

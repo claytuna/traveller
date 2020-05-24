@@ -14,7 +14,7 @@ export const SelectField = ({
     (event) => {
       onUpdate && onUpdate({ formName, fieldName, value: event.target.value });
     },
-    [fieldName]
+    [formName, fieldName, onUpdate]
   );
 
   return (
