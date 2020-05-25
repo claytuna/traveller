@@ -44,18 +44,19 @@ export const Datum = ({
 
   /* highlight on update effect */
   useEffect(() => {
-    let highlightTimeout: NodeJS.Timeout;
+    let highlightTimeout: number | undefined = undefined;
     setUpdated(true);
     highlightTimeout = setTimeout(() => {
       setUpdated(false);
     }, 500);
 
-    return () => clearTimeout(highlightTimeout);
+    return () =>
+      highlightTimeout ? clearTimeout(highlightTimeout) : undefined;
   }, [valueProp]);
 
   /* incremental counting effect */
   useEffect(() => {
-    let interval: NodeJS.Timeout | undefined = undefined;
+    let interval: number | undefined = undefined;
     if (isCountable) {
       if (
         value !== valueProp &&
@@ -73,7 +74,7 @@ export const Datum = ({
         val === valueProp && clearInterval(interval);
       }
     }
-    return () => interval && clearInterval(interval);
+    return () => (interval ? clearInterval(interval) : undefined);
   }, [value, valueProp, isCountable, prevValue]);
 
   return (

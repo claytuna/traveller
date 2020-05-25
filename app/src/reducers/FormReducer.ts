@@ -1,25 +1,23 @@
-const initialState: {
-  characterNameForm: { [keyof: string]: unknown };
-  statRollForm: { [keyof: string]: unknown };
-} = {
+import { AppState } from "../";
+export const formInitialState: AppState.FormState = {
   characterNameForm: {},
   statRollForm: {},
 };
 
 const FormReducer = (
-  state = initialState,
+  state = formInitialState,
   action: {
     type: string;
-    form: "characterNameForm" | "statRollForm";
+    formName: "characterNameForm" | "statRollForm";
     field: string;
-    value: unknown;
+    value: string | number;
   }
 ) => {
   switch (action.type) {
     case "UPDATE_FORM":
-      let form = initialState[action.form];
-      form[action.field] = action.value;
-      return Object.assign({}, state, { [action.form]: form });
+      let formName = formInitialState[action.formName];
+      formName[action.field] = action.value;
+      return Object.assign({}, state, { [action.formName]: formName });
     default:
       return state;
   }

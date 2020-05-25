@@ -1,5 +1,5 @@
 import React from "react";
-import "./ButtonGroup.less";
+import * as Styled from "./ButtonGroup.styled";
 
 export const ButtonGroup = ({
   noMargin,
@@ -7,12 +7,9 @@ export const ButtonGroup = ({
   ...rest
 }: ButtonGroupProps) => {
   return (
-    <div
-      className={`btngroup ${noMargin ? "btngroup--no-margin" : ""}`}
-      {...rest}
-    >
+    <Styled.Group data-testid="ButtonGroup" noMargin={noMargin} {...rest}>
       {children}
-    </div>
+    </Styled.Group>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.less";
+import * as Styled from "./Button.styled";
 
 export const Button = ({
   children,
@@ -9,13 +9,9 @@ export const Button = ({
   ...rest
 }: ButtonProps) => {
   return (
-    <button
-      className={`btn btn--${priority || "primary"}`}
-      type={type || "button"}
-      {...rest}
-    >
+    <Styled.Button priority={priority} type={type || "button"} {...rest}>
       {children || text || "Click here"}
-    </button>
+    </Styled.Button>
   );
 };
 

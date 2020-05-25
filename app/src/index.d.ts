@@ -12,7 +12,12 @@ export interface DataObject<N = string, T = string> {
 export type GenericObject = { [keyof: string]: unknown };
 
 declare namespace AppState {
+  interface FormState {
+    characterNameForm: { [keyof: string]: string | number };
+    statRollForm: { [keyof: string]: string | number };
+  }
   interface CharacterState {
+    step?: string;
     name?: string;
     age?: number;
     sex?: number;

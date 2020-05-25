@@ -1,11 +1,13 @@
 import { SKILL_LIST, SkillKeys } from "../constants";
+import * as STEPS from "../constants/characterCreationSteps";
 import { WorldGeneratorObject } from "../services";
 import { AppState } from "../";
 
 const CharacterReducer = (
-  state = initialState,
+  state = characterInitialState,
   action: {
     type: string;
+    step: string;
     backgroundSkillCount?: number;
     skillKey?: SkillKeys;
     name?: string;
@@ -14,7 +16,7 @@ const CharacterReducer = (
 ) => {
   switch (action.type) {
     case "CHARACTER_RESTART":
-      return Object.assign({}, state, initialState);
+      return Object.assign({}, state, characterInitialState);
     case "CHARACTER_SAVE":
       /*interact with db or something - generate a tiny url?*/
       return state;
@@ -52,6 +54,8 @@ const CharacterReducer = (
       return Object.assign({}, state, { skills: dSkill });
     case "UPDATE_NAME":
       return Object.assign({}, state, { name: action.name });
+    case "NEXT_STEP":
+      return Object.assign({}, state, { step: action.step });
     // case "UPDATE_STATS":
     //   let statVals = action.data;
     //   return Object.assign({}, state, {
@@ -70,6 +74,8 @@ const CharacterReducer = (
       });
     case "UPDATE_HOMEWORLD":
       return Object.assign({}, state, { homeworld: action.homeWorld });
+    case "GO_TO_STEP":
+      return Object.assign({}, state, { step: action.step });
     default:
       return state;
   }
@@ -77,7 +83,8 @@ const CharacterReducer = (
 
 export default CharacterReducer;
 
-const initialState: AppState.CharacterState = {
+export const characterInitialState: AppState.CharacterState = {
+  step: STEPS.ROLL_CHARACTERISTICS,
   name: undefined,
   age: 18,
   sex: 0,

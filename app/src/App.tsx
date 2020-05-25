@@ -1,25 +1,63 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
+import { AppState } from "./";
+import { theme } from "./theme";
+import { Button, ButtonGroup, Header } from "./components";
+import { CharacterCreation } from "./components/character-creation";
+import { characterInitialState } from "./reducers/CharacterReducer";
+import { formInitialState } from "./reducers/FormReducer";
 
-export const StateContext = React.createContext({
-  actions: {},
-  characterCreation: {},
+import * as Styled from "./App.styled";
+import "./css/reset.css";
+
+interface AppContextInterface {
+  actions: any;
+  characterCreation: AppState.CharacterState;
+  dispatch: any;
+  forms: AppState.FormState;
+}
+
+export const StateContext = React.createContext<AppContextInterface>({
+  actions: undefined,
+  characterCreation: characterInitialState,
   dispatch: undefined,
-  form: {},
+  forms: formInitialState,
 });
 
-function App({ characterCreation, form, actions, dispatch }: AppProps) {
+function App({ characterCreation, forms, actions, dispatch }: AppProps) {
   return (
     <StateContext.Provider
-      value={{ actions, dispatch, characterCreation, form }}
+      value={{ actions, dispatch, characterCreation, forms }}
     >
-      <div className="app"></div>
+      <ThemeProvider theme={theme}>
+        <Styled.App data-testid="App">
+          <Header title="Traveller Character Generator">
+            <ButtonGroup>
+              <Button
+                priority="secondary"
+                onClick={() => dispatch(actions.appRestart())}
+              >
+                Restart
+              </Button>
+              <Button
+                priority="tertiary"
+                onClick={() => dispatch(actions.appSave())}
+                disabled
+              >
+                Save
+              </Button>
+            </ButtonGroup>
+          </Header>
+          <CharacterCreation />
+        </Styled.App>
+      </ThemeProvider>
     </StateContext.Provider>
   );
 }
 
 export interface AppProps {
-  characterCreation: any;
-  form: any;
+  characterCreation: AppState.CharacterState;
+  forms: AppState.FormState;
   actions: any;
   dispatch: any;
 }

@@ -34,3 +34,10 @@ export const updateForm = (formName, fieldName, fieldValue) => {
     fieldValue,
   };
 };
+
+export const goToStep = (step) => {
+  return {
+    type: "GO_TO_STEP",
+    step,
+  };
+};

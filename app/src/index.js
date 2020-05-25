@@ -9,12 +9,6 @@ import * as serviceWorker from "./serviceWorker";
 
 let store = createStore(travellerApp);
 
-// const mapStateToProps = (state) => {
-//   return {
-//     character: travellerApp,
-//   };
-// };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatch: dispatch,

@@ -3,7 +3,7 @@ import CharacterReducer from "./CharacterReducer";
 import FormReducer from "./FormReducer";
 
 const TravellerApp = combineReducers({
-  character: CharacterReducer,
+  characterCreation: CharacterReducer,
   forms: FormReducer,
 });
 

@@ -1,32 +1,24 @@
 import React from "react";
 import { ButtonProps } from "../../ui/button/Button";
-import { Button } from "../../ui";
-import { Container, Col, Row } from "../";
+import { Button, ButtonGroup } from "../../ui";
+import * as Styled from "./Step.styled";
 
 export const Step = ({ title, children, next, prev }: StepProps) => {
   return (
-    <Container>
-      <Row>
-        <Col xs={12}>{title}</Col>
-      </Row>
-      <Row>
-        <Col xs={12}>{children}</Col>
-      </Row>
+    <Styled.Step data-testid="Step">
+      <Styled.Title>{title}</Styled.Title>
+      <Styled.Row>{children}</Styled.Row>
       {(next || prev) && (
-        <Row>
-          {prev && (
-            <Col xs={6}>
-              <Button {...prev} />
-            </Col>
-          )}
-          {next && (
-            <Col xs={6}>
-              <Button {...next} />
-            </Col>
-          )}
-        </Row>
+        <Styled.Footer>
+          <Styled.Row>
+            <ButtonGroup noMargin>
+              {prev && <Button {...prev} />}
+              {next && <Button {...next} />}
+            </ButtonGroup>
+          </Styled.Row>
+        </Styled.Footer>
       )}
-    </Container>
+    </Styled.Step>
   );
 };
 

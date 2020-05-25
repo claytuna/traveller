@@ -1,11 +1,16 @@
 import React from "react";
+import * as Styled from "./Header.styled";
 
-export const Header = ({ children }: HeaderProps) => {
+export const Header = ({ children, title }: HeaderProps) => {
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>{children}</div>
+    <Styled.Header data-testid="Header">
+      {title && <Styled.Title>{title}</Styled.Title>}
+      {children}
+    </Styled.Header>
   );
 };
 
 export interface HeaderProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  title?: React.ReactNode;
 }

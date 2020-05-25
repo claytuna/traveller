@@ -1,0 +1,56 @@
+const SPACING = 4;
+//https://material-ui.com/customization/color/
+export const theme = {
+  fontBold: "700",
+  fontNormal: "400",
+  units: (unit: number, isNumber?: boolean) =>
+    isNumber ? SPACING * unit : `${SPACING * unit}px`,
+
+  gray: "#9e9e9e",
+  gray50: "#fafafa",
+  gray100: "#f5f5f5",
+  gray200: "#eeeeee",
+  gray300: "#e0e0e0",
+  gray400: "#bdbdbd",
+  gray500: "#9e9e9e",
+  gray600: "#757575",
+  gray700: "#616161",
+  gray800: "#424242",
+  gray900: "#212121",
+
+  tertiaryDark: "#440154",
+  tertiaryMain: "#67AACA",
+  tertiaryLight: "#BFE2F3",
+  tertiaryContrastText: "#000",
+  secondaryDark: "#197762",
+  secondaryMain: "#3CBB75",
+  secondaryLight: "#AEECDE",
+  secondaryContrastText: "#000",
+  primaryDark: "#95D840",
+  primaryMain: "#DCE319",
+  primaryLight: "#FDE725",
+  primaryContrastText: "#000",
+};
+
+export const vidris = [
+  "#440154FF",
+  "#481567FF",
+  "#482677FF",
+  "#453781FF",
+  "#404788FF",
+  "#39568CFF",
+  "#33638DFF",
+  "#2D708EFF",
+  "#287D8EFF",
+  "#238A8DFF",
+  "#1F968BFF",
+  "#20A387FF",
+  "#29AF7FFF",
+  "#3CBB75FF",
+  "#55C667FF",
+  "#73D055FF",
+  "#95D840FF",
+  "#B8DE29FF",
+  "#DCE319FF",
+  "#FDE725FF",
+];
