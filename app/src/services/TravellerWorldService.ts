@@ -19,6 +19,8 @@ import {
   getTravelCode,
 } from "./world-generator";
 
+import * as C from "../constants";
+
 function q() {
   return MS.random(9, 0);
 }
@@ -26,25 +28,25 @@ function q() {
 export type WorldGeneratorObject = {
   name: string;
   uwp: string;
-  size: {};
-  atmosphere: {};
-  temperature: {};
-  hydrosphere: {};
-  population: {};
-  governments: {};
-  factions: {};
-  laws: {};
-  culture: {};
-  starport: {};
-  technologyLevel: {};
-  atmosphericWarning: {};
-  communications: {};
-  travelCodes: {};
-  tradeCodes: {}[];
+  size: C.SizeObject;
+  atmosphere: C.AtmosphereObject;
+  temperature: C.TemperatureObject;
+  hydrosphere: C.HydrosphereObject;
+  population: C.PopulationObject;
+  governments: C.GovernmentObject;
+  factions: C.FactionObject[];
+  laws: C.LawObject;
+  culture: C.CultureObject;
+  starport: C.StartPortObject;
+  technologyLevel: C.TechnologyObject;
+  atmosphericWarning: boolean;
+  communications: C.CommObject;
+  travelCodes: C.TravelCodeObject;
+  tradeCodes: C.TradeCodeObject[];
 };
 
 export const TravellerWorldService = {
-  generate: () => {
+  generate: (): WorldGeneratorObject => {
     const name = RandomWordService.getRandomWord().toUpperCase();
     const size = getSize(DiceRollService.roll([11]));
     const atmos = getAtmosphere(

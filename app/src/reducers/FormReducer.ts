@@ -8,16 +8,16 @@ const FormReducer = (
   state = formInitialState,
   action: {
     type: string;
-    formName: "characterNameForm" | "statRollForm";
-    field: string;
-    value: string | number;
+    formName: AppState.FormNames;
+    fieldName: string;
+    fieldValue: string | number;
   }
 ) => {
   switch (action.type) {
     case "UPDATE_FORM":
-      let formName = formInitialState[action.formName];
-      formName[action.field] = action.value;
-      return Object.assign({}, state, { [action.formName]: formName });
+      const activeForm = state[action.formName];
+      activeForm[action.fieldName] = action.fieldValue;
+      return Object.assign({}, state, { [action.formName]: activeForm });
     default:
       return state;
   }

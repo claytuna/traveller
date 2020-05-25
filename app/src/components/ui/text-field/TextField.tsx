@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import "./TextField.less";
+import * as Styled from "./TextField.styled";
 
 export const TextField = ({
   onUpdate,
@@ -15,9 +15,8 @@ export const TextField = ({
     [formName, fieldName, onUpdate]
   );
   return (
-    <input
-      className="text-field"
-      defaultValue={value}
+    <Styled.Text
+      value={value}
       type="text"
       onChange={handleChange}
       onBlur={handleChange}

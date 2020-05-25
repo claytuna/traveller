@@ -7,15 +7,13 @@ export const Step = ({ title, children, next, prev }: StepProps) => {
   return (
     <Styled.Step data-testid="Step">
       <Styled.Title>{title}</Styled.Title>
-      <Styled.Row>{children}</Styled.Row>
+      <Styled.Body>{children}</Styled.Body>
       {(next || prev) && (
         <Styled.Footer>
-          <Styled.Row>
-            <ButtonGroup noMargin>
-              {prev && <Button {...prev} />}
-              {next && <Button {...next} />}
-            </ButtonGroup>
-          </Styled.Row>
+          <ButtonGroup noMargin justifyContent="center">
+            {prev && <Button {...prev} />}
+            {next && <Button {...next} />}
+          </ButtonGroup>
         </Styled.Footer>
       )}
     </Styled.Step>

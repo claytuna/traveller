@@ -32,7 +32,7 @@ function App({ characterCreation, forms, actions, dispatch }: AppProps) {
       <ThemeProvider theme={theme}>
         <Styled.App data-testid="App">
           <Header title="Traveller Character Generator">
-            <ButtonGroup>
+            <ButtonGroup justifyContent="flex-end">
               <Button
                 priority="secondary"
                 onClick={() => dispatch(actions.appRestart())}

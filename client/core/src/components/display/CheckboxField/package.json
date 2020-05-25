@@ -1,7 +1,0 @@
-{
-	"name": "CheckboxField",
-	"main": "./CheckboxField.js",
-	"private": true,
-	"version": "0.0.1",
-	"author": "claytuna"
-}

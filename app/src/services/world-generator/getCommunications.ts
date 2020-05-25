@@ -5,4 +5,6 @@ export const getCommunications = (techLevel: number) => {
   if (techLevel >= 4 && techLevel <= 6) return COMMS[1];
   if (techLevel >= 7 && techLevel <= 8) return COMMS[2];
   if (techLevel >= 9) return COMMS[3];
+  //failsafe
+  return COMMS[0];
 };

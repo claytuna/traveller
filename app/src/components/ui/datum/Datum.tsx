@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./Datum.less";
+import * as Styled from "./Datum.styled";
 
 export type Value = number | string;
 
@@ -78,13 +78,13 @@ export const Datum = ({
   }, [value, valueProp, isCountable, prevValue]);
 
   return (
-    <span>
+    <>
       {valueProp ? (
-        <span className={`datum ${isUpdated ? "is-updated" : ""}`}>
+        <Styled.Datum data-testid="Datum" isUpdated={isUpdated}>
           {getDatumValue(hasComma, isCountable, value ? value : valueProp)}
-        </span>
+        </Styled.Datum>
       ) : null}
-    </span>
+    </>
   );
 };
 
@@ -93,63 +93,3 @@ export interface DatumProps {
   isCountable?: boolean;
   value?: Value;
 }
-
-// class A extends React.Component {
-//   constructor() {
-//     super();
-//     this.countableTimer = {};
-//     this.highlightTimeout = {};
-//     this.state = { updated: false };
-//   }
-
-//   componentWillReceiveProps(nextProps) {
-//     !isNaN(this.props.countable) && this.startCount(nextProps.value);
-//     nextProps.value != this.props.value && this.highlight.call(this);
-//   }
-
-//   componentDidMount() {
-//     !isNaN(this.props.countable) && this.startCount();
-//   }
-
-//   componentWillUnmount() {
-//     clearTimeout(this.highlightTimeout);
-//     this.stopCount.call(this);
-//   }
-
-//   startCount(startValue = 0) {
-//     this.stopCount.call(this);
-//     var intv = Math.abs(startValue - this.props.value) >= 100 ? 2 : 20;
-//     this.countableTimer = setInterval(this.count.bind(this, startValue), intv);
-//   }
-
-//   count(startValue) {
-//     var val = value || 0;
-//     val < this.props.value && this.setState({ value: val + 1 });
-//     val > this.props.value && this.setState({ value: val - 1 });
-//     val === this.props.value && this.stopCount.call(this);
-//   }
-
-//   stopCount() {
-//     clearInterval(this.countableTimer);
-//   }
-
-//   highlight() {
-//     this.setState({ updated: true });
-//     this.highlightTimeout = setTimeout(() => {
-//       this.setState({ updated: false });
-//     }, 500);
-//   }
-
-//   render() {
-//     return (
-//       <span>
-//         {" "}
-//         {this.props.value ? (
-//           <span className={`datum ${this.state.updated ? "is-updated" : ""}`}>
-//             {getDatumValue.call(this)}
-//           </span>
-//         ) : null}{" "}
-//       </span>
-//     );
-//   }
-// }

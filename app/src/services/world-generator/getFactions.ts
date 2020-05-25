@@ -1,7 +1,11 @@
 import { DiceRollService } from "../DiceRollService";
-import { FACTIONS, getFactionGovt } from "../../constants";
+import { FACTIONS, getFactionGovt, FactionObject } from "../../constants";
 
-export const getFactions = (roll: number, popVal: number, govtVal: number) => {
+export const getFactions = (
+  roll: number,
+  popVal: number,
+  govtVal: number
+): FactionObject[] => {
   const result = [];
 
   if (popVal <= 0) return [];

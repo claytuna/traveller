@@ -30,10 +30,10 @@ export const getHydrosphere = (
   if (tempVal === "Hot") currentRoll = roll - 2;
   if (tempVal === "Roasting") currentRoll = roll - 6;
 
-  if (roll <= 0) {
+  if (currentRoll <= 0) {
     return getRandomHydroPercent(HYDROSPHERES[0]);
   }
-  if (roll >= 11) {
+  if (currentRoll >= 11) {
     return getRandomHydroPercent(HYDROSPHERES[10]);
   }
 

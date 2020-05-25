@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import uniqueId from "lodash/uniqueId";
-import "./SelectField.less";
+import * as Styled from "./SelectField.styled";
 
 export const SelectField = ({
   formName,
@@ -18,9 +18,8 @@ export const SelectField = ({
   );
 
   return (
-    <select
-      className="select-field"
-      defaultValue={value || options[0].value}
+    <Styled.Select
+      value={value || options[0].value}
       onChange={handleChange}
       {...rest}
     >
@@ -30,7 +29,7 @@ export const SelectField = ({
             {o.text}
           </option>
         ))}
-    </select>
+    </Styled.Select>
   );
 };
 

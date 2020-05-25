@@ -4,6 +4,7 @@ import React, {
   useRef,
   useEffect,
   useContext,
+  useMemo,
 } from "react";
 import { StateContext } from "../../../App";
 import {
@@ -26,20 +27,20 @@ export const StatsWidget = () => {
   const { actions, dispatch, forms } = useContext(StateContext);
   const values = useRef<number[]>([]);
   const [rolls, setRolls] = useState<StatMatrixArray>();
-  const [isRolled, setIsRolled] = useState<boolean>(false);
-  const [isLocked, setIsLocked] = useState<boolean>(false);
+  const [hasRolled, setHasRolled] = useState<boolean>(false);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
   const { statRollForm } = forms;
 
   useEffect(() => {
     setRolls(undefined);
-    setIsRolled(false);
+    setHasRolled(false);
   }, [statRollForm.statRollType]);
 
   const rollStats = useCallback(() => {
-    var rollMatrix = makeStatMatrix([6, 6]);
+    let rollMatrix = makeStatMatrix([6, 6]);
     values.current = [];
     setRolls(undefined);
-    setIsRolled(false);
+    setHasRolled(false);
 
     switch (statRollForm.statRollType) {
       case "keepHighest":
@@ -55,11 +56,11 @@ export const StatsWidget = () => {
         break;
     }
     setRolls(rollMatrix);
-    setIsRolled(true);
+    setHasRolled(true);
   }, [statRollForm.statRollType]);
 
   const saveStats = useCallback(() => {
-    setIsLocked(true);
+    setIsSaved(true);
     dispatch(actions.updateCharacterStats(values.current));
     dispatch(
       actions.setBackgroundSkillCount(
@@ -68,7 +69,34 @@ export const StatsWidget = () => {
     );
   }, [actions, dispatch, values]);
 
-  const isStatRolled = isRolled;
+  const currentStats = useMemo(() => {
+    values.current = [];
+    return (
+      rolls &&
+      rolls.map((obj) => {
+        let curRoll: number;
+        switch (statRollForm.statRollType) {
+          case "keepHighest":
+            curRoll = MS.sum(DiceRollService.rollDiceKeepHighest(2, obj.rolls));
+            break;
+          case "keepNth":
+            curRoll = MS.sum(
+              DiceRollService.rollDiceKeepNth([0, 2], obj.rolls)
+            );
+            break;
+          default:
+            curRoll = DiceRollService.roll(obj.rolls);
+            break;
+        }
+        values.current.push(curRoll);
+        return (
+          <Col key={"roll-" + obj.name}>
+            <DatumGroup title={obj.name} value={curRoll} isCountable />
+          </Col>
+        );
+      })
+    );
+  }, [rolls, statRollForm.statRollType]);
 
   return (
     <Card
@@ -77,41 +105,12 @@ export const StatsWidget = () => {
         <Row>
           <Col xs={12} sm={6}>
             <Card
-              title={`${isLocked ? "Saved" : "Current"} Characteristics`}
+              title={`${isSaved ? "Saved" : "Current"} Characteristics`}
               isSecondary
               body={
                 <Row>
-                  {isStatRolled && rolls ? (
-                    rolls.map((obj) => {
-                      let curRoll: number;
-                      switch (statRollForm.statRollType) {
-                        case "keepHighest":
-                          curRoll = MS.sum(
-                            DiceRollService.rollDiceKeepHighest(2, obj.rolls)
-                          );
-                          break;
-
-                        case "keepNth":
-                          curRoll = MS.sum(
-                            DiceRollService.rollDiceKeepNth([0, 2], obj.rolls)
-                          );
-                          break;
-
-                        default:
-                          curRoll = DiceRollService.roll(obj.rolls);
-                          break;
-                      }
-                      values.current.push(curRoll);
-                      return (
-                        <Col xs={12} md={6} key={"roll-" + obj.name}>
-                          <DatumGroup
-                            title={obj.name}
-                            value={curRoll}
-                            isCountable
-                          />
-                        </Col>
-                      );
-                    })
+                  {hasRolled && rolls ? (
+                    currentStats
                   ) : (
                     <Col xs={12}>
                       <p>Roll for stats below.</p>
@@ -143,16 +142,16 @@ export const StatsWidget = () => {
       footer={
         <ButtonGroup noMargin>
           <Button
-            text={isStatRolled ? "Re-roll stats" : "Roll Stats"}
-            priority={isStatRolled ? "secondary" : "primary"}
-            disabled={isLocked}
+            text={hasRolled ? "Re-roll stats" : "Roll Stats"}
+            priority={hasRolled ? "secondary" : "primary"}
+            disabled={isSaved}
             onClick={() => rollStats()}
           />
-          {isStatRolled && (
+          {hasRolled && (
             <Button
               text="Accept Stats"
               priority="primary"
-              disabled={isLocked}
+              disabled={isSaved}
               onClick={() => saveStats()}
             />
           )}

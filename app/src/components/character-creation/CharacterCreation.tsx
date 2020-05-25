@@ -3,6 +3,7 @@ import { StateContext } from "../../App";
 import * as STEPS from "../../constants/characterCreationSteps";
 import { Step } from "../layout";
 import { StatsWidget } from "./stats-widget";
+import { WorldGenerator } from "./world-generator";
 
 const PREV = "Prev";
 const NEXT = "Next";
@@ -21,6 +22,7 @@ export const CharacterCreation = () => {
           title={STEPS.ROLL_CHARACTERISTICS}
           next={{
             text: NEXT,
+            disabled: characterCreation.stats === undefined,
             onClick: () => {
               dispatch(actions.goToStep(STEPS.CHOOSE_HOMEWORLD));
             },
@@ -47,7 +49,7 @@ export const CharacterCreation = () => {
             },
           }}
         >
-          HOME WHIRLED
+          <WorldGenerator />
         </Step>
       );
     case STEPS.CHOOSE_CAREER:

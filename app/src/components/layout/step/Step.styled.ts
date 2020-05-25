@@ -5,10 +5,10 @@ export const Step = styled.div`
   flex-grow: 1;
   flex-direction: column;
 `;
-
-export const Row = styled.div`
+export const Body = styled.div`
   flex-grow: 1;
   padding: ${({ theme }) => theme.units(2)};
+  padding-bottom: 100px;
 `;
 
 export const Title = styled.h2`
@@ -19,8 +19,13 @@ export const Title = styled.h2`
 `;
 
 export const Footer = styled.div`
-  display: flex;
-  flex-grow: 1;
+  position: fixed;
+  background-color: white;
+  bottom: 0;
   border-top: 1px dotted;
-  max-height: 50px;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  padding: ${({ theme }) => theme.units(2)};
+  width: 100%;
 `;

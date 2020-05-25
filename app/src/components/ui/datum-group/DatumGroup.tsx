@@ -1,14 +1,13 @@
 import React from "react";
 import { Datum } from "../";
 import { DatumProps } from "../datum/Datum";
-import "./DatumGroup.less";
+import { Title, Group } from "./DatumGroup.styled";
 
 export const DatumGroup = ({ title, value, ...rest }: DatumGroupProps) => {
   return (
-    <p className="datum-group" title={title + ":" + (value || "")}>
-      <span className="datum-group__title">{title}</span>:{" "}
-      {value && <Datum {...rest} value={value} />}
-    </p>
+    <Group data-testid="DatumGrouGroup">
+      <Title>{title}</Title>: {value && <Datum {...rest} value={value} />}
+    </Group>
   );
 };
 

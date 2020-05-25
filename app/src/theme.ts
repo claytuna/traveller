@@ -1,10 +1,38 @@
 const SPACING = 4;
+
+export const vidris = {
+  vidris1: "#440154FF",
+  vidris2: "#481567FF",
+  vidris3: "#482677FF",
+  vidris4: "#453781FF",
+  vidris5: "#404788FF",
+  vidris6: "#39568CFF",
+  vidris7: "#33638DFF",
+  vidris8: "#2D708EFF",
+  vidris9: "#287D8EFF",
+  vidris10: "#238A8DFF",
+  vidris11: "#1F968BFF",
+  vidris12: "#20A387FF",
+  vidris13: "#29AF7FFF",
+  vidris14: "#3CBB75FF",
+  vidris15: "#55C667FF",
+  vidris16: "#73D055FF",
+  vidris17: "#95D840FF",
+  vidris18: "#B8DE29FF",
+  vidris19: "#DCE319FF",
+  vidris20: "#FDE725FF",
+};
+
 //https://material-ui.com/customization/color/
 export const theme = {
   fontBold: "700",
   fontNormal: "400",
   units: (unit: number, isNumber?: boolean) =>
     isNumber ? SPACING * unit : `${SPACING * unit}px`,
+  input: () =>
+    `height: 34px;
+      line-height: 34px;
+      padding:0 8px;`,
 
   gray: "#9e9e9e",
   gray50: "#fafafa",
@@ -30,27 +58,6 @@ export const theme = {
   primaryMain: "#DCE319",
   primaryLight: "#FDE725",
   primaryContrastText: "#000",
-};
 
-export const vidris = [
-  "#440154FF",
-  "#481567FF",
-  "#482677FF",
-  "#453781FF",
-  "#404788FF",
-  "#39568CFF",
-  "#33638DFF",
-  "#2D708EFF",
-  "#287D8EFF",
-  "#238A8DFF",
-  "#1F968BFF",
-  "#20A387FF",
-  "#29AF7FFF",
-  "#3CBB75FF",
-  "#55C667FF",
-  "#73D055FF",
-  "#95D840FF",
-  "#B8DE29FF",
-  "#DCE319FF",
-  "#FDE725FF",
-];
+  ...vidris,
+};

@@ -1,7 +1,0 @@
-{
-	"name": "WorldGeneratorTravellerWidget",
-	"main": "./WorldGeneratorTravellerWidget.js",
-	"private": true,
-	"version": "0.0.1",
-	"author": "claytuna"
-}

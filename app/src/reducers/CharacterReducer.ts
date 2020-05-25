@@ -1,7 +1,9 @@
 import { SKILL_LIST, SkillKeys } from "../constants";
 import * as STEPS from "../constants/characterCreationSteps";
-import { WorldGeneratorObject } from "../services";
+import { WorldGeneratorObject, StatsService } from "../services";
 import { AppState } from "../";
+
+const getModifier = StatsService.getModifier;
 
 const CharacterReducer = (
   state = characterInitialState,
@@ -10,6 +12,7 @@ const CharacterReducer = (
     step: string;
     backgroundSkillCount?: number;
     skillKey?: SkillKeys;
+    statsArray?: number[];
     name?: string;
     homeWorld?: WorldGeneratorObject;
   }
@@ -56,18 +59,21 @@ const CharacterReducer = (
       return Object.assign({}, state, { name: action.name });
     case "NEXT_STEP":
       return Object.assign({}, state, { step: action.step });
-    // case "UPDATE_STATS":
-    //   let statVals = action.data;
-    //   return Object.assign({}, state, {
-    //     stats: {
-    //       STR: { value: statVals[0], modifier: getModifier(statVals[0]) },
-    //       DEX: { value: statVals[1], modifier: getModifier(statVals[1]) },
-    //       END: { value: statVals[2], modifier: getModifier(statVals[2]) },
-    //       INT: { value: statVals[3], modifier: getModifier(statVals[3]) },
-    //       EDU: { value: statVals[4], modifier: getModifier(statVals[4]) },
-    //       SOC: { value: statVals[5], modifier: getModifier(statVals[5]) },
-    //     },
-    //   });
+    case "UPDATE_STATS":
+      let statVals = action.statsArray;
+      return (
+        statVals &&
+        Object.assign({}, state, {
+          stats: {
+            STR: { value: statVals[0], modifier: getModifier(statVals[0]) },
+            DEX: { value: statVals[1], modifier: getModifier(statVals[1]) },
+            END: { value: statVals[2], modifier: getModifier(statVals[2]) },
+            INT: { value: statVals[3], modifier: getModifier(statVals[3]) },
+            EDU: { value: statVals[4], modifier: getModifier(statVals[4]) },
+            SOC: { value: statVals[5], modifier: getModifier(statVals[5]) },
+          },
+        })
+      );
     case "SET_BACKGROUND_SKILL_COUNT":
       return Object.assign({}, state, {
         backgroundSkillCount: action.backgroundSkillCount,
@@ -84,7 +90,7 @@ const CharacterReducer = (
 export default CharacterReducer;
 
 export const characterInitialState: AppState.CharacterState = {
-  step: STEPS.ROLL_CHARACTERISTICS,
+  step: STEPS.CHOOSE_HOMEWORLD,
   name: undefined,
   age: 18,
   sex: 0,

@@ -12,7 +12,7 @@ export type FactionNames =
 
 export interface FactionObject extends DataObject<FactionNames, "FACTION"> {
   values: {
-    digit: number;
+    digit?: number;
     govt?: GovernmentObject;
   };
 }

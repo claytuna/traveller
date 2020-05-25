@@ -16,6 +16,7 @@ declare namespace AppState {
     characterNameForm: { [keyof: string]: string | number };
     statRollForm: { [keyof: string]: string | number };
   }
+  type FormNames = keyof FormState;
   interface CharacterState {
     step?: string;
     name?: string;

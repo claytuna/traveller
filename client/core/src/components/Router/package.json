@@ -1,7 +1,0 @@
-{
-	"name": "Router",
-	"main": "./Router.js",
-	"private": true,
-	"version": "0.0.1",
-	"author": "claytuna"
-}
