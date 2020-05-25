@@ -77,7 +77,7 @@ export const StatsWidget = () => {
         <Row>
           <Col xs={12} sm={6}>
             <Card
-              title="Current Characteristics"
+              title={`${isLocked ? "Saved" : "Current"} Characteristics`}
               isSecondary
               body={
                 <Row>
