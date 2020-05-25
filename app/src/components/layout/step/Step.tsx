@@ -2,8 +2,10 @@ import React from "react";
 import { ButtonProps } from "../../ui/button/Button";
 import { Button, ButtonGroup } from "../../ui";
 import * as Styled from "./Step.styled";
+// import useDimensions from "./useDimensions";
 
 export const Step = ({ title, children, next, prev }: StepProps) => {
+  // const [stepRef, stepSize] = useDimensions(); stepRef as React.Ref<HTMLDivElement>
   return (
     <Styled.Step data-testid="Step">
       <Styled.Title>{title}</Styled.Title>

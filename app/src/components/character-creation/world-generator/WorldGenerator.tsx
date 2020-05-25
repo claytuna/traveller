@@ -23,7 +23,7 @@ export const WorldGenerator = () => {
                 setCurrentWorld(TravellerWorldService.generate());
               }}
             >
-              Re-scan
+              New homeworld
             </Button>
             <Button priority="primary" disabled>
               Accept homeworld
