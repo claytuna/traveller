@@ -95,7 +95,7 @@ const CharacterReducer = (
 export default CharacterReducer;
 
 export const characterInitialState: AppState.CharacterState = {
-  step: STEPS.CHOOSE_HOMEWORLD,
+  step: STEPS.CHOOSE_CAREER,
   name: undefined,
   age: 18,
   sex: 0,
