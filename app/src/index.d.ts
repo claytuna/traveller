@@ -1,4 +1,11 @@
-import { SkillObject, CareerObject, SkillKeys } from "./constants";
+import {
+  SkillObject,
+  CareerObject,
+  SkillKeys,
+  StatKeyObject,
+  StatKeys,
+  WorldGeneratorObject,
+} from "./constants";
 
 export interface DataObject<N = string, T = string> {
   name: N;
@@ -22,10 +29,10 @@ declare namespace AppState {
     name?: string;
     age?: number;
     sex?: number;
-    stats?: {}[];
-    homeworld?: {}[];
-    backgroundSkillCount?: number;
-    skills?: { [key in SkillKeys]: SkillObject };
+    stats?: { [key in StatKeys]: StatKeyObject };
+    homeworld?: WorldGeneratorObject;
+    availableSkillCount?: number;
+    skills: { [key in SkillKeys]?: SkillObject };
     careers?: CareerObject[];
     events?: GenericObject[];
     connections?: {

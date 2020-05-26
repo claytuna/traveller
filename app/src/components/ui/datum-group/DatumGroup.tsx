@@ -5,8 +5,8 @@ import { Title, Group } from "./DatumGroup.styled";
 
 export const DatumGroup = ({ title, value, ...rest }: DatumGroupProps) => {
   return (
-    <Group data-testid="DatumGrouGroup">
-      <Title>{title}</Title>: {value && <Datum {...rest} value={value} />}
+    <Group data-testid="DatumGroup">
+      <Title>{title}</Title>: <Datum {...rest} value={value} />
     </Group>
   );
 };

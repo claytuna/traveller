@@ -1,6 +1,6 @@
 import React from "react";
 import { DatumGroup } from "../";
-import "./SkillButton.less";
+import * as Styled from "./SkillButton.styled";
 
 export const SkillButton = ({
   disabled,
@@ -13,29 +13,31 @@ export const SkillButton = ({
   value,
 }: SkillButtonProps) => {
   return (
-    <div className="skill-btn">
-      {onDecrement &&
-        getBtn({
-          update: onDecrement,
-          skillKey,
-          value,
-          isIncrement: false,
-          disabled,
-          max,
-          min,
-        })}
+    <Styled.Wrapper data-testid="SkillButton">
       <DatumGroup title={skillName} value={value} />
-      {onIncrement &&
-        getBtn({
-          update: onIncrement,
-          skillKey,
-          value,
-          isIncrement: true,
-          disabled,
-          max,
-          min,
-        })}
-    </div>
+      <Styled.InlineGroup>
+        {onDecrement &&
+          getButton({
+            update: onDecrement,
+            skillKey,
+            value,
+            isIncrement: false,
+            disabled,
+            max,
+            min,
+          })}
+        {onIncrement &&
+          getButton({
+            update: onIncrement,
+            skillKey,
+            value,
+            isIncrement: true,
+            disabled,
+            max,
+            min,
+          })}
+      </Styled.InlineGroup>
+    </Styled.Wrapper>
   );
 };
 
@@ -47,7 +49,7 @@ export type UpdateFn = (
 export interface ButtonArgs {
   update?: UpdateFn;
   skillKey: string | number;
-  value: string | number;
+  value?: string | number;
   disabled?: boolean;
   max?: number;
   min?: number;
@@ -59,7 +61,7 @@ export interface SkillButtonProps extends ButtonArgs {
   skillName: string | number;
 }
 
-function getBtn({
+function getButton({
   update,
   skillKey,
   value,
@@ -68,19 +70,20 @@ function getBtn({
   max,
   min,
 }: { isIncrement?: boolean } & ButtonArgs) {
-  return (
-    <button
-      disabled={disabled || testMinMax()}
-      className="btn btn--skill"
+  return value !== undefined ? (
+    <Styled.SkillButton
+      disabled={disabled || disableIfMinMax()}
       onClick={() => {
         update && update(skillKey, value);
       }}
+      title={`${isIncrement ? "Increment" : "Decrement"}: ${skillKey}`}
     >
       {isIncrement ? "+" : "-"}
-    </button>
-  );
+    </Styled.SkillButton>
+  ) : null;
 
-  function testMinMax() {
+  function disableIfMinMax() {
+    if (value === undefined) return true;
     if (typeof max === "number" && isIncrement && value >= max) return true;
     if (typeof min === "number" && !isIncrement && value <= min) return true;
     return false;

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { MathService as MS } from "../../../services";
-import "./PlanetDiagram.less";
+import * as Styled from "./PlanetDiagram.styled";
 
 function randRGB() {
   return MS.random(255, 0);
@@ -42,18 +42,25 @@ export const PlanetDiagram = (props: PlanetDiagramProps) => {
     temperature?.name ? scrubClassName(`temp-${temperature.name}`) : "",
     hydrosphere?.name ? scrubClassName(hydrosphere.name) : "",
   ];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const planetColor = useMemo(() => randomColor(), [
+    size,
+    atmosphere,
+    temperature,
+    hydrosphere,
+  ]);
 
   return (
     <div className="planet-diagram planet-diagram--traveller">
       <span>Planet Diagram:</span>
-      <div className="planet-diagram__grid">
-        <div
+      <Styled.Wrapper className="planet-diagram__grid">
+        <Styled.Planet
           className={`"planet-diagram__planet ${classNames.join(" ")}`}
-          style={randomColor()}
+          style={planetColor}
         />
         <div className="planet-diagram__temperature" />
         <div className="hydrographics" />
-      </div>
+      </Styled.Wrapper>
     </div>
   );
 };

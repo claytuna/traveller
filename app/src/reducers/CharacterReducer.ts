@@ -10,7 +10,7 @@ const CharacterReducer = (
   action: {
     type: string;
     step: string;
-    backgroundSkillCount?: number;
+    availableSkillCount?: number;
     skillKey?: SkillKeys;
     statsArray?: number[];
     name?: string;
@@ -26,35 +26,40 @@ const CharacterReducer = (
     case "INCREMENT_SKILL":
       const iSkill = Object.assign({}, state.skills);
       let foundIncSkill = action.skillKey ? iSkill[action.skillKey] : undefined;
-      if (action.skillKey === undefined || !foundIncSkill) {
+      if (action.skillKey === undefined) {
         console.warn("Cannot increment: Invalid skill type");
         return Object.assign({}, state, { skills: iSkill });
       }
-      if (foundIncSkill !== undefined && foundIncSkill.qty) {
-        foundIncSkill.qty = isNaN(foundIncSkill.qty)
-          ? 1
-          : (foundIncSkill.qty += 1);
-      } else {
-        if (SKILL_LIST[action.skillKey]) {
-          foundIncSkill = SKILL_LIST[action.skillKey];
-          foundIncSkill.qty = 1;
-        }
+      if (foundIncSkill !== undefined && foundIncSkill.qty !== undefined) {
+        foundIncSkill.qty =
+          isNaN(foundIncSkill.qty) || foundIncSkill.qty === 0
+            ? 1
+            : (foundIncSkill.qty += 1);
       }
-      console.warn("Cannot increment: Invalid skill type");
-      return Object.assign({}, state, { skills: iSkill });
+      if (foundIncSkill === undefined && SKILL_LIST[action.skillKey]) {
+        foundIncSkill = SKILL_LIST[action.skillKey];
+        foundIncSkill.qty = 1;
+      }
+      const stateSkills = state.skills;
+      stateSkills[action.skillKey] = foundIncSkill;
+      return Object.assign({}, state, {
+        skills: stateSkills,
+      });
     case "DECREMENT_SKILL":
       const dSkill = Object.assign({}, state.skills);
-      let foundSkill = action.skillKey ? dSkill[action.skillKey] : undefined;
-      if (foundSkill && foundSkill.qty) {
-        if (isNaN(foundSkill.qty) || foundSkill.qty === 0) {
-          foundSkill.qty = 0;
+      let foundDecSkill = action.skillKey ? dSkill[action.skillKey] : undefined;
+      if (foundDecSkill && foundDecSkill.qty) {
+        if (isNaN(foundDecSkill.qty) || foundDecSkill.qty === 0) {
+          foundDecSkill.qty = 0;
         } else {
-          foundSkill.qty = foundSkill.qty -= 1;
+          foundDecSkill.qty = foundDecSkill.qty -= 1;
         }
       } else {
         console.warn("Cannot decrement: Invalid skill type");
       }
-      return Object.assign({}, state, { skills: dSkill });
+      return Object.assign({}, state, {
+        skills: { ...state.skills, foundDecSkill },
+      });
     case "UPDATE_NAME":
       return Object.assign({}, state, { name: action.name });
     case "NEXT_STEP":
@@ -74,9 +79,9 @@ const CharacterReducer = (
           },
         })
       );
-    case "SET_BACKGROUND_SKILL_COUNT":
+    case "SET_AVAILABLE_SKILL_COUNT":
       return Object.assign({}, state, {
-        backgroundSkillCount: action.backgroundSkillCount,
+        availableSkillCount: action.availableSkillCount,
       });
     case "UPDATE_HOMEWORLD":
       return Object.assign({}, state, { homeworld: action.homeWorld });
@@ -94,10 +99,35 @@ export const characterInitialState: AppState.CharacterState = {
   name: undefined,
   age: 18,
   sex: 0,
-  stats: undefined,
+  stats: {
+    STR: {
+      value: 8,
+      modifier: 0,
+    },
+    DEX: {
+      value: 9,
+      modifier: 1,
+    },
+    END: {
+      value: 4,
+      modifier: -1,
+    },
+    INT: {
+      value: 8,
+      modifier: 0,
+    },
+    EDU: {
+      value: 7,
+      modifier: 0,
+    },
+    SOC: {
+      value: 5,
+      modifier: -1,
+    },
+  },
   homeworld: undefined,
-  backgroundSkillCount: 1,
-  skills: undefined,
+  availableSkillCount: 3,
+  skills: {},
   careers: undefined,
   events: [],
   connections: {

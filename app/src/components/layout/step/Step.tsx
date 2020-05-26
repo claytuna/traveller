@@ -13,7 +13,7 @@ export const Step = ({ title, children, next, prev }: StepProps) => {
       {(next || prev) && (
         <Styled.Footer>
           <ButtonGroup noMargin justifyContent="center">
-            {prev && <Button {...prev} />}
+            {prev && <Button priority="tertiary" {...prev} />}
             {next && <Button {...next} />}
           </ButtonGroup>
         </Styled.Footer>

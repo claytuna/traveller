@@ -62,8 +62,12 @@ export const StatsWidget = () => {
   const saveStats = useCallback(() => {
     setIsSaved(true);
     dispatch(actions.updateCharacterStats(values.current));
+    console.log(
+      values.current,
+      StatsService.getModifier(values.current[4]) + 3
+    );
     dispatch(
-      actions.setBackgroundSkillCount(
+      actions.setAvailableSkillCount(
         StatsService.getModifier(values.current[4]) + 3
       )
     );

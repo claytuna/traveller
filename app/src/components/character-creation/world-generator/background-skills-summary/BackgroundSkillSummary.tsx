@@ -1,5 +1,5 @@
-import React from "react";
-import { TradeCodeObject } from "../../../../constants";
+import React, { useMemo } from "react";
+import { TradeCodeObject, SkillKeys, SkillObject } from "../../../../constants";
 import { SkillService } from "../../../../services";
 import { Card, SkillButton } from "../../../ui";
 import { Row, Col } from "../../../layout";
@@ -13,54 +13,64 @@ export const BackgroundSkillSummary = ({
   onIncrement,
   onDecrement,
 }: BackgroundSkillSummaryProps) => {
-  var skills =
+  const skills =
     world && world.tradeCodes
       ? SkillService.getBackgroundSkills(
           world.tradeCodes.map((o) => o.values.code)
         )
       : undefined;
+  const instructionText = useMemo(() => {
+    if (isEditable) {
+      return "Select skills below; remaining: " + skillPoints;
+    }
+    return "Selected skills:";
+  }, [isEditable, skillPoints]);
   return (
     <Row>
       <Col xs={12}>
-        <p>
-          {isEditable
-            ? "Skills remaining: " + skillPoints
-            : "Skills available for current homeworld:"}
-        </p>
+        <p>{instructionText}</p>
         <Row>
           <Col xs={12}>
-            {skills && skills.worldSkills && (
+            {skills?.worldSkills && (
               <Card
                 isSecondary
                 title="Available Background Skills"
                 body={
-                  skills?.worldSkills &&
                   Object.keys(skills.worldSkills).length > 0 ? (
                     <Row>
-                      {Object.keys(skills.worldSkills).map(
-                        (sKey, idx: number) => {
-                          if (skills?.worldSkills[sKey] === undefined) {
+                      {(Object.keys(skills.worldSkills) as SkillKeys[]).map(
+                        (skillKey, idx: number) => {
+                          if (
+                            skills?.worldSkills === undefined ||
+                            skills.worldSkills[skillKey] === undefined
+                          ) {
                             return null;
                           }
-                          const sk = skills.worldSkills[sKey];
+                          const skillObject = skills.worldSkills[skillKey];
+                          const currentQty = returnSkillQty(
+                            characterSkills,
+                            skillKey
+                          );
                           return (
                             <Col xs={3} lg={2} key={"bg-skil-" + idx}>
                               {isEditable ? (
                                 <SkillButton
                                   disabled={disabled}
-                                  skillName={sk.name}
-                                  skillKey={idx}
+                                  skillName={skillObject.name}
+                                  skillKey={skillKey}
                                   min={0}
-                                  onIncrement={(d) => {
-                                    onIncrement(d);
+                                  onIncrement={(key, value) => {
+                                    onIncrement(key, value);
                                   }}
-                                  onDecrement={(d) => {
-                                    onDecrement(d);
+                                  onDecrement={(key, value) => {
+                                    onDecrement(key, value);
                                   }}
-                                  value={returnSkillQty(characterSkills, idx)}
+                                  value={currentQty}
                                 />
                               ) : (
-                                sk.name
+                                `${skillObject.name}${
+                                  currentQty ? ` (${currentQty})` : ""
+                                }`
                               )}
                             </Col>
                           );
@@ -80,30 +90,36 @@ export const BackgroundSkillSummary = ({
                   title="General Education Skills"
                   body={
                     <Row>
-                      {Object.keys(skills.educationSkills).map(
-                        (sKey: string, idx: number) => {
-                          if (skills?.educationSkills[sKey] === undefined) {
+                      {(Object.keys(skills.educationSkills) as SkillKeys[]).map(
+                        (skillKey, idx: number) => {
+                          const skillObject = skills.educationSkills[skillKey];
+                          if (skillObject === undefined) {
                             return null;
                           }
-                          const sk = skills.educationSkills[sKey];
+                          const currentQty = returnSkillQty(
+                            characterSkills,
+                            skillKey
+                          );
                           return (
                             <Col xs={3} lg={2} key={"bg-skil-" + idx}>
                               {isEditable ? (
                                 <SkillButton
                                   disabled={disabled}
-                                  skillName={sk.name}
-                                  skillKey={idx}
+                                  skillName={skillObject.name}
+                                  skillKey={skillKey}
                                   min={0}
-                                  onIncrement={(d) => {
-                                    onIncrement(d);
+                                  onIncrement={(key, value) => {
+                                    onIncrement(key, value);
                                   }}
-                                  onDecrement={(d) => {
-                                    onDecrement(d);
+                                  onDecrement={(key, value) => {
+                                    onDecrement(key, value);
                                   }}
-                                  value={returnSkillQty(characterSkills, idx)}
+                                  value={currentQty}
                                 />
                               ) : (
-                                sk.name
+                                `${skillObject.name}${
+                                  currentQty ? ` (${currentQty})` : ""
+                                }`
                               )}
                             </Col>
                           );
@@ -119,29 +135,28 @@ export const BackgroundSkillSummary = ({
     </Row>
   );
 };
+export type CharacterSkillObject = { [key in SkillKeys]?: SkillObject };
 
-function returnSkillQty(characterSkills: CharacterSkill[], skillKey: number) {
-  if (
-    characterSkills &&
-    characterSkills[skillKey] &&
-    characterSkills[skillKey].qty
-  ) {
-    return characterSkills[skillKey].qty || 0;
-  } else {
-    return 0;
+function returnSkillQty(
+  characterSkills: CharacterSkillObject,
+  skillKey: SkillKeys
+) {
+  if (characterSkills) {
+    const foundKey = characterSkills[skillKey];
+    return foundKey ? foundKey.qty : 0;
   }
+
+  return 0;
 }
 
-export type CharacterSkill = { [key: string]: unknown; qty?: number };
-
 export interface BackgroundSkillSummaryProps {
-  characterSkills: CharacterSkill[];
+  characterSkills: CharacterSkillObject | {};
   world: {
     tradeCodes: TradeCodeObject[];
   };
   disabled?: boolean;
   isEditable?: boolean;
   skillPoints: number;
-  onIncrement: (d: any) => void;
-  onDecrement: (d: any) => void;
+  onIncrement: (key: any, value: any) => void;
+  onDecrement: (key: any, value: any) => void;
 }

@@ -6,11 +6,11 @@ import { WorldOverview } from "./world-overview";
 import { BackgroundSkillSummary } from "./background-skills-summary";
 
 export const WorldGenerator = () => {
-  const { actions, dispatch } = useContext(StateContext);
+  const { actions, dispatch, characterCreation } = useContext(StateContext);
   const [currentWorld, setCurrentWorld] = useState<WorldGeneratorObject>(
     TravellerWorldService.generate()
   );
-  console.log(actions, dispatch);
+  const { skills, availableSkillCount, homeworld } = characterCreation;
   return (
     <div data-testid="WorldGenerator">
       <Card
@@ -19,13 +19,20 @@ export const WorldGenerator = () => {
           <ButtonGroup noMargin>
             <Button
               priority="secondary"
+              disabled={homeworld ? true : false}
               onClick={() => {
                 setCurrentWorld(TravellerWorldService.generate());
               }}
             >
-              New homeworld
+              Re-roll
             </Button>
-            <Button priority="primary" disabled>
+            <Button
+              priority="primary"
+              disabled={homeworld ? true : false}
+              onClick={() => {
+                dispatch(actions.updateHomeworld(currentWorld));
+              }}
+            >
               Accept homeworld
             </Button>
           </ButtonGroup>
@@ -33,11 +40,23 @@ export const WorldGenerator = () => {
       >
         <BackgroundSkillSummary
           world={currentWorld}
-          characterSkills={[]}
-          isEditable={false}
-          skillPoints={0}
-          onDecrement={() => {}}
-          onIncrement={() => {}}
+          characterSkills={skills || {}}
+          isEditable={
+            availableSkillCount && availableSkillCount > 0 ? true : false
+          }
+          skillPoints={availableSkillCount || 0}
+          onDecrement={(skillKey) => {
+            if (availableSkillCount !== undefined) {
+              dispatch(actions.setAvailableSkillCount(availableSkillCount + 1));
+              dispatch(actions.decrementSkill(skillKey));
+            }
+          }}
+          onIncrement={(skillKey) => {
+            if (availableSkillCount !== undefined && availableSkillCount > 0) {
+              dispatch(actions.setAvailableSkillCount(availableSkillCount - 1));
+              dispatch(actions.incrementSkill(skillKey));
+            }
+          }}
         />
       </Card>
       <WorldOverview world={currentWorld} />

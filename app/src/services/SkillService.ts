@@ -5,6 +5,7 @@ import {
   TradeCodeObject,
   TradeCodeKeys,
   SkillObject,
+  SkillKeys,
 } from "../constants";
 
 export const SkillService = {
@@ -15,8 +16,8 @@ export const SkillService = {
   getBackgroundSkills: (
     tradeCodes: TradeCodeKeys[]
   ): {
-    worldSkills: { [key: string]: TradeCodeObject };
-    educationSkills: { [key: string]: SkillObject };
+    worldSkills: { [key in SkillKeys]: SkillObject } | undefined;
+    educationSkills: { [key in SkillKeys]?: SkillObject };
   } => {
     const S = SKILL_LIST;
     const tradeSkillMap: { [key in TradeCodeKeys]: object | null } = {
@@ -40,7 +41,7 @@ export const SkillService = {
       Va: { VACC_SUIT: S.VACC_SUIT },
     };
 
-    let obj: { [key: string]: TradeCodeObject } = {};
+    let obj: { [key in SkillKeys]: TradeCodeObject } | undefined = undefined;
     tradeCodes.forEach((codeString) => {
       if (tradeSkillMap[codeString]) {
         obj = Object.assign({}, obj, tradeSkillMap[codeString]);

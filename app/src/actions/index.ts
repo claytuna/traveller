@@ -13,9 +13,9 @@ export const updateCharacterStats = (statsArray: number[]) => ({
   type: "UPDATE_STATS",
   statsArray,
 });
-export const setBackgroundSkillCount = (count: number) => ({
-  type: "SET_BACKGROUND_SKILL_COUNT",
-  count,
+export const setAvailableSkillCount = (availableSkillCount: number) => ({
+  type: "SET_AVAILABLE_SKILL_COUNT",
+  availableSkillCount,
 });
 export const updateHomeworld = (homeWorld: WorldGeneratorObject) => ({
   type: "UPDATE_HOMEWORLD",

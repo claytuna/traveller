@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { usePrevious } from "../../../hooks";
 import * as Styled from "./Datum.styled";
 
 export type Value = number | string;
@@ -21,14 +22,6 @@ function getDatumValue(
   value: Value
 ) {
   return isCountable ? doIncrement(value) : doNormalValue(hasComma, value);
-}
-
-function usePrevious<T>(value: T) {
-  const ref = useRef<any>();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
 }
 
 export const Datum = ({
@@ -79,11 +72,13 @@ export const Datum = ({
 
   return (
     <>
-      {valueProp ? (
+      {valueProp !== undefined ? (
         <Styled.Datum data-testid="Datum" isUpdated={isUpdated}>
           {getDatumValue(hasComma, isCountable, value ? value : valueProp)}
         </Styled.Datum>
-      ) : null}
+      ) : (
+        "None"
+      )}
     </>
   );
 };

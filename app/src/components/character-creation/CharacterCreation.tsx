@@ -40,10 +40,13 @@ export const CharacterCreation = () => {
           title={STEPS.CHOOSE_HOMEWORLD}
           prev={{
             text: PREV,
-            disabled: true,
+            onClick: () => {
+              dispatch(actions.goToStep(STEPS.ROLL_CHARACTERISTICS));
+            },
           }}
           next={{
             text: NEXT,
+            disabled: characterCreation.homeworld === undefined,
             onClick: () => {
               dispatch(actions.goToStep(STEPS.CHOOSE_CAREER));
             },
