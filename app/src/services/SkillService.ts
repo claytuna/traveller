@@ -54,4 +54,25 @@ export const SkillService = {
   findSkill: (skillName: string): SkillObject => {
     return filter(SKILL_LIST, (obj: SkillObject) => obj.name === skillName)[0];
   },
+
+  getSubSkillObjects: (skillName: SkillKeys): SkillObject[] => {
+    return filter(
+      SKILL_LIST,
+      (obj: SkillObject) => obj.parentId === SKILL_LIST[skillName].parentId
+    );
+  },
+
+  getSubSkillKeys: (skillName: SkillKeys): SkillKeys[] => {
+    const keyArr: SkillKeys[] = [];
+    if (!SKILL_LIST) {
+      return [skillName];
+    }
+    const parentId = SKILL_LIST[skillName].parentId;
+    (Object.keys(SKILL_LIST) as SkillKeys[]).forEach((keyName) => {
+      if (parentId === SKILL_LIST[keyName].parentId) {
+        keyArr.push(keyName);
+      }
+    });
+    return keyArr;
+  },
 };

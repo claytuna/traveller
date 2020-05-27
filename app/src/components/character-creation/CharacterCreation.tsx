@@ -4,6 +4,7 @@ import * as STEPS from "../../constants/characterCreationSteps";
 import { Step } from "../layout";
 import { StatsWidget } from "./stats-widget";
 import { WorldGenerator } from "./world-generator";
+import { CareerSelector } from "./career-selector";
 
 const PREV = "Prev";
 const NEXT = "Next";
@@ -78,7 +79,7 @@ export const CharacterCreation = () => {
             },
           }}
         >
-          CAREERZ
+          <CareerSelector />
         </Step>
       );
     case STEPS.BASIC_TRAINING:

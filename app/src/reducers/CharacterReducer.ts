@@ -2,6 +2,7 @@ import { SKILL_LIST, SkillKeys } from "../constants";
 import * as STEPS from "../constants/characterCreationSteps";
 import { WorldGeneratorObject, StatsService } from "../services";
 import { AppState } from "../";
+import { sampleHomeworld } from "./sampleState";
 
 const getModifier = StatsService.getModifier;
 
@@ -84,6 +85,7 @@ const CharacterReducer = (
         availableSkillCount: action.availableSkillCount,
       });
     case "UPDATE_HOMEWORLD":
+      console.log({ state, action });
       return Object.assign({}, state, { homeworld: action.homeWorld });
     case "GO_TO_STEP":
       return Object.assign({}, state, { step: action.step });
@@ -125,9 +127,24 @@ export const characterInitialState: AppState.CharacterState = {
       modifier: -1,
     },
   },
-  homeworld: undefined,
+  homeworld: sampleHomeworld,
   availableSkillCount: 3,
-  skills: {},
+  skills: {
+    SURVIVAL: {
+      type: "SKILL",
+      name: "Survival",
+      desc: "",
+      id: 44,
+      qty: 2,
+    },
+    ENGINEER: {
+      type: "SKILL",
+      name: "Engineer",
+      desc: "",
+      id: 15,
+      qty: 1,
+    },
+  },
   careers: undefined,
   events: [],
   connections: {
