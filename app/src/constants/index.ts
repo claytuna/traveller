@@ -1,5 +1,5 @@
 export * from "./atmospheres";
-export * from "./careers";
+export { CAREER_LIST } from "./careers";
 export * from "./characterCreationSteps";
 export * from "./characteristics";
 export * from "./communications";

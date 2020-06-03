@@ -1,5 +1,5 @@
 import { SkillService } from "../../services";
-import { CareerObject, CareerRank } from "../careers";
+import { CareerObject, CareerRank } from "../careers/types";
 import { defaultCareerPenalty } from "./defaultCareerPenalty";
 
 const intelCorpRank: CareerRank[] = [
@@ -30,17 +30,17 @@ export const AGENT: CareerObject = {
   desc:
     "Law enforcement agents, spies, corporate operatives and others who work in the shadows",
   events: [
-    "Disaster!",
-    "Investigation gets dangerous",
-    "Complete a mission",
-    "Establish contacts",
-    "Given advanced training",
-    "Life event",
-    "Go undercover",
-    "Above and beyond",
-    "Given special vehicle training",
-    "Befriended by a senior agent",
-    "Uncover major conspiracy against your employers",
+    { desc: "Disaster!" },
+    { desc: "Investigation gets dangerous" },
+    { desc: "Complete a mission" },
+    { desc: "Establish contacts" },
+    { desc: "Given advanced training" },
+    { desc: "Life event" },
+    { desc: "Go undercover" },
+    { desc: "Above and beyond" },
+    { desc: "Given special vehicle training" },
+    { desc: "Befriended by a senior agent" },
+    { desc: "Uncover major conspiracy against your employers" },
   ],
   qty: 0,
   qualify: {
@@ -48,12 +48,12 @@ export const AGENT: CareerObject = {
     ...defaultCareerPenalty,
   },
   mishaps: [
-    "Severe injury",
-    "Criminal deal",
-    "Investigation goes wrong",
-    "Learn something you shouldn't know",
-    "Work comes to you",
-    "Injured",
+    { desc: "Severe injury" },
+    { desc: "Criminal deal" },
+    { desc: "Investigation goes wrong" },
+    { desc: "Learn something you shouldn't know" },
+    { desc: "Work comes to you" },
+    { desc: "Injured" },
   ],
   musteringOutBenefits: [
     { cash: 1000, item: ["SCIENTIFIC_EQUIPMENT"] },

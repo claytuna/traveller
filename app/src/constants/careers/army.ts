@@ -1,5 +1,5 @@
 import { SkillService } from "../../services";
-import { CareerObject, CareerRank } from "./careerList";
+import { CareerObject, CareerRank } from "../careers/types";
 import { defaultCareerPenalty } from "./defaultCareerPenalty";
 
 const ncoRank: CareerRank[] = [
@@ -39,25 +39,25 @@ export const ARMY: CareerObject = {
   },
   commission: { stat: "SOC", value: 8 },
   events: [
-    "Disaster!",
-    "Assigned to a hostile planet",
-    "Assigned to war-torn urban planet",
-    "Given special assignment",
-    "Brutal ground war",
-    "Life event",
-    "Advanced training",
-    "Surrounded and outnumbered",
-    "Assigned a peacekeeping role",
-    "Commanding officer takes interest in your career",
-    "Display heroism in battle",
+    { desc: "Disaster!" },
+    { desc: "Assigned to a hostile planet" },
+    { desc: "Assigned to war-torn urban planet" },
+    { desc: "Given special assignment" },
+    { desc: "Brutal ground war" },
+    { desc: "Life event" },
+    { desc: "Advanced training" },
+    { desc: "Surrounded and outnumbered" },
+    { desc: "Assigned a peacekeeping role" },
+    { desc: "Commanding officer takes interest in your career" },
+    { desc: "Display heroism in battle" },
   ],
   mishaps: [
-    "Severly injured",
-    "Unit is slaughtered in battle",
-    "Sent to an unpleasant region",
-    "Discover your CO is engaged in illegal activity",
-    "Quarrel with rival officer or fellow soldier",
-    "Injured",
+    { desc: "Severely injured" },
+    { desc: "Unit is slaughtered in battle" },
+    { desc: "Sent to an unpleasant region" },
+    { desc: "Discover your CO is engaged in illegal activity" },
+    { desc: "Quarrel with rival officer or fellow soldier" },
+    { desc: "Injured" },
   ],
   musteringOutBenefits: [
     { cash: 2000, item: ["COMBAT_IMPLANT"] },
@@ -178,7 +178,7 @@ export const ARMY: CareerObject = {
         SkillService.getSubSkillKeys("DRIVE"),
         SkillService.getSubSkillKeys("FLYER"),
         ["RECON"],
-        SkillService.getSubSkillKeys("GUNNER"),
+        SkillService.getSubSkillKeys("GUNNERY"),
         ["SENSORS"],
       ],
       survival: { stat: "DEX", value: 7 },

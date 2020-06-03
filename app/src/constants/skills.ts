@@ -21,7 +21,7 @@ export type SkillKeys =
   | "EXPLOSIVES"
   | "FLYER"
   | "GAMBLER"
-  | "GUNNER"
+  | "GUNNERY"
   | "GUN_COMBAT"
   | "HEAVY_WEAPONS"
   | "INVESTIGATE"
@@ -143,7 +143,7 @@ export const SKILL_LIST: { [K in SkillKeys]: SkillObject } = {
   },
   BROKER: { type: "SKILL", name: "Broker", desc: "", id: 8, qty: 0 },
   CAROUSE: { type: "SKILL", name: "Carouse", desc: "", id: 9, qty: 0 },
-  COMMS: { type: "SKILL", name: "Comms", desc: "", id: 10, qty: 0 },
+  COMMS: { type: "SKILL", name: "Communications", desc: "", id: 10, qty: 0 },
   COMPUTERS: { type: "SKILL", name: "Computers", desc: "", id: 11, qty: 0 },
   DECEPTION: { type: "SKILL", name: "Deception", desc: "", id: 12, qty: 0 },
   DIPLOMAT: { type: "SKILL", name: "Diplomat", desc: "", id: 13, qty: 0 },
@@ -152,7 +152,7 @@ export const SKILL_LIST: { [K in SkillKeys]: SkillObject } = {
   EXPLOSIVES: { type: "SKILL", name: "Explosives", desc: "", id: 16, qty: 0 },
   FLYER: { type: "SKILL", name: "Flyer", desc: "", id: 17, qty: 0 },
   GAMBLER: { type: "SKILL", name: "Gambler", desc: "", id: 18, qty: 0 },
-  GUNNER: { type: "SKILL", name: "Gunner", desc: "", id: 19, qty: 0 },
+  GUNNERY: { type: "SKILL", name: "Gunnery", desc: "", id: 19, qty: 0 },
   GUN_COMBAT: { type: "SKILL", name: "Gun Combat", desc: "", id: 20, qty: 0 },
   HEAVY_WEAPONS: {
     type: "SKILL",

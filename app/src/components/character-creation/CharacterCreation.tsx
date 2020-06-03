@@ -74,6 +74,7 @@ export const CharacterCreation = () => {
           }}
           next={{
             text: NEXT,
+            disabled: characterCreation.careers === undefined,
             onClick: () => {
               dispatch(actions.goToStep(STEPS.BASIC_TRAINING));
             },
