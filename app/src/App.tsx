@@ -2,8 +2,13 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import { AppState } from "./";
 import { theme } from "./theme";
-import { Button, ButtonGroup, Header } from "./components";
-import { CharacterCreation } from "./components/character-creation";
+import {
+  Button,
+  ButtonGroup,
+  Header,
+  CharacterCreation,
+  CharacterSummary,
+} from "./components";
 import { characterInitialState } from "./reducers/CharacterReducer";
 import { formInitialState } from "./reducers/FormReducer";
 
@@ -48,7 +53,19 @@ function App({ characterCreation, forms, actions, dispatch }: AppProps) {
               </Button>
             </ButtonGroup>
           </Header>
-          <CharacterCreation />
+          <div style={{ display: "flex", flexDirection: "row", flexGrow: 1 }}>
+            <CharacterCreation />
+            <div
+              style={{
+                display: "flex",
+                flexGrow: 1,
+                minWidth: "160px",
+                maxWidth: "200px",
+              }}
+            >
+              <CharacterSummary />
+            </div>
+          </div>
         </Styled.App>
       </ThemeProvider>
     </StateContext.Provider>

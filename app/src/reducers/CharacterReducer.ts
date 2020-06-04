@@ -2,7 +2,7 @@ import { SKILL_LIST, SkillKeys } from "../constants";
 import * as STEPS from "../constants/characterCreationSteps";
 import { WorldGeneratorObject, StatsService } from "../services";
 import { AppState } from "../";
-import { sampleHomeworld } from "./sampleState";
+import { emptyState, sampleHomeworld } from "./sampleState";
 
 const getModifier = StatsService.getModifier;
 
@@ -20,7 +20,10 @@ const CharacterReducer = (
 ) => {
   switch (action.type) {
     case "CHARACTER_RESTART":
-      return Object.assign({}, state, characterInitialState);
+      return Object.assign({}, state, {
+        ...emptyState,
+        step: STEPS.ROLL_CHARACTERISTICS,
+      });
     case "CHARACTER_SAVE":
       /*interact with db or something - generate a tiny url?*/
       return state;

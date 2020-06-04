@@ -31,6 +31,7 @@ export const emptyState = {
   vehicles: [],
   spacecraft: [],
 };
+
 export const sampleHomeworld = {
   name: "TCHEURLMCWR",
   uwp: "TCHEURLMCWR__2736__D330334-7 DeLoPo",

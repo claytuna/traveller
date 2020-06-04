@@ -85,6 +85,13 @@ export interface EventObject {
   action?: string;
 }
 
+export interface QualifyObject {
+  skill?: StatModifierObject;
+  agePenalty?: (age: number) => number;
+  careerPenalty?: (previousCareers: number) => number;
+  autoQualify?: boolean;
+}
+
 export interface CareerObject extends DataObject<string, "CAREER"> {
   advancedEducation?: { minEdu: number; skills: Array<SkillKeys[]> };
   commission?: StatModifierObject;
@@ -96,10 +103,5 @@ export interface CareerObject extends DataObject<string, "CAREER"> {
   personalDevelopment: CareerBenefitObject[];
   serviceSkills: Array<SkillKeys[]>;
   specializations?: { [K in CareerKeys]?: CareerSpecializationObject };
-  qualify: {
-    skill?: StatModifierObject;
-    agePenalty?: (age: number) => number;
-    careerPenalty?: (previousCareers: number) => number;
-    autoQualify?: boolean;
-  };
+  qualify: QualifyObject;
 }
