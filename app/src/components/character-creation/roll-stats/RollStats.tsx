@@ -23,7 +23,7 @@ import {
 } from "../../ui";
 import { makeStatMatrix, StatMatrixArray } from "./makeStatMatrix";
 
-export const StatsWidget = () => {
+export const RollStats = () => {
   const { actions, dispatch, forms } = useContext(StateContext);
   const values = useRef<number[]>([]);
   const [rolls, setRolls] = useState<StatMatrixArray>();

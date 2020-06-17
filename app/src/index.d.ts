@@ -25,13 +25,15 @@ declare namespace AppState {
   }
   type FormNames = keyof FormState;
   interface CharacterState {
-    step?: string;
+    step: string;
     name?: string;
-    age?: number;
+    age: number;
     sex?: number;
     stats?: { [key in StatKeys]: StatKeyObject };
+    hasBeenDrafted: boolean;
     homeworld?: WorldGeneratorObject;
     availableSkillCount?: number;
+    activeCareer?: CareerObject;
     skills: { [key in SkillKeys]?: SkillObject };
     careers?: CareerObject[];
     events?: GenericObject[];

@@ -148,7 +148,9 @@ export const characterInitialState: AppState.CharacterState = {
       qty: 1,
     },
   },
+  activeCareer: undefined,
   careers: undefined,
+  hasBeenDrafted: false,
   events: [],
   connections: {
     allies: [],

@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { StateContext } from "../../App";
 import * as STEPS from "../../constants/characterCreationSteps";
 import { Step } from "../layout";
-import { StatsWidget } from "./stats-widget";
-import { WorldGenerator } from "./world-generator";
+import { RollStats } from "./roll-stats";
+import { WorldSelector } from "./world-selector";
 import { CareerSelector } from "./career-selector";
 
 const PREV = "Prev";
@@ -29,7 +29,7 @@ export const CharacterCreation = () => {
             },
           }}
         >
-          <StatsWidget />
+          <RollStats />
         </Step>
       );
     case STEPS.CHOOSE_HOMEWORLD:
@@ -53,7 +53,7 @@ export const CharacterCreation = () => {
             },
           }}
         >
-          <WorldGenerator />
+          <WorldSelector />
         </Step>
       );
     case STEPS.CHOOSE_CAREER:
@@ -74,7 +74,7 @@ export const CharacterCreation = () => {
           }}
           next={{
             text: NEXT,
-            disabled: characterCreation.careers === undefined,
+            disabled: characterCreation.activeCareer === undefined,
             onClick: () => {
               dispatch(actions.goToStep(STEPS.BASIC_TRAINING));
             },

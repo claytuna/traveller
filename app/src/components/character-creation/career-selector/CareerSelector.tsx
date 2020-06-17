@@ -1,24 +1,22 @@
 import React, { useState, useContext } from "react";
 import { StateContext } from "../../../App";
-import { DiceRollService } from "../../../services";
 import { CAREER_LIST } from "../../../constants";
 import { CareerKeys, CareerObject } from "../../../constants/careers/types";
-import { ButtonGroup, Button } from "../../ui";
 import { CareerQualifier } from "./CareerQualifier";
 
 export const CareerSelector = () => {
   const { characterCreation } = useContext(StateContext);
-  const [activeCareer, setActiveCareer] = useState<CareerObject | undefined>();
-  const [qualifiedRoll, setQualifiedRoll] = useState<number | undefined>();
+  const [chosenCareer, setChosenCareer] = useState<CareerObject | undefined>();
+
   return (
     <>
-      {activeCareer === undefined
+      {chosenCareer === undefined
         ? (Object.keys(CAREER_LIST) as CareerKeys[]).map((careerKey) => {
             const careerObj = CAREER_LIST[careerKey];
             return (
               <button
                 onClick={() => {
-                  setActiveCareer(careerObj);
+                  setChosenCareer(careerObj);
                 }}
                 key={careerKey}
               >
@@ -27,33 +25,21 @@ export const CareerSelector = () => {
             );
           })
         : null}
-      {activeCareer !== undefined && characterCreation.stats ? (
+      {chosenCareer !== undefined && characterCreation.stats ? (
         <div>
-          <p>{activeCareer.desc}</p>
+          <h2>{chosenCareer.name}</h2>
+          <p>{chosenCareer.desc}</p>
 
           <CareerQualifier
-            qualify={activeCareer.qualify}
-            roll={qualifiedRoll}
+            name={chosenCareer.name}
+            qualify={chosenCareer.qualify}
             stats={characterCreation.stats}
-            currentAge={18}
-            previousCareers={0}
+            currentAge={characterCreation.age}
+            previousCareers={
+              characterCreation.careers ? characterCreation.careers.length : 0
+            }
+            setChosenCareer={setChosenCareer}
           />
-          <ButtonGroup>
-            <Button
-              priority="tertiary"
-              disabled={qualifiedRoll !== undefined}
-              onClick={() => setActiveCareer(undefined)}
-            >
-              Select Different Career
-            </Button>
-            <Button
-              priority="secondary"
-              disabled={false}
-              onClick={() => setQualifiedRoll(DiceRollService.roll([6, 6]))}
-            >
-              Roll to qualify
-            </Button>
-          </ButtonGroup>
         </div>
       ) : null}
     </>

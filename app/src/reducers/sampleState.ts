@@ -7,7 +7,9 @@ export const emptyState = {
   homeworld: undefined,
   availableSkillCount: undefined,
   skills: {},
+  activeCareer: undefined,
   careers: undefined,
+  hasBeenDrafted: false,
   events: [],
   connections: {
     allies: [],

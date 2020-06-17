@@ -5,14 +5,14 @@ import { ButtonGroup, Button, Card } from "../../ui";
 import { WorldOverview } from "./world-overview";
 import { BackgroundSkillSummary } from "./background-skills-summary";
 
-export const WorldGenerator = () => {
+export const WorldSelector = () => {
   const { actions, dispatch, characterCreation } = useContext(StateContext);
   const [currentWorld, setCurrentWorld] = useState<WorldGeneratorObject>(
     TravellerWorldService.generate()
   );
   const { skills, availableSkillCount, homeworld } = characterCreation;
   return (
-    <div data-testid="WorldGenerator">
+    <div data-testid="WorldSelector">
       <Card
         title="Current Background Skills"
         footer={
