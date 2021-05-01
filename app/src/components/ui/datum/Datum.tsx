@@ -37,7 +37,7 @@ export const Datum = ({
 
   /* highlight on update effect */
   useEffect(() => {
-    let highlightTimeout: number | undefined = undefined;
+    let highlightTimeout: NodeJS.Timeout | undefined = undefined;
     setUpdated(true);
     highlightTimeout = setTimeout(() => {
       setUpdated(false);
@@ -49,7 +49,7 @@ export const Datum = ({
 
   /* incremental counting effect */
   useEffect(() => {
-    let interval: number | undefined = undefined;
+    let interval: NodeJS.Timeout | undefined = undefined;
     if (isCountable) {
       if (
         value !== valueProp &&
